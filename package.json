@@ -1,0 +1,50 @@
+{
+	"name": "@prmichaelsen/TEMPLATE",
+	"version": "0.0.1",
+	"description": "TEMPLATE DESCRIPTION",
+	"main": "dist/index.js",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"test": "jest",
+		"build": "tsc",
+		"format": "prettier --write \"src/**/*.ts?(x)\" \"src/**/*.js?(x)\" \"./*.ts?(x)\" \"./*.js?(x)\" \"./*.json\"",
+		"lint": "tslint -p tsconfig.json",
+		"prepare": "npm run build",
+		"prepublishOnly": "npm test && npm run lint",
+		"preversion": "npm run lint",
+		"version": "npm run format && git add -A src",
+		"postversion": "git push && git push --tags"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/prmichaelsen/TEMPLATE.git"
+	},
+	"keywords": [
+	],
+	"author": "Patrick AR Michaelsen",
+	"license": "UNLICENSED",
+	"bugs": {
+		"url": "https://github.com/prmichaelsen/TEMPLATE/issues"
+	},
+	"homepage": "https://github.com/prmichaelsen/TEMPLATE#readme",
+	"devDependencies": {
+		"@types/jest": "^23.3.9",
+		"@types/node": "^10.12.10",
+		"@types/prettier": "^1.15.1",
+		"ghooks": "^2.0.4",
+		"jest": "^23.6.0",
+		"prettier": "^1.15.2",
+		"ts-jest": "^23.10.5",
+		"tslint": "^5.11.0",
+		"tslint-config-prettier": "^1.16.0",
+		"typescript": "^3.1.6"
+	},
+	"config": {
+		"ghooks": {
+			"pre-commit": "npm run format",
+			"pre-push": "npm test",
+			"post-merge": "npm install",
+			"post-rewrite": "npm install"
+		}
+	}
+}
