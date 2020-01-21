@@ -11,4 +11,5 @@ Resources
 
  <!-- Links -->
  [npm-ts-package]: https://itnext.io/step-by-step-building-and-publishing-an-npm-typescript-package-44fe7164964c
+
  [jenkins-github]: https://stackoverflow.com/questions/14274293/show-current-state-of-jenkins-build-on-github-repo/16246831#16246831
