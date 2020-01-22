@@ -13,6 +13,13 @@
   "projects": {
     "react-use-viewport-size": {
       "tags": []
+    },
+    "react-playground": {
+      "tags": []
+    },
+    "react-playground-e2e": {
+      "tags": [],
+      "implicitDependencies": ["react-playground"]
     }
   }
 }
