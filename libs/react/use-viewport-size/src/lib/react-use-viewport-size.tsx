@@ -1,16 +1,17 @@
-import React from 'react';
-
-import './react-use-viewport-size.scss';
-
-/* eslint-disable-next-line */
-export interface ReactUseViewportSizeProps {}
-
-export const ReactUseViewportSize = (props: ReactUseViewportSizeProps) => {
-  return (
-    <div>
-      <h1>Welcome to react-use-viewport-size component!</h1>
-    </div>
-  );
-};
-
-export default ReactUseViewportSize;
+import { useState, useEffect } from 'react';
+ 
+export function useViewportSize() {
+  const getSize = () => {
+    return { width: window.innerWidth, height: window.innerHeight };
+  };
+ 
+  const [size, setSize] = useState(getSize);
+ 
+  useEffect(() => {
+    const handleResize = () => setSize(getSize());
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [getSize]);
+ 
+  return size;
+}

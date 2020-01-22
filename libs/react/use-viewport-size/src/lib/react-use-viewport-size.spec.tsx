@@ -1,11 +1,27 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
-import ReactUseViewportSize from './react-use-viewport-size';
-
-describe(' ReactUseViewportSize', () => {
+import ReactDOM from 'react-dom';
+import { act } from '@testing-library/react';
+import { useViewportSize } from './react-use-viewport-size';
+ 
+describe('UseViewportSize', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ReactUseViewportSize />);
-    expect(baseElement).toBeTruthy();
+    // Setup
+    let container = document.createElement('div');
+    document.body.appendChild(container);
+ 
+    const App = () => {
+      const size = useViewportSize();
+      return <div>{JSON.stringify(size)}</div>;
+    };
+ 
+    act(() => {
+      ReactDOM.render(<App />, container);
+    });
+ 
+    expect(container.textContent).toEqual('{"width":1024,"height":768}');
+ 
+    // Teardown
+    document.body.removeChild(container);
+    container = null;
   });
 });
