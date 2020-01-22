@@ -1,49 +1,43 @@
 {
-  "name": "@prmichaelsen/react-table",
-  "version": "0.0.1",
-  "description": "react table component",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "name": "parm",
+  "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
-    "test": "jest",
-    "build": "tsc",
-    "format": "prettier --write \"src/**/*.ts?(x)\" \"src/**/*.js?(x)\" \"./*.ts?(x)\" \"./*.js?(x)\" \"./*.json\"",
-    "lint": "tslint -p tsconfig.json",
-    "prepare": "npm run build",
-    "prepublishOnly": "npm test && npm run lint",
-    "preversion": "npm run lint",
-    "version": "npm run format && git add -A src",
-    "postversion": "git push && git push --tags"
+    "ng": "ng",
+    "nx": "nx",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "nx workspace-lint && ng lint",
+    "e2e": "ng e2e",
+    "affected:apps": "nx affected:apps",
+    "affected:libs": "nx affected:libs",
+    "affected:build": "nx affected:build",
+    "affected:e2e": "nx affected:e2e",
+    "affected:test": "nx affected:test",
+    "affected:lint": "nx affected:lint",
+    "affected:dep-graph": "nx affected:dep-graph",
+    "affected": "nx affected",
+    "format": "nx format:write",
+    "format:write": "nx format:write",
+    "format:check": "nx format:check",
+    "update": "ng update @nrwl/workspace",
+    "update:check": "ng update",
+    "workspace-schematic": "nx workspace-schematic",
+    "dep-graph": "nx dep-graph",
+    "help": "nx help"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/prmichaelsen/react-table.git"
-  },
-  "keywords": [],
-  "author": "Patrick AR Michaelsen",
-  "license": "UNLICENSED",
-  "bugs": {
-    "url": "https://github.com/prmichaelsen/react-table/issues"
-  },
-  "homepage": "https://github.com/prmichaelsen/react-table#readme",
+  "private": true,
+  "dependencies": {},
   "devDependencies": {
-    "@types/jest": "^23.3.9",
-    "@types/node": "^10.12.10",
-    "@types/prettier": "^1.15.1",
-    "ghooks": "^2.0.4",
-    "jest": "^25.0.0",
-    "prettier": "^1.15.2",
-    "ts-jest": "^23.10.5",
-    "tslint": "^5.20.1",
-    "tslint-config-prettier": "^1.16.0",
-    "typescript": "^3.1.6"
-  },
-  "config": {
-    "ghooks": {
-      "pre-commit": "npm run format",
-      "pre-push": "npm test",
-      "post-merge": "npm install",
-      "post-rewrite": "npm install"
-    }
+    "@angular/cli": "8.3.14",
+    "@nrwl/workspace": "8.11.2",
+    "@types/node": "~8.9.4",
+    "dotenv": "6.2.0",
+    "ts-node": "~7.0.0",
+    "tslint": "~5.11.0",
+    "eslint": "6.1.0",
+    "typescript": "~3.5.3",
+    "prettier": "1.18.2"
   }
 }
