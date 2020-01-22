@@ -1,13 +1,10 @@
-import { getGreeting } from '../support/app.po';
-
 describe('react-playground', () => {
-  beforeEach(() => cy.visit('/'));
-
-  it('should display welcome message', () => {
-    // Custom command example, see `../support/commands.ts` file
-    cy.login('my-email@something.com', 'myPassword');
-
-    // Function helper example, see `../support/app.po.ts` file
-    getGreeting().contains('Welcome to react-playground!');
+  beforeEach(() => {
+    cy.viewport(1024, 768);
+    cy.visit('/');
+  });
+ 
+  it('should display viewport dimensions', () => {
+    cy.get('.app').contains('1024px / 768px');
   });
 });
