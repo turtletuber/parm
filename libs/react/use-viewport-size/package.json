@@ -1,0 +1,8 @@
+{
+  "name": "react-use-viewport-size",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "react": "*",
+    "react-dom": "*"
+  }
+}

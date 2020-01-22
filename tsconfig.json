@@ -15,7 +15,11 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@parm/react/use-viewport-size": [
+        "libs/react/use-viewport-size/src/index.ts"
+      ]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }

@@ -1,6 +1,46 @@
 {
   "version": 1,
-  "projects": {},
+  "projects": {
+    "react-use-viewport-size": {
+      "root": "libs/react/use-viewport-size",
+      "sourceRoot": "libs/react/use-viewport-size/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/react/use-viewport-size/tsconfig.lib.json",
+              "libs/react/use-viewport-size/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/react/use-viewport-size/**"
+            ]
+          }
+        },
+        "build": {
+          "builder": "@nrwl/web:bundle",
+          "options": {
+            "outputPath": "dist/libs/react/use-viewport-size",
+            "tsConfig": "libs/react/use-viewport-size/tsconfig.lib.json",
+            "project": "libs/react/use-viewport-size/package.json",
+            "entryFile": "libs/react/use-viewport-size/src/index.ts",
+            "babelConfig": "@nrwl/react/plugins/bundle-babel",
+            "rollupConfig": "@nrwl/react/plugins/bundle-rollup"
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/react/use-viewport-size/jest.config.js",
+            "tsConfig": "libs/react/use-viewport-size/tsconfig.spec.json"
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "defaultCollection": "@nrwl/workspace"
   }
