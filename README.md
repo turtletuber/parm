@@ -82,3 +82,6 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+
+## How to publish to NPM
+This package publishes to NPM following the steps of [this guide](https://blog.nrwl.io/publishing-react-libraries-made-easy-d5b3d013deba).
