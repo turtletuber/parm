@@ -26,8 +26,8 @@
     "workspace-schematic": "nx workspace-schematic",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "start:storybook:react": "node node_modules/@storybook/react/bin/index.js -p 6001 -c config/react --ci",
-    "build:storybook:react": "node node_modules/@storybook/react/bin/build.js -c config/react -o dist/storybook/react"
+    "start:storybook:react": "node node_modules/@storybook/react/bin/index.js -p 6001 -c config/react/storybook --ci",
+    "build:storybook:react": "node node_modules/@storybook/react/bin/build.js -c config/react/storybook -o dist/storybook/react"
   },
   "dependencies": {
     "document-register-element": "1.13.1",
