@@ -5,7 +5,7 @@ import { useViewportSize } from './react-use-viewport-size';
 export const ViewportComponent = () => {
   const size = useViewportSize();
   return (
-    <div>
+    <div id='element'>
       {size.width}px / {size.height}px
     </div>
   );
