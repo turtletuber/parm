@@ -1,12 +1,4 @@
-import { addParameters, configure } from '@storybook/react';
-
-import theme from './theme';
-
-addParameters({
-  options: {
-    theme
-  }
-});
+import { configure } from '@storybook/react';
 
 const req = require.context('../../libs/react', true, /\.stories.[jt]sx?$/);
 
