@@ -1,5 +1,7 @@
 const storyRoute = '/iframe.html?id=useviewportsize--default';
+const isHeadless = Cypress.env('headless');
 describe('react-playground', () => {
+  
   beforeEach(() => {
     cy.viewport(1024, 768);
     cy.visit(storyRoute);
@@ -7,11 +9,11 @@ describe('react-playground', () => {
  
   it('should display viewport dimensions', () => {
     cy.get('.app').contains('1024px / 768px');
-    cy.matchImageSnapshot();
+    if (isHeadless === true) {
+      console.log('its headless');
+      cy.matchImageSnapshot();
+    } else {
+      console.log('its not headless');
+    }
   });
-
-  // it('should react to viewport dimensions changes', () => {
-  //   cy.viewport(1023, 769);
-  //   cy.get('.app').contains('1023px / 768px');
-  // });
 });
