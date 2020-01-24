@@ -37,21 +37,6 @@
             "jestConfig": "libs/react/use-viewport-size/jest.config.js",
             "tsConfig": "libs/react/use-viewport-size/tsconfig.spec.json"
           }
-        },
-        "storybook": {
-          "builder": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/react",
-            "port": 4400,
-            "config": {
-              "configFolder": "libs/react/use-viewport-size/.storybook"
-            }
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
         }
       }
     },
