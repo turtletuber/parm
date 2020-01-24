@@ -27,6 +27,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "start:storybook:react": "node node_modules/@storybook/react/bin/index.js -p 6001 -c config/react/storybook --ci",
+    "storybook": "node node_modules/@storybook/react/bin/index.js -p 6001 -c ./.storybook --ci",
     "build:storybook:react": "node node_modules/@storybook/react/bin/build.js -c config/react/storybook -o dist/storybook/react"
   },
   "dependencies": {
