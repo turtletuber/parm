@@ -19,7 +19,15 @@
     },
     "react-playground-e2e": {
       "tags": [],
-      "implicitDependencies": ["react-playground"]
+      "implicitDependencies": [
+        "react-playground"
+      ]
+    },
+    "react-use-viewport-size-e2e": {
+      "tags": [],
+      "implicitDependencies": [
+        "react-use-viewport-size"
+      ]
     }
   }
 }

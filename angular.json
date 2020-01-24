@@ -37,6 +37,36 @@
             "jestConfig": "libs/react/use-viewport-size/jest.config.js",
             "tsConfig": "libs/react/use-viewport-size/tsconfig.spec.json"
           }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/react/use-viewport-size/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "options": {
+            "uiFramework": "@storybook/react",
+            "outputPath": "dist/storybook/react-use-viewport-size",
+            "config": {
+              "configFolder": "libs/react/use-viewport-size/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
         }
       }
     },
@@ -58,7 +88,9 @@
               "apps/react/playground/src/favicon.ico",
               "apps/react/playground/src/assets"
             ],
-            "styles": ["apps/react/playground/src/styles.scss"],
+            "styles": [
+              "apps/react/playground/src/styles.scss"
+            ],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -105,7 +137,10 @@
               "apps/react/playground/tsconfig.app.json",
               "apps/react/playground/tsconfig.spec.json"
             ],
-            "exclude": ["**/node_modules/**", "!apps/react/playground/**"]
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/react/playground/**"
+            ]
           }
         },
         "test": {
@@ -137,8 +172,45 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": ["apps/react/playground-e2e/tsconfig.e2e.json"],
-            "exclude": ["**/node_modules/**", "!apps/react/playground-e2e/**"]
+            "tsConfig": [
+              "apps/react/playground-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/react/playground-e2e/**"
+            ]
+          }
+        }
+      }
+    },
+    "react-use-viewport-size-e2e": {
+      "root": "apps/react-use-viewport-size-e2e",
+      "sourceRoot": "apps/react-use-viewport-size-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react-use-viewport-size-e2e/cypress.json",
+            "tsConfig": "apps/react-use-viewport-size-e2e/tsconfig.e2e.json",
+            "devServerTarget": "react-use-viewport-size:storybook"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "react-use-viewport-size:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/react-use-viewport-size-e2e/tsconfig.e2e.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/react-use-viewport-size-e2e/**"
+            ]
           }
         }
       }
