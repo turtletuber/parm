@@ -14,16 +14,7 @@
     "react-use-viewport-size": {
       "tags": []
     },
-    "react-playground": {
-      "tags": []
-    },
-    "react-playground-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "react-playground"
-      ]
-    },
-    "react-use-viewport-size-e2e": {
+    "react": {
       "tags": [],
       "implicitDependencies": [
         "react-use-viewport-size"

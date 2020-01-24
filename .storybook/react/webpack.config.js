@@ -1,6 +1,6 @@
 const path = require('path')
 
-const base = '../libs/react';
+const base = '../../libs/react';
 
 /** 
  * All React components share one Storyboook webpack config.
