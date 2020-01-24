@@ -85,3 +85,6 @@ Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
 
 ## How to publish to NPM
 This package publishes to NPM following the steps of [this guide](https://blog.nrwl.io/publishing-react-libraries-made-easy-d5b3d013deba).
+
+## How to setup Cypress for visual regression testing
+https://medium.com/norwich-node-user-group/visual-regression-testing-with-cypress-io-and-cypress-image-snapshot-99c520ccc595
