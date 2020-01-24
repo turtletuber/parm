@@ -8,11 +8,6 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 // eslint-disable-next-line @typescript-eslint/no-namespace
-declare namespace Cypress {
-  interface Chainable<Subject> {
-    login(email: string, password: string): void;
-  }
-}
 //
 // -- This is a parent command --
 Cypress.Commands.add('login', (email, password) => {
@@ -29,3 +24,21 @@ Cypress.Commands.add('login', (email, password) => {
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+
+// enable setting resolution
+import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
+addMatchImageSnapshotCommand({
+  failureThreshold: 0.00,
+  failureThresholdType: 'percent',
+  customDiffConfig: { threshold: 0.0 },
+  capture: 'viewport',
+});
+
+// Cypress.Commands.add("setResolution", (size) => {
+//   if (Cypress._.isArray(size)) {
+//      cy.viewport(size[0], size[1]);
+//    } else {
+//     cy.viewport(size);
+//   }
+//  })

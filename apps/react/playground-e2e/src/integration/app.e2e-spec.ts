@@ -7,6 +7,7 @@ describe('react-playground', () => {
  
   it('should display viewport dimensions', () => {
     cy.get('.app').contains('1024px / 768px');
+    cy.matchImageSnapshot();
   });
 
   it('should react to viewport dimensions changes', () => {
