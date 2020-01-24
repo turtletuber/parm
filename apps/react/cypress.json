@@ -9,5 +9,19 @@
   "videosFolder": "../../dist/cypress/apps/react/videos",
   "screenshotsFolder": "../../dist/cypress/apps/react/screenshots",
   "chromeWebSecurity": false,
-  "baseUrl": "http://localhost:4400"
+  "baseUrl": "http://localhost:4400",
+  "ignoreTestFiles": [
+    "**/__snapshots__/*",
+    "**/__image_snapshots__/*"
+  ],
+  "env": {
+    "cypress-plugin-snapshots": {
+      "imageConfig": {
+        "createDiffImage": true,
+        "resizeDevicePixelRatio": true,
+        "threshold": 0.01,
+        "thresholdType": "percent"
+      }
+    }
+  }
 }

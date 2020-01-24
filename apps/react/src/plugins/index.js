@@ -12,7 +12,7 @@
 // the project's config changing)
 
 const { preprocessTypescript } = require('@nrwl/cypress/plugins/preprocessor');
-const { addMatchImageSnapshotPlugin } = require('cypress-image-snapshot/plugin');
+const { initPlugin } = require('cypress-plugin-snapshots/plugin');
 
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
@@ -21,6 +21,5 @@ module.exports = (on, config) => {
   // Preprocess Typescript
   on('file:preprocessor', preprocessTypescript(config));
 
-  // enable image snapshot
-  addMatchImageSnapshotPlugin(on, config);
+  initPlugin(on, config);
 };

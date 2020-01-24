@@ -8,6 +8,6 @@ describe('react-use-viewport-size', () => {
  
   it('should display viewport dimensions', () => {
     cy.get('.app').contains('1024px / 768px');
-    cy.matchImageSnapshot();
+    cy.get('.app').toMatchImageSnapshot();
   });
 });
