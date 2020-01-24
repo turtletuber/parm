@@ -58,6 +58,37 @@
             }
           }
         },
+        "update-snapshots": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react/cypress.json",
+            "tsConfig": "apps/react/tsconfig.e2e.json",
+            "devServerTarget": "react:storybook",
+            "headless": true,
+            "env": {
+              "updateSnapshots": true
+            }
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "react:serve:production"
+            }
+          }
+        },
+        "e2e-ci": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/react/cypress.json",
+            "tsConfig": "apps/react/tsconfig.e2e.json",
+            "devServerTarget": "react:storybook",
+            "headless": true
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "react:serve:production"
+            }
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
