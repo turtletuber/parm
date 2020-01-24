@@ -1,3 +1,4 @@
+import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -25,13 +26,10 @@ Cypress.Commands.add('login', (email, password) => {
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
 
-
-// enable setting resolution
-import { addMatchImageSnapshotCommand } from 'cypress-image-snapshot/command';
 addMatchImageSnapshotCommand({
-  failureThreshold: 0.00,
+  failureThreshold: 0.03,
   failureThresholdType: 'percent',
-  customDiffConfig: { threshold: 0.0 },
+  customDiffConfig: { threshold: 0.1 },
   capture: 'viewport',
 });
 
