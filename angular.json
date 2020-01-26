@@ -50,42 +50,31 @@
           "options": {
             "cypressConfig": "apps/react/cypress.json",
             "tsConfig": "apps/react/tsconfig.e2e.json",
-            "devServerTarget": "react:storybook"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "react:serve:production"
-            }
-          }
-        },
-        "update-snapshots": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/react/cypress.json",
-            "tsConfig": "apps/react/tsconfig.e2e.json",
-            "devServerTarget": "react:storybook",
-            "headless": true,
-            "env": {
-              "updateSnapshots": true
-            }
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "react:serve:production"
-            }
-          }
-        },
-        "e2e-ci": {
-          "builder": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/react/cypress.json",
-            "tsConfig": "apps/react/tsconfig.e2e.json",
             "devServerTarget": "react:storybook",
             "headless": true
           },
           "configurations": {
-            "production": {
-              "devServerTarget": "react:serve:production"
+            "ci": {
+              "headless": true
+            },
+            "dev": {
+              "headless": false,
+              "exit": false,
+              "env": {
+                "cypress-plugin-snapshots": {
+                  "serverEnabled": true,
+                  "serverHost": "localhost",
+                  "serverPort": 2121
+                }
+              }
+            },
+            "update": {
+              "headless": true,
+              "env": {
+                "cypress-plugin-snapshots": {
+                  "updateSnapshots": true
+                }
+              }
             }
           }
         },
