@@ -105,7 +105,7 @@
             }
           }
         },
-        "build-storybook": {
+        "build": {
           "builder": "@nrwl/storybook:build",
           "options": {
             "uiFramework": "@storybook/react",

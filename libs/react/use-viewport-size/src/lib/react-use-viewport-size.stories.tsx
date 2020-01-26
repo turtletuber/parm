@@ -2,10 +2,9 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { useViewportSize } from './react-use-viewport-size';
 
-
 const style = {
-  // color: 'white',
-  // backgroundColor: 'blue',
+  color: 'white',
+  backgroundColor: 'blue',
 };
 
 export const ViewportComponent = () => {
