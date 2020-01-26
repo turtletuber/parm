@@ -1,6 +1,6 @@
 {
-  "name": "react-use-viewport-size",
-  "version": "0.0.2",
+  "name": "@prmichaelsen/react-use-viewport-size",
+  "version": "0.0.4",
   "peerDependencies": {
     "react": "*",
     "react-dom": "*"
