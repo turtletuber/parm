@@ -2,6 +2,16 @@
 
 This project was generated using [Nx](https://nx.dev).
 
+## Quick start
+
+* `ng test`: run all tests
+* `ng e2e`: run all e2e tests
+* `ng run react:storybook`: start and watch the storybook
+* `ng run react:e2e:dev`: start and watch the e2e tests
+* `ng run react:e2e:update`: update the image snapshot tests
+
+Check `package.json` and `angular.json` for more options.
+
 <p align="center"><img src="https://raw.githubusercontent.com/nrwl/nx/master/nx-logo.png" width="450"></p>
 
 🔎 **Nx is a set of Extensible Dev Tools for Monorepos.**
