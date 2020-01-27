@@ -3,9 +3,12 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { ListItem } from '@material-ui/core';
+import { ListItem, Card, CardHeader, CardContent } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
+  card: {
+    marginTop: theme.spacing(1),
+  },
   paper: {
     marginTop: theme.spacing(2),
     display: 'flex',
@@ -19,9 +22,6 @@ const useStyles = makeStyles(theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
-  },
-  caption: {
-    margin: theme.spacing(1, 0, 1),
   },
 }));
 
@@ -49,20 +49,20 @@ export default function Lineup(props: LineupProps) {
       <div>
         {props.slots.map((slot, i) => {
           return (
-            <ListItem key={i}>
-              <Typography>
-                Slot {i + 1}
-              </Typography>
-              <Typography variant="caption">
-                {slot.comics.length > 0 ?
-                  slot.comics
-                    .map(c => `${c.firstName} ${c.lastName}`)
-                    .join(' - ')
-                  :
-                  'None yet'
-                }
-              </Typography>
-            </ListItem>
+            <Card key={i} className={classes.card}>
+              <CardHeader subheader={'Slot ' + (i + 1)}/>
+              <CardContent >
+                <Typography variant="caption">
+                  {slot.comics.length > 0 ?
+                    slot.comics
+                      .map(c => `${c.firstName} ${c.lastName}`)
+                      .join(' - ')
+                    :
+                    'None yet'
+                  }
+                </Typography>
+              </CardContent>
+            </Card>
           );
         })}
       </div>
