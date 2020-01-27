@@ -81,13 +81,8 @@
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
-            "tsConfig": [
-              "apps/react/tsconfig.e2e.json"
-            ],
-            "exclude": [
-              "**/node_modules/**",
-              "!apps/react/**"
-            ]
+            "tsConfig": ["apps/react/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/react/**"]
           }
         },
         "storybook": {
@@ -118,6 +113,110 @@
             "ci": {
               "quiet": true
             }
+          }
+        }
+      }
+    },
+    "greenroom-ui": {
+      "root": "apps/greenroom-ui",
+      "sourceRoot": "apps/greenroom-ui/src",
+      "projectType": "application",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/web:build",
+          "options": {
+            "outputPath": "dist/apps/greenroom-ui",
+            "index": "apps/greenroom-ui/src/index.html",
+            "main": "apps/greenroom-ui/src/main.tsx",
+            "polyfills": "apps/greenroom-ui/src/polyfills.ts",
+            "tsConfig": "apps/greenroom-ui/tsconfig.app.json",
+            "assets": [
+              "apps/greenroom-ui/src/favicon.ico",
+              "apps/greenroom-ui/src/assets"
+            ],
+            "styles": ["apps/greenroom-ui/src/styles.scss"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/greenroom-ui/src/environments/environment.ts",
+                  "with": "apps/greenroom-ui/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "greenroom-ui:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "greenroom-ui:build:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/greenroom-ui/tsconfig.app.json",
+              "apps/greenroom-ui/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/greenroom-ui/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/greenroom-ui/jest.config.js",
+            "tsConfig": "apps/greenroom-ui/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "greenroom-ui-e2e": {
+      "root": "apps/greenroom-ui-e2e",
+      "sourceRoot": "apps/greenroom-ui-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/greenroom-ui-e2e/cypress.json",
+            "tsConfig": "apps/greenroom-ui-e2e/tsconfig.e2e.json",
+            "devServerTarget": "greenroom-ui:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "greenroom-ui:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": ["apps/greenroom-ui-e2e/tsconfig.e2e.json"],
+            "exclude": ["**/node_modules/**", "!apps/greenroom-ui-e2e/**"]
           }
         }
       }

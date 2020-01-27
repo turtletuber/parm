@@ -16,9 +16,14 @@
     },
     "react": {
       "tags": [],
-      "implicitDependencies": [
-        "react-use-viewport-size"
-      ]
+      "implicitDependencies": ["react-use-viewport-size"]
+    },
+    "greenroom-ui": {
+      "tags": []
+    },
+    "greenroom-ui-e2e": {
+      "tags": [],
+      "implicitDependencies": ["greenroom-ui"]
     }
   }
 }
