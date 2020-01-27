@@ -4,6 +4,8 @@ import { Route, Link } from 'react-router-dom';
 import SignUp from './SignUp';
 import Home, { HomeProps } from './Home';
 import Lineup, { LineupProps } from './Lineup';
+import { Container, CssBaseline } from '@material-ui/core';
+import Copyright from './Copyright';
 
 interface AppState {
   homeProps: HomeProps;
@@ -32,9 +34,13 @@ export const App = () => {
    */
   return (
     <>
-      <Home {...state.homeProps}/>
-      <Lineup {...state.lineupProps}/>
-      <SignUp/>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Home {...state.homeProps} />
+        <Lineup {...state.lineupProps} />
+        <SignUp/>
+        <Copyright/>
+      </Container>
       {/* <div role="navigation">
         <ul>
           <li>

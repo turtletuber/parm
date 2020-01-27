@@ -1,15 +1,29 @@
 import React from 'react';
-import { Link, Typography } from '@material-ui/core';
+import { Link, Typography, makeStyles } from '@material-ui/core';
 
-export function Copyright() {
+const useStyles = makeStyles(theme => ({
+  paper: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+}));
+
+export default function Copyright() {
+  const classes = useStyles();
+
   return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+    <div className={classes.paper}>
+      <Typography variant="body2" color="textSecondary" align="center">
+        {'Copyright © '}
+        <Link color="inherit" href="https://material-ui.com/">
+          Your Website
       </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
+        {new Date().getFullYear()}
+        {'.'}
+      </Typography>
+    </div>
   );
 }

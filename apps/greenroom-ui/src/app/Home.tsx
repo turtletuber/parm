@@ -43,22 +43,19 @@ export default function Home(props: HomeProps) {
   const classes = useStyles();
 
   return (
-    <Container component="main" maxWidth="xs">
-      <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Welcome to the Green Room
+    <div className={classes.paper}>
+      <Avatar className={classes.avatar}>
+        <LockOutlinedIcon />
+      </Avatar>
+      <Typography component="h1" variant="h5">
+        Welcome to the Green Room
         </Typography>
-        <Typography component="div" variant="caption" className={classes.caption}>
-          The next open mic is on {props.date} at {props.place}. You can sign up here!
+      <Typography component="div" variant="caption" className={classes.caption}>
+        The next open mic is on {props.date} at {props.place}. You can sign up here!
         </Typography>
-        <Typography component="div" variant="caption" className={classes.caption}>
-          You will be assigned a one hour time slot. At any time in that time slot, you will be randomly called for your 5 minutes. You won't be called before or after that slot, so once your hour is over, feel free to go home!
+      <Typography component="div" variant="caption" className={classes.caption}>
+        You will be assigned a one hour time slot. At any time in that time slot, you will be randomly called for your 5 minutes. You won't be called before or after that slot, so once your hour is over, feel free to go home!
         </Typography>
-      </div>
-    </Container>
+    </div>
   );
 }
