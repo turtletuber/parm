@@ -19,8 +19,24 @@ const state: AppState = {
   },
   lineupProps: {
     slots: [
-      { comics: [] },
-      { comics: [] },
+      {
+        comics: [
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+      ] },
+      { comics: [
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+          { firstName: 'Patrick', lastName: 'Michaelsen', },
+      ] },
       { comics: [] },
     ],
   }

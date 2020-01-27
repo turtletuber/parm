@@ -49,8 +49,19 @@ export default function Lineup(props: LineupProps) {
       <div>
         {props.slots.map((slot, i) => {
           return (
-            <ListItem>
-              Slot {i + 1}
+            <ListItem key={i}>
+              <Typography>
+                Slot {i + 1}
+              </Typography>
+              <Typography variant="caption">
+                {slot.comics.length > 0 ?
+                  slot.comics
+                    .map(c => `${c.firstName} ${c.lastName}`)
+                    .join(' - ')
+                  :
+                  'None yet'
+                }
+              </Typography>
             </ListItem>
           );
         })}
