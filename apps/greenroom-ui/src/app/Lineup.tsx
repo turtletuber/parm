@@ -1,9 +1,9 @@
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { ListItem, Card, CardHeader, CardContent } from '@material-ui/core';
+import { Card, CardHeader, CardContent } from '@material-ui/core';
+import { Slot } from '@parm/greenroom-interface';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -24,15 +24,6 @@ const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
   },
 }));
-
-export interface Comic {
-  firstName: string;
-  lastName: string;
-}
-
-export interface Slot {
-  comics: Comic[];
-};
 
 export interface LineupProps {
   slots: Slot[];

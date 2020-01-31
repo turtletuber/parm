@@ -98,3 +98,8 @@ This package publishes to NPM following the steps of [this guide](https://blog.n
 
 ## How to setup Cypress for visual regression testing
 https://medium.com/norwich-node-user-group/visual-regression-testing-with-cypress-io-and-cypress-image-snapshot-99c520ccc595
+
+## Generate a nest component
+```
+ng g @nestjs/schematics:provider events --sourceRoot=apps/greenroom-rest-api/src --path=app 
+```

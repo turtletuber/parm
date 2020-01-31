@@ -220,6 +220,85 @@
           }
         }
       }
+    },
+    "greenroom-rest-api": {
+      "root": "apps/greenroom-rest-api",
+      "sourceRoot": "apps/greenroom-rest-api/src",
+      "projectType": "application",
+      "prefix": "greenroom-rest-api",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/apps/greenroom-rest-api",
+            "main": "apps/greenroom-rest-api/src/main.ts",
+            "tsConfig": "apps/greenroom-rest-api/tsconfig.app.json",
+            "assets": ["apps/greenroom-rest-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/greenroom-rest-api/src/environments/environment.ts",
+                  "with": "apps/greenroom-rest-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "greenroom-rest-api:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/greenroom-rest-api/tsconfig.app.json",
+              "apps/greenroom-rest-api/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!apps/greenroom-rest-api/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/greenroom-rest-api/jest.config.js",
+            "tsConfig": "apps/greenroom-rest-api/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "greenroom-interface": {
+      "root": "libs/greenroom-interface",
+      "sourceRoot": "libs/greenroom-interface/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/greenroom-interface/tsconfig.lib.json",
+              "libs/greenroom-interface/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/greenroom-interface/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/greenroom-interface/jest.config.js",
+            "tsConfig": "libs/greenroom-interface/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

@@ -24,6 +24,12 @@
     "greenroom-ui-e2e": {
       "tags": [],
       "implicitDependencies": ["greenroom-ui"]
+    },
+    "greenroom-rest-api": {
+      "tags": []
+    },
+    "greenroom-interface": {
+      "tags": []
     }
   }
 }
