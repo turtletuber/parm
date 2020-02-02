@@ -1,5 +1,6 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { Event } from '@parm/greenroom-interface';
+import { EventsService } from './events.service';
 
 const mockEvent: Event = {
   _type: 'event',
@@ -33,9 +34,11 @@ const mockEvent: Event = {
 
 @Controller('v1/events')
 export class EventsController {
+  constructor(private readonly eventService: EventsService) {}
+
   @Get('latest')
-  getLatest(): Event {
-    return mockEvent;
+  async getLatest(): Promise<Event> {
+    return await this.eventService.getLatest();
   }
 
   @Get()
@@ -46,5 +49,10 @@ export class EventsController {
   @Get('by-id/:id')
   getById(): Event {
     return mockEvent;
+  }
+
+  @Post()
+  async create(@Body() dto: any) {
+    return await this.eventService.create(dto);
   }
 }
