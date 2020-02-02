@@ -299,6 +299,31 @@
           }
         }
       }
+    },
+    "greenroom-rest-client": {
+      "root": "libs/greenroom-rest-client",
+      "sourceRoot": "libs/greenroom-rest-client/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/greenroom-rest-client/tsconfig.lib.json",
+              "libs/greenroom-rest-client/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/greenroom-rest-client/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/greenroom-rest-client/jest.config.js",
+            "tsConfig": "libs/greenroom-rest-client/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

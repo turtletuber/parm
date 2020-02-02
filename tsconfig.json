@@ -16,8 +16,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@parm/react/use-viewport-size": [ "libs/react/use-viewport-size/src/index.ts" ],
-      "@parm/greenroom-interface": ["libs/greenroom-interface/src/index.ts"]
+      "@parm/react/use-viewport-size": [
+        "libs/react/use-viewport-size/src/index.ts"
+      ],
+      "@parm/greenroom-interface": ["libs/greenroom-interface/src/index.ts"],
+      "@parm/greenroom-rest-client": ["libs/greenroom-rest-client/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

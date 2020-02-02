@@ -1,48 +1,26 @@
 import React from 'react';
 
+import { EventsRestClient }  from '@parm/greenroom-rest-client';
 import { Route, Link } from 'react-router-dom';
 import SignUp from './SignUp';
 import Home, { HomeProps } from './Home';
 import Lineup, { LineupProps } from './Lineup';
 import { Container, CssBaseline } from '@material-ui/core';
 import Copyright from './Copyright';
-
-interface AppState {
-  homeProps: HomeProps;
-  lineupProps: LineupProps;
-}
-
-const state: AppState = {
-  homeProps: {
-    date: 'May 06 at 8 pm',
-    place: 'Casey Moore\'s'
-  },
-  lineupProps: {
-    slots: [
-      {
-        comics: [
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-      ] },
-      { comics: [
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-          { firstName: 'Patrick', lastName: 'Michaelsen', },
-      ] },
-      { comics: [] },
-    ],
-  }
-}
+import { useEvents } from './useEvents';
 
 export const App = () => {
+  const eventState = useEvents();
+
+  if (eventState.err)
+    return (
+      <span> Failed to load </span>
+    );
+
+  if (!eventState.hasFetched || eventState.isLoading)
+    return (
+      <span> Loading... </span>
+    );
   /*
    * Replace the elements below with your own.
    *
@@ -52,8 +30,8 @@ export const App = () => {
     <>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Home {...state.homeProps} />
-        <Lineup {...state.lineupProps} />
+        <Home {...eventState.data} />
+        <Lineup {...eventState.data} />
         <SignUp/>
         <Copyright/>
       </Container>

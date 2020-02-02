@@ -30,6 +30,9 @@
     },
     "greenroom-interface": {
       "tags": []
+    },
+    "greenroom-rest-client": {
+      "tags": []
     }
   }
 }
