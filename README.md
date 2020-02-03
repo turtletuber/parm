@@ -100,6 +100,15 @@ This package publishes to NPM following the steps of [this guide](https://blog.n
 https://medium.com/norwich-node-user-group/visual-regression-testing-with-cypress-io-and-cypress-image-snapshot-99c520ccc595
 
 ## Generate a nest component
-```
+```sh
 ng g @nestjs/schematics:provider events --sourceRoot=apps/greenroom-rest-api/src --path=app 
+```
+
+## To run a production build
+```sh
+npm run nx run greenroom-ui:build:production
+```
+and to serve in prod
+```
+~/node_modules/bin/ng serve greenroom-ui --allowed-hosts www.greenroomfinder.app
 ```
