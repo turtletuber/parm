@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
-import { EventDto } from '@parm/greenroom-interface';
+import { EventDto } from '@parm/greenroom-dto';
 import { EventsService } from './events.service';
 
 @Controller('v1/events')

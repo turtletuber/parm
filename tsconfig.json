@@ -20,7 +20,10 @@
         "libs/react/use-viewport-size/src/index.ts"
       ],
       "@parm/greenroom-interface": ["libs/greenroom-interface/src/index.ts"],
-      "@parm/greenroom-rest-client": ["libs/greenroom-rest-client/src/index.ts"]
+      "@parm/greenroom-rest-client": [
+        "libs/greenroom-rest-client/src/index.ts"
+      ],
+      "@parm/greenroom-dto": ["libs/greenroom-dto/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

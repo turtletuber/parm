@@ -5,7 +5,7 @@ import {
   ValidateNested
 } from 'class-validator';
 import { Type } from 'class-transformer';
-import { Comic, Slot, Event } from './events.interface';
+import { Comic, Slot, Event } from '@parm/greenroom-interface';
 
 export class ComicDto {
   @Equals(Comic)

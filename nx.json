@@ -33,6 +33,9 @@
     },
     "greenroom-rest-client": {
       "tags": []
+    },
+    "greenroom-dto": {
+      "tags": []
     }
   }
 }
