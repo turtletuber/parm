@@ -17,12 +17,7 @@ export default function Copyright() {
   return (
     <div className={classes.paper}>
       <Typography variant="body2" color="textSecondary" align="center">
-        {'Copyright © '}
-        <Link color="inherit" href="https://material-ui.com/">
-          Your Website
-      </Link>{' '}
-        {new Date().getFullYear()}
-        {'.'}
+        {'Copyright © '}{new Date().getFullYear()}
       </Typography>
     </div>
   );
