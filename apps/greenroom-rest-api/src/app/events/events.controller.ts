@@ -1,10 +1,10 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { EventDto } from '@parm/greenroom-dto';
-import { EventsService } from './events.service';
+import { CalendarEventService } from './events.service';
 
 @Controller('v1/events')
 export class EventsController {
-  constructor(private readonly eventService: EventsService) {}
+  constructor(private readonly eventService: CalendarEventService) {}
 
   @Get('latest')
   async getLatest() {
