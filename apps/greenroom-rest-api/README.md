@@ -42,13 +42,18 @@ Once certs are setup, you can renew them with `sudo certbot renew`. It might mak
 #### Set up for node
 Now we follow the [Setup NodeJs Production Application] guide. Note: install node 12, not node 8.
 
-
+#### Start server
+To start the server on the remote, run:
+```sh
+pm2 start ./pm2/greenroom.config.js
+pm2 save
+```
 
 [Configure the DNS Records]: https://www.digitalocean.com/docs/networking/dns/how-to/manage-records/
 [Google Domain & Digital Ocean]: https://www.digitalocean.com/community/tutorials/how-to-point-to-digitalocean-nameservers-from-common-domain-registrars
 [SSL]: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-ubuntu-18-04
 [Install Nginx]: https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04
 [Digital Ocean Initial Server Setup with Ubuntu 18.04 Guide]: https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-18-04
-[Setup NodeJs Product Application]: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04
+[Setup NodeJs Production Application]: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04
 [MongoDb]: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 [MongoDb on Ubuntu]: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
