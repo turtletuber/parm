@@ -8,7 +8,7 @@ import { EventRegistrationRestClient } from '@parm/greenroom-rest-client';
 
 const useStyles = makeStyles(theme => ({
   paper: {
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(4),
     marginBottom: theme.spacing(2),
     display: 'flex',
     flexDirection: 'column',
