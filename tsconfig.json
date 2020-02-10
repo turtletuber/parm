@@ -23,7 +23,8 @@
       "@parm/greenroom-rest-client": [
         "libs/greenroom-rest-client/src/index.ts"
       ],
-      "@parm/greenroom-dto": ["libs/greenroom-dto/src/index.ts"]
+      "@parm/greenroom-dto": ["libs/greenroom-dto/src/index.ts"],
+      "@parm/util": ["libs/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

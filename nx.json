@@ -36,6 +36,9 @@
     },
     "greenroom-dto": {
       "tags": []
+    },
+    "util": {
+      "tags": []
     }
   }
 }
