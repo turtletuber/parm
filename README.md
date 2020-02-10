@@ -112,3 +112,13 @@ and to serve in prod
 ```
 ~/node_modules/bin/ng serve greenroom-ui --allowed-hosts www.greenroomfinder.app
 ```
+
+### How to setup Jenkins
+Configure jenkins to push build statuses to GitHub: [jenkins-github]
+
+
+### References
+* [jenkins-github]
+
+ <!-- References -->
+[jenkins-github]: https://stackoverflow.com/questions/14274293/show-current-state-of-jenkins-build-on-github-repo/16246831#16246831
