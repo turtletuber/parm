@@ -1,11 +1,11 @@
 import { EventRegistration } from '@parm/greenroom-interface';
 import { InjectModel } from '@nestjs/mongoose';
 import { Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import { Model, Document } from 'mongoose';
 
 @Injectable()
 export class EventRegistrationService {
-  constructor(@InjectModel(EventRegistration) private readonly model: Model<EventRegistration>) {}
+  constructor(@InjectModel(EventRegistration) private readonly model: Model<EventRegistration & Document>) {}
 
   async create(dto: EventRegistration): Promise<EventRegistration> {
     const entity = new this.model(dto);

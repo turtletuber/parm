@@ -2,23 +2,24 @@ import {
   IsNotEmpty,
   IsString,
   Equals,
-  IsHexadecimal,
   IsNumber,
   Min,
   ValidateIf,
+  IsAlpha,
+  IsMongoId,
 } from 'class-validator';
 import { EventRegistration } from '@parm/greenroom-interface';
 
 export class EventRegistrationDto implements EventRegistration {
   @IsString()
   @IsNotEmpty()
-  @IsHexadecimal()
+  @IsMongoId()
   eventId: string;
 
   @IsNumber()
   @Min(0)
-  @ValidateIf(o => o.slot !== null)
-  slot: number | null;
+  @ValidateIf(o => o.order !== null)
+  order: number | null;
 
   @Equals(EventRegistration)
   @IsString()
@@ -26,10 +27,12 @@ export class EventRegistrationDto implements EventRegistration {
 
   @IsNotEmpty()
   @IsString()
+  @IsAlpha()
   firstName: string;
 
   @IsNotEmpty()
   @IsString()
+  @IsAlpha()
   lastName: string;
 
   @IsNotEmpty()

@@ -5,9 +5,13 @@ export const EventSchema = new mongoose.Schema({
   date: String,
   place: String,
   slots: [{
+    // Slot
+    order: Number,
     comics: [{
+      // Comic
+      order: Number,
       firstName: String,
       lastName: String,
-    }]
+    }],
   }],
 });
