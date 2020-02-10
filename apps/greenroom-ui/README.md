@@ -23,6 +23,8 @@ Greenroom attempts to make open mic experience hassle-free, fair and accessible 
 * ssh only access for root user
 
 #### Required
+* presentable loading state
+* presentable error state
 * facebook pixel tracker
 * google analytics tracker
 * local cookie tracker
@@ -31,7 +33,6 @@ Greenroom attempts to make open mic experience hassle-free, fair and accessible 
 
 #### Nice
 * schema validation
-* full width slots on ui
 * auth/user registration
 * remote mongo access
 * jenkins build process

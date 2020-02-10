@@ -1,13 +1,15 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
 import { Card, CardHeader, CardContent } from '@material-ui/core';
 import { Slot } from '@parm/greenroom-interface';
 
 const useStyles = makeStyles(theme => ({
   card: {
     marginTop: theme.spacing(1),
+  },
+  cards: {
+    width: '100%',
   },
   paper: {
     marginTop: theme.spacing(2),
@@ -36,8 +38,11 @@ export default function Lineup(props: LineupProps) {
     <div className={classes.paper}>
       <Typography component="h1" variant="h5">
         Lineup
-        </Typography>
-      <div>
+      </Typography>
+      <Typography component="div" variant="caption">
+        The names within each slot are in no particular order.
+      </Typography>
+      <div className={classes.cards}>
         {props.slots.map((slot, i) => {
           return (
             <Card key={i} className={classes.card}>
@@ -47,7 +52,7 @@ export default function Lineup(props: LineupProps) {
                   {slot.comics.length > 0 ?
                     slot.comics
                       .map(c => `${c.firstName} ${c.lastName}`)
-                      .join(' - ')
+                      .join(' • ')
                     :
                     'None yet'
                   }
