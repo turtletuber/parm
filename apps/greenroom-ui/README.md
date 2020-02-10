@@ -16,13 +16,32 @@ Greenroom attempts to make open mic experience hassle-free, fair and accessible 
 
 ### Roadmap
 #### Critical
-* event registration
-* front end validation of event registration
 * email confirmation client
+* front end validation of event registration
 * CSRF protection
+* lockdown mongo
+* ssh only access for root user
+
+#### Required
+* facebook pixel tracker
+* google analytics tracker
+* local cookie tracker
+* registration ip tracker
+* location tracker
 
 #### Nice
 * schema validation
+* full width slots on ui
+* auth/user registration
+* remote mongo access
+* jenkins build process
+* deploy production build
+* logging to elastic search
+* metrics to elastic search
+
+### User stories
+* reserve specific position time in slot
+* host mics to get premium benefits
 
 ### Tenets
 * only build what we need
