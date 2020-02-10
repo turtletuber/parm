@@ -1,16 +1,27 @@
 import Axios from  'axios-observable';
 import { retry, filter, map } from 'rxjs/operators';
-import { isEvent } from '@parm/greenroom-interface';
-
-const endpoint = 'http://localhost:3333/api/v1/events/latest';
+import { Event, EventRegistration, is } from '@parm/greenroom-interface';
 
 export class EventsRestClient {
+  endpoint = 'http://localhost:3333/api/v1/events/latest';
   public getLatest() {
-    return Axios.get(endpoint)
+    return Axios.get(this.endpoint)
       .pipe(
         retry(3),
         map(o => o.data),
-        filter(isEvent),
+        filter(is<Event>(Event)),
+      );
+  }
+}
+
+export class EventRegistrationRestClient {
+  endpoint = 'http://localhost:3333/api/v1/event-registration';
+  public post(dto: EventRegistration) {
+    return Axios.post(this.endpoint, dto)
+      .pipe(
+        retry(3),
+        map(o => o.data),
+        filter(is<EventRegistration>(EventRegistration)),
       );
   }
 }

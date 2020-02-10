@@ -22,7 +22,3 @@ export interface Event {
   place: string;
   slots: Slot[] ;
 }
-
-export function isEvent(o: any): o is Event {
-  return o !== undefined && o !== null && o._type === Event;
-}
