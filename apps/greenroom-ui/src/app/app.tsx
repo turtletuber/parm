@@ -3,8 +3,8 @@ import React from 'react';
 import { EventsRestClient }  from '@parm/greenroom-rest-client';
 import { Route, Link } from 'react-router-dom';
 import SignUp from './SignUp';
-import Home, { HomeProps } from './Home';
-import Lineup, { LineupProps } from './Lineup';
+import Home from './Home';
+import Lineup from './Lineup';
 import { Container, CssBaseline } from '@material-ui/core';
 import Copyright from './Copyright';
 import { useEvents } from './useEvents';
@@ -32,7 +32,7 @@ export const App = () => {
         <CssBaseline />
         <Home {...eventState.data} />
         <Lineup {...eventState.data} />
-        <SignUp/>
+        <SignUp eventId={eventState.data._id}/>
         <Copyright/>
       </Container>
       {/* <div role="navigation">
