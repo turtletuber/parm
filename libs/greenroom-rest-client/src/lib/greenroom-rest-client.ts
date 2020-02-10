@@ -3,7 +3,8 @@ import { retry, filter, map } from 'rxjs/operators';
 import { Event, EventRegistration, is } from '@parm/greenroom-interface';
 
 export class EventsRestClient {
-  endpoint = 'http://localhost:3333/api/v1/events/latest';
+  constructor(private readonly host: string) {}
+  endpoint = `${this.host}/api/v1/events/latest`;
   public getLatest() {
     return Axios.get(this.endpoint)
       .pipe(
@@ -15,7 +16,8 @@ export class EventsRestClient {
 }
 
 export class EventRegistrationRestClient {
-  endpoint = 'http://localhost:3333/api/v1/event-registration';
+  constructor(private readonly host: string) {}
+  endpoint = `${this.host}/api/v1/event-registration`;
   public post(dto: EventRegistration) {
     return Axios.post(this.endpoint, dto)
       .pipe(

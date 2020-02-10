@@ -8,6 +8,11 @@ import Lineup from './Lineup';
 import { Container, CssBaseline } from '@material-ui/core';
 import Copyright from './Copyright';
 import { useEvents } from './useEvents';
+import { environment } from '../environments/environment';
+
+export const host = environment.production ?
+  'https://greenroomfinder.app'
+  : 'http://localhost:3333';
 
 export const App = () => {
   const eventState = useEvents();

@@ -5,6 +5,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { EventRegistrationRestClient } from '@parm/greenroom-rest-client';
+import { host } from './app';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -41,7 +42,7 @@ export default function SignUp(props: SignUpProps) {
   });
 
   const onClick = () => {
-    const client = new EventRegistrationRestClient();
+    const client = new EventRegistrationRestClient(host);
     client.post({
       _type: 'event-registration',
       eventId, 

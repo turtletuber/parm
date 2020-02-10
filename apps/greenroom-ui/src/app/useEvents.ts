@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { EventsRestClient } from '@parm/greenroom-rest-client';
 import { Event } from '@parm/greenroom-interface';
+import { host } from './app';
 
 interface Data {
   hasFetched: boolean;
@@ -15,7 +16,7 @@ const initialData: Data = {
 };
 
 export function useEvents() {
-  const client = new EventsRestClient();
+  const client = new EventsRestClient(host);
   const [state, setState] = useState({...initialData});
   useEffect(() => {
       client.getLatest()
