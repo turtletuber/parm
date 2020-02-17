@@ -15,14 +15,14 @@ export const host = environment.production ?
   : 'http://localhost:3333';
 
 export const App = () => {
-  const eventState = useEvents();
+  const events = useEvents();
 
-  if (eventState.err)
+  if (events.state.err)
     return (
       <span> Failed to load </span>
     );
 
-  if (!eventState.hasFetched || eventState.isLoading)
+  if (!events.state.hasFetched || events.state.isLoading)
     return (
       <span> Loading... </span>
     );
@@ -35,9 +35,12 @@ export const App = () => {
     <>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Home {...eventState.data} />
-        <Lineup {...eventState.data} />
-        <SignUp eventId={eventState.data._id}/>
+        <Home {...events.state.data} />
+        <Lineup {...events.state.data} />
+        <SignUp 
+          eventId={events.state.data._id}
+          refreshEvents={events.refreshData}
+        />
         <Copyright/>
       </Container>
       {/* <div role="navigation">

@@ -30,10 +30,11 @@ const useStyles = makeStyles(theme => ({
 
 interface SignUpProps {
   eventId: string;
+  refreshEvents: () => void;
 }
 
 export default function SignUp(props: SignUpProps) {
-  const { eventId } = props;
+  const { eventId, refreshEvents } = props;
   const classes = useStyles();
   const [fields, setFields] = useState({
     firstName: '',
@@ -48,7 +49,14 @@ export default function SignUp(props: SignUpProps) {
       eventId, 
       order: null,
       ...fields,
-    }).subscribe();
+    }).subscribe(
+      data => {
+        refreshEvents()
+      },
+      err => {
+        console.log('validation err', err);
+      },
+    );
   };
 
   // todo memo and debounce onChange

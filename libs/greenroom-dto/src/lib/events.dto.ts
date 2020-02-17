@@ -5,10 +5,12 @@ import {
   IsString,
   Equals,
   ValidateNested,
-  ValidateIf
+  ValidateIf,
+  Matches
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import { Comic, Slot, Event } from '@parm/greenroom-interface';
+import { regex } from '@parm/util';
 
 export class ComicDto implements Comic {
   @Equals(Comic)
@@ -16,11 +18,11 @@ export class ComicDto implements Comic {
   _type: 'comic';
 
   @IsNotEmpty()
-  @IsString()
+  @Matches(regex.name)
   firstName: string;
 
   @IsNotEmpty()
-  @IsString()
+  @Matches(regex.name)
   lastName: string;
 
   @IsNumber()

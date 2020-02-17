@@ -7,8 +7,10 @@ import {
   ValidateIf,
   IsAlpha,
   IsMongoId,
+  Matches,
 } from 'class-validator';
 import { EventRegistration } from '@parm/greenroom-interface';
+import { regex } from '@parm/util';
 
 export class EventRegistrationDto implements EventRegistration {
   @IsString()
@@ -27,12 +29,12 @@ export class EventRegistrationDto implements EventRegistration {
 
   @IsNotEmpty()
   @IsString()
-  @IsAlpha()
+  @Matches(regex.name)
   firstName: string;
 
   @IsNotEmpty()
   @IsString()
-  @IsAlpha()
+  @Matches(regex.name)
   lastName: string;
 
   @IsNotEmpty()
