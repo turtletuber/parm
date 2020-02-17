@@ -7,6 +7,7 @@ import { NestFactory } from '@nestjs/core';
 
 import { AppModule } from './app/app.module';
 import { ValidationPipe } from '@nestjs/common/pipes';
+import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,6 +20,18 @@ async function bootstrap() {
   }));
   app.enableCors();
   const port = process.env.port || 3333;
+
+  // Configure swagger per 
+  // https://docs.nestjs.com/recipes/swagger 
+  const options = new DocumentBuilder()
+    .setTitle('greenroom-rest-api')
+    .setDescription('Greenroom API')
+    .setVersion('1.0')
+    .addTag('greenroom')
+    .build();
+  const document = SwaggerModule.createDocument(app, options);
+  SwaggerModule.setup('api', app, document);  
+
   await app.listen(port, () => {
     console.log('Listening at http://localhost:' + port + '/' + globalPrefix);
   });

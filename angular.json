@@ -234,7 +234,8 @@
             "outputPath": "dist/apps/greenroom-rest-api",
             "main": "apps/greenroom-rest-api/src/main.ts",
             "tsConfig": "apps/greenroom-rest-api/tsconfig.app.json",
-            "assets": ["apps/greenroom-rest-api/src/assets"]
+            "assets": ["apps/greenroom-rest-api/src/assets"],
+            "webpackConfig": "apps/greenroom-rest-api/webpack.config.ts"
           },
           "configurations": {
             "production": {

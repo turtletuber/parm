@@ -34,6 +34,7 @@
     "@nestjs/core": "^6.8.3",
     "@nestjs/mongoose": "^6.3.1",
     "@nestjs/platform-express": "^6.8.3",
+    "@nestjs/swagger": "^4.2.8",
     "@prmichaelsen/ts-utils": "^0.5.0",
     "@sendgrid/mail": "^6.5.2",
     "axios": "^0.19.2",
@@ -50,6 +51,7 @@
     "react-router-dom": "5.1.2",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.5.4",
+    "swagger-ui-express": "^4.1.3",
     "uuid": "^3.4.0"
   },
   "devDependencies": {
@@ -95,6 +97,6 @@
     "ts-jest": "24.0.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
-    "typescript": "~3.5.3"
+    "typescript": "^3.7.4"
   }
 }

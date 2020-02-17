@@ -116,9 +116,19 @@ and to serve in prod
 ### How to setup Jenkins
 Configure jenkins to push build statuses to GitHub: [jenkins-github]
 
+## Add swagger
+`nestjs` provides guide for adding [Swagger] to your nestjs app. However, we need to make some modifications in order to get it to work with `nx`.
+
+We will extend the `webpack.config` for the project we wish to add swagger to. For specific implementation details, see the [parm/swagger], the commit that adds swagger to this project.
 
 ### References
 * [jenkins-github]
+* [Swagger]
+* [react and nx]
+* [parm/swagger] - the commit that adds swagger
 
  <!-- References -->
 [jenkins-github]: https://stackoverflow.com/questions/14274293/show-current-state-of-jenkins-build-on-github-repo/16246831#16246831
+[Swagger]: https://docs.nestjs.com/recipes/swagger
+[react and nx]: https://blog.nrwl.io/powering-up-react-development-with-nx-cf0a9385dbec
+[parm/swagger]: https://github.com/prmichaelsen/parm/tree/swagger
