@@ -2,6 +2,9 @@
 
 This project was generated using [Nx](https://nx.dev).
 
+## Library selection
+[awesome-nodejs] is a curated list of useful node libraries.
+
 ## Quick start
 
 * `ng test`: run all tests
@@ -126,9 +129,11 @@ We will extend the `webpack.config` for the project we wish to add swagger to. F
 * [Swagger]
 * [react and nx]
 * [parm/swagger] - the commit that adds swagger
+* [awesome-nodejs] - curated list of useful nodejs libraries
 
  <!-- References -->
 [jenkins-github]: https://stackoverflow.com/questions/14274293/show-current-state-of-jenkins-build-on-github-repo/16246831#16246831
 [Swagger]: https://docs.nestjs.com/recipes/swagger
 [react and nx]: https://blog.nrwl.io/powering-up-react-development-with-nx-cf0a9385dbec
 [parm/swagger]: https://github.com/prmichaelsen/parm/tree/swagger
+[awesome-nodejs]: https://github.com/sindresorhus/awesome-nodejs
