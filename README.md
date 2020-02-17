@@ -124,6 +124,8 @@ Configure jenkins to push build statuses to GitHub: [jenkins-github]
 
 We will extend the `webpack.config` for the project we wish to add swagger to. For specific implementation details, see the [parm/swagger], the commit that adds swagger to this project.
 
+You can now navigate to http://localhost:3333/api to see the explorer and http://localhost:3333/api-json to see the generated json.
+
 ### References
 * [jenkins-github]
 * [Swagger]
