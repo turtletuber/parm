@@ -132,6 +132,7 @@ You can now navigate to http://localhost:3333/api to see the explorer and http:/
 * [react and nx]
 * [parm/swagger] - the commit that adds swagger
 * [awesome-nodejs] - curated list of useful nodejs libraries
+* [openapi-generator] - generate api clients from oas3
 
  <!-- References -->
 [jenkins-github]: https://stackoverflow.com/questions/14274293/show-current-state-of-jenkins-build-on-github-repo/16246831#16246831
@@ -139,3 +140,4 @@ You can now navigate to http://localhost:3333/api to see the explorer and http:/
 [react and nx]: https://blog.nrwl.io/powering-up-react-development-with-nx-cf0a9385dbec
 [parm/swagger]: https://github.com/prmichaelsen/parm/tree/swagger
 [awesome-nodejs]: https://github.com/sindresorhus/awesome-nodejs
+[openapi-generator]: https://github.com/OpenAPITools/openapi-generator
