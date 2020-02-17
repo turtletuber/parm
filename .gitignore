@@ -37,3 +37,7 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+apps/greenroom-rest-api/src/environments/environment.prod.ts
+
+apps/greenroom-rest-api/src/environments/environment.ts

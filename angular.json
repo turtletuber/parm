@@ -254,6 +254,11 @@
           "builder": "@nrwl/node:execute",
           "options": {
             "buildTarget": "greenroom-rest-api:build"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "greenroom-rest-api:build:production"
+            }
           }
         },
         "lint": {
