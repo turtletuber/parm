@@ -1,20 +1,38 @@
 import React from 'react';
 
-import { EventsRestClient }  from '@parm/greenroom-rest-client';
 import { Route, Link } from 'react-router-dom';
 import SignUp from './SignUp';
 import Home from './Home';
 import Lineup from './Lineup';
-import { Container, CssBaseline } from '@material-ui/core';
+import { Container, CssBaseline, ThemeProvider, Theme, createMuiTheme, Typography } from '@material-ui/core';
 import Copyright from './Copyright';
 import { useEvents } from './useEvents';
 import { environment } from '../environments/environment';
+import { LoadingSpinner } from './LoadingSpinner';
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'light',
+  }
+});
+
+const withContainer = (Component: React.ComponentType) => () => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Component />
+        <Copyright />
+      </Container>
+    </ThemeProvider>
+  );
+}
 
 export const host = environment.production ?
   'https://greenroomfinder.app'
   : 'http://localhost:3333';
 
-export const App = () => {
+export const App = withContainer(() => {
   const events = useEvents();
 
   if (events.state.err)
@@ -24,7 +42,7 @@ export const App = () => {
 
   if (!events.state.hasFetched || events.state.isLoading)
     return (
-      <span> Loading... </span>
+      <LoadingSpinner/>
     );
   /*
    * Replace the elements below with your own.
@@ -33,16 +51,12 @@ export const App = () => {
    */
   return (
     <>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Home {...events.state.data} />
-        <Lineup {...events.state.data} />
-        <SignUp 
-          eventId={events.state.data._id}
-          refreshEvents={events.refreshData}
-        />
-        <Copyright/>
-      </Container>
+      <Home {...events.state.data} />
+      <Lineup {...events.state.data} />
+      <SignUp
+        eventId={events.state.data._id}
+        refreshEvents={events.refreshData}
+      />
       {/* <div role="navigation">
         <ul>
           <li>
@@ -65,6 +79,6 @@ export const App = () => {
       /> */}
     </>
   );
-};
+});
 
 export default App;

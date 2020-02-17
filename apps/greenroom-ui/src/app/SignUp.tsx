@@ -87,7 +87,7 @@ export default function SignUp(props: SignUpProps) {
               fullWidth
               id="firstName"
               label="First Name"
-              autoFocus
+              // autoFocus
             />
           </Grid>
           <Grid item xs={12} sm={6}>
