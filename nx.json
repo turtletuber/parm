@@ -39,6 +39,9 @@
     },
     "util": {
       "tags": []
+    },
+    "scripts-campaign-finance": {
+      "tags": []
     }
   }
 }

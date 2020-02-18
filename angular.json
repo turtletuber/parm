@@ -380,6 +380,48 @@
           }
         }
       }
+    },
+    "scripts-campaign-finance": {
+      "root": "libs/scripts/campaign-finance",
+      "sourceRoot": "libs/scripts/campaign-finance/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@nrwl/node:build",
+          "options": {
+            "outputPath": "dist/libs/scripts/campaign-finance",
+            "main": "libs/scripts/campaign-finance/src/index.ts",
+            "tsConfig": "libs/scripts/campaign-finance/tsconfig.json"
+          }
+        },
+        "execute": {
+          "builder": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "scripts-campaign-finance:build"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/scripts/campaign-finance/tsconfig.lib.json",
+              "libs/scripts/campaign-finance/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/scripts/campaign-finance/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/scripts/campaign-finance/jest.config.js",
+            "tsConfig": "libs/scripts/campaign-finance/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {
