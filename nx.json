@@ -39,6 +39,13 @@
     },
     "util": {
       "tags": []
+    },
+    "names-not-numbers": {
+      "tags": []
+    },
+    "names-not-numbers-e2e": {
+      "tags": [],
+      "implicitDependencies": ["names-not-numbers"]
     }
   }
 }
