@@ -8,5 +8,10 @@ Roadmap:
 * include real names of the dead
 * change styling to 'Times New Roman'
 * include github link for contributors
-* include email link to report deaths, obituaries
+ include email link to report deaths, obituaries
 * include photos, birth and death date, location of the dead
+
+Stretch Roadmap:
+* leave flowers
+* track visitors
+* see more

@@ -1,8 +1,12 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardHeader, CardContent } from '@material-ui/core';
+import { 
+  Card, CardHeader, CardContent, Grid
+} from '@material-ui/core';
 import * as faker from 'faker';
+import malePlaceholder from '../assets/placeholder_male.jpg';
+import femalePlaceholder from '../assets/placeholder_female.jpg';
 
 const useStyles = makeStyles(theme => ({
   card: {
@@ -10,6 +14,10 @@ const useStyles = makeStyles(theme => ({
   },
   cards: {
     width: '100%',
+  },
+  img: {
+    width: '100%',
+    borderRadius: '5px',
   },
   paper: {
     marginTop: theme.spacing(2),
@@ -46,9 +54,23 @@ export default function Names(props) {
             <Card key={i} className={classes.card}>
               {/* <CardHeader subheader={'Slot ' + (i + 1)}/> */}
               <CardContent >
-                <Typography variant="caption">
-                  {faker.name.findName()}
-                </Typography>
+                <Grid container spacing={1}>
+                  <Grid item xs={2}>
+                    <img 
+                      className={classes.img}
+                      src={
+                        Math.random() <= 0.5 ?
+                          femalePlaceholder
+                          : malePlaceholder
+                      }
+                    />
+                  </Grid>
+                  <Grid item xs={9}>
+                    <Typography variant="caption">
+                      Unknown
+                    </Typography>
+                  </Grid>
+                </Grid>
               </CardContent>
             </Card>
           );
