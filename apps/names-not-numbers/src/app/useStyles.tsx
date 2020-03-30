@@ -18,6 +18,9 @@ export const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     alignItems: 'center',
   },
+  text: {
+    marginTop: theme.spacing(2),
+  },
   avatar: {
     backgroundColor: theme.palette.secondary.main,
   },

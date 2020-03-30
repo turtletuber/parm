@@ -23,8 +23,11 @@ export default function Names(props) {
       <Typography component="h1" variant="h5">
         Names, not Numbers
       </Typography>
-      <Typography component="div" variant="caption">
+      <Typography component="div" variant="caption" className={classes.text}>
         Victims of Covid-19 aren't just statistics. These names represent the number of lives lost from Covid-19 worldwide.
+      </Typography>
+      <Typography component="div" variant="caption" className={classes.text}>
+        If you have lost a loved one, you can <a target='_blank' href='https://forms.gle/9N6S9DEfGbhiyuX78'>add their name by filling out this form. ⧉</a>
       </Typography>
       <div className={classes.cards}>
         <InfiniteScroll
