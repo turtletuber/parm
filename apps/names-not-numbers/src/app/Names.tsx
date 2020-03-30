@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { 
   Card, CardHeader, CardContent, Grid
 } from '@material-ui/core';
-import * as faker from 'faker';
 import malePlaceholder from '../assets/placeholder_male.jpg';
 import femalePlaceholder from '../assets/placeholder_female.jpg';
 import LazyLoad from 'react-lazyload';
-import { ScaleFixedRatio } from './ScaleFixedRatio';
 import { LoadingSpinner } from './LoadingSpinner';
 import { useStyles } from './useStyles';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 export default function Names(props) {
   const classes = useStyles();
-  const size = 3000;
-  // use https://github.com/bvaughn/react-window in next iteration
+  const [size, setSize] = useState(300);
+  const fetchData = () => 
+    setSize(size + 50);
 
   return (
     <div className={classes.paper}>
@@ -25,6 +25,13 @@ export default function Names(props) {
         Victims of Covid-19 aren't just statistics. These names represent the number of lives lost from Covid-19 worldwide.
       </Typography>
       <div className={classes.cards}>
+        <InfiniteScroll
+          dataLength={size}
+          next={fetchData}
+          hasMore={true}
+          loader={<LoadingSpinner/>}
+        >
+
         {[...Array(size).keys()].map((person, i) => {
           return (
             <Card key={i} className={classes.card}>
@@ -32,6 +39,7 @@ export default function Names(props) {
                 <LazyLoad
                   className={classes.avatar}
                   once
+                  // unmountIfInvisible
                   placeholder={<LoadingSpinner />}
                 >
                   <Grid container spacing={1}>
@@ -56,6 +64,7 @@ export default function Names(props) {
             </Card>
           );
         })}
+        </InfiniteScroll>
       </div>
     </div>
   );
