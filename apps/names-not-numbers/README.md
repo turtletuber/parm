@@ -6,7 +6,6 @@ Roadmap:
 * clean up secrets
 * use actual number of deaths
 * change styling to 'Times New Roman'
-* include github link for contributors
 * include birth and death date, location of the dead
 
 Stretch Roadmap:
@@ -15,6 +14,7 @@ Stretch Roadmap:
 * see more
 
 Completed Roadmap:
+* include github link for contributors
 * add website icon
 * force re-approval of edits
 * include email link to report deaths, obituaries

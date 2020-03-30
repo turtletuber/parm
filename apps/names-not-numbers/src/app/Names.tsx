@@ -10,6 +10,7 @@ import { LoadingSpinner } from './LoadingSpinner';
 import { useStyles } from './useStyles';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useData } from './firebase';
+import { GithubButton } from './GithubButton';
 
 export default function Names(props) {
   const classes = useStyles();
@@ -20,6 +21,7 @@ export default function Names(props) {
 
   return (
     <div className={classes.paper}>
+      <GithubButton/>
       <Typography component="h1" variant="h5">
         Names, not Numbers
       </Typography>

@@ -28,4 +28,9 @@ export const useStyles = makeStyles(theme => ({
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
   },
+  githubButton: {
+    position: 'absolute',
+    right: '1.5%',
+    top: '1.5%',
+  },
 }));
