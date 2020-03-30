@@ -1,0 +1,28 @@
+import { makeStyles } from '@material-ui/core/styles';
+
+export const useStyles = makeStyles(theme => ({
+  card: {
+    height: '100px',
+    marginTop: theme.spacing(1),
+  },
+  cards: {
+    width: '100%',
+  },
+  img: {
+    width: '100%',
+    borderRadius: '5px',
+  },
+  paper: {
+    marginTop: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    backgroundColor: theme.palette.secondary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+}));
