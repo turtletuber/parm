@@ -3,7 +3,6 @@ https://namesnotnumbers.app
 This site is designed to illustrate the human cost of ignoring the thread of Covid-19.
 
 Roadmap:
-* add website icon
 * clean up secrets
 * use actual number of deaths
 * change styling to 'Times New Roman'
@@ -16,6 +15,7 @@ Stretch Roadmap:
 * see more
 
 Completed Roadmap:
+* add website icon
 * force re-approval of edits
 * include email link to report deaths, obituaries
 * virtualize loading of list
