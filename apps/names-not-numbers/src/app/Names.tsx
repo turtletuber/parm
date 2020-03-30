@@ -40,7 +40,9 @@ export default function Names(props) {
         {[...Array(size).keys()].map((person, i) => {
           const row = (i < data.length) ? {
             name: data[i].name,
-            image: data[i].image,
+            image: data[i].image || data[i].gender === 'Female' ? 
+              femalePlaceholder
+              : malePlaceholder,
           } : {
             name: 'Unnamed',
             image: Math.random() <= 0.5 ?
