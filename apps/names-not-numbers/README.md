@@ -3,18 +3,23 @@ https://namesnotnumbers.app
 This site is designed to illustrate the human cost of ignoring the thread of Covid-19.
 
 Roadmap:
+* clean up secrets
+* force re-approval of edits
 * use actual number of deaths
-* virtualize loading of list
-* include real names of the dead
 * change styling to 'Times New Roman'
 * include github link for contributors
- include email link to report deaths, obituaries
-* include photos, birth and death date, location of the dead
+* include birth and death date, location of the dead
 
 Stretch Roadmap:
 * leave flowers
 * track visitors
 * see more
+
+Completed Roadmap:
+* include email link to report deaths, obituaries
+* virtualize loading of list
+* include real names of the dead
+* include photos of the dead
 
 ### name intak design
 A cron-like job on the server will pull google sheets data from 
