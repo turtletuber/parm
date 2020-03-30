@@ -15,3 +15,17 @@ Stretch Roadmap:
 * leave flowers
 * track visitors
 * see more
+
+### name intak design
+A cron-like job on the server will pull google sheets data from 
+
+May be able to use [FirestoreGoogleAppsScript] and [Managing Responses].
+
+Submission Link: https://forms.gle/9N6S9DEfGbhiyuX78
+
+Resources:
+* [FirestoreGoogleAppsScript] 
+* [Managing Responses]
+
+[FirestoreGoogleAppsScript]: https://github.com/grahamearley/FirestoreGoogleAppsScript
+[Managing Responses]: https://developers.google.com/apps-script/quickstart/forms
