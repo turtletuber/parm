@@ -40,13 +40,11 @@ export function useData() {
   const [guid, setGuid] = useState(uuidv1());
   const refreshData = useCallback(() => {
     setGuid(uuidv1());
-    setState([...state]);
+    setState([]);
   }, [guid]);
   useEffect(() => {
     db.collection('names').onSnapshot(e => {
-      e.docs.forEach(d => {
-        setState([...state, d.data()]);
-      });
+      setState(e.docs.map(d => d.data()));
     });
   }, [guid]);
   return {
