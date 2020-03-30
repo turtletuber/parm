@@ -22,9 +22,35 @@ firebase.initializeApp(firebaseConfig);
 
 var db = firebase.firestore();
 
-console.log('init firebase');
-db.collection('names').onSnapshot(e => {
-  e.docs.forEach(d => {
-    console.log('data', d.data());
-  });
-});
+// export const data = [];
+
+// console.log('init firebase');
+// db.collection('names').onSnapshot(e => {
+//   e.docs.forEach(d => {
+//     console.log('data', d.data());
+//     data.push(d.data());
+//   });
+// });
+
+import { useState, useEffect, useCallback } from 'react';
+import uuidv1 from 'uuid/v1';
+
+export function useData() {
+  const [state, setState] = useState([]);
+  const [guid, setGuid] = useState(uuidv1());
+  const refreshData = useCallback(() => {
+    setGuid(uuidv1());
+    setState([...state]);
+  }, [guid]);
+  useEffect(() => {
+    db.collection('names').onSnapshot(e => {
+      e.docs.forEach(d => {
+        setState([...state, d.data()]);
+      });
+    });
+  }, [guid]);
+  return {
+    state,
+    refreshData,
+  }
+}

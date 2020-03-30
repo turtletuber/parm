@@ -9,10 +9,12 @@ import LazyLoad from 'react-lazyload';
 import { LoadingSpinner } from './LoadingSpinner';
 import { useStyles } from './useStyles';
 import InfiniteScroll from 'react-infinite-scroll-component';
+import { useData } from './firebase';
 
 export default function Names(props) {
   const classes = useStyles();
   const [size, setSize] = useState(300);
+  const { state: data } = useData();
   const fetchData = () => 
     setSize(size + 50);
 
@@ -33,6 +35,15 @@ export default function Names(props) {
         >
 
         {[...Array(size).keys()].map((person, i) => {
+          const row = (i < data.length) ? {
+            name: data[i].name,
+            image: data[i].image,
+          } : {
+            name: 'Unnamed',
+            image: Math.random() <= 0.5 ?
+              femalePlaceholder
+              : malePlaceholder,
+          };
           return (
             <Card key={i} className={classes.card}>
               <CardContent >
@@ -46,17 +57,13 @@ export default function Names(props) {
                     <Grid item xs={2}>
                       <img
                         className={classes.img}
-                        src={
-                          Math.random() <= 0.5 ?
-                            femalePlaceholder
-                            : malePlaceholder
-                        }
+                        src={row.image}
                       />
                     </Grid>
                     <Grid item xs={9}>
                       <Typography variant="caption">
-                        Unnamed
-                    </Typography>
+                        {row.name}
+                      </Typography>
                     </Grid>
                   </Grid>
                 </LazyLoad>
