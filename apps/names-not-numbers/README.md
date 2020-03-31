@@ -9,6 +9,7 @@ Roadmap:
 * include birth and death date, location of the dead
 
 Stretch Roadmap:
+* add "banner" for health workers
 * leave flowers
 * track visitors
 * see more
