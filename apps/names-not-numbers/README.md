@@ -11,7 +11,6 @@ If you would like to contribute, please create an issue describing your planned 
 ### Roadmap
 Critical:
 * clean up secrets
-* use actual number of deaths
 * change styling to 'Times New Roman'
 * include birth and death date, location of the dead
 
@@ -22,6 +21,7 @@ Non-critical:
 * "see more" for obituaries
 
 Completed Roadmap:
+* use actual number of deaths
 * include github link for contributors
 * add website icon
 * force re-approval of edits

@@ -39,7 +39,7 @@ export default function Names(props) {
         <InfiniteScroll
           dataLength={size}
           next={fetchData}
-          hasMore={true}
+          hasMore={size < 40000}
           loader={<LoadingSpinner/>}
         >
 
