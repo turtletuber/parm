@@ -12,7 +12,7 @@ Stretch Roadmap:
 * add "banner" for health workers
 * leave flowers
 * track visitors
-* see more
+* "see more" for obituaries
 
 Completed Roadmap:
 * include github link for contributors
@@ -23,12 +23,11 @@ Completed Roadmap:
 * include real names of the dead
 * include photos of the dead
 
-### name intak design
-A cron-like job on the server will pull google sheets data from 
+### name intake design
+Names are sumbitted via google forms. Entries require a manual approval from me. Then, a google apps script that lives in the google sheets docs commits the data to a  firestore collection. This collection is surfaced in the web UI.
 
-May be able to use [FirestoreGoogleAppsScript] and [Managing Responses].
-
-Submission Link: https://forms.gle/9N6S9DEfGbhiyuX78
+* Relevant resources: [FirestoreGoogleAppsScript] and [Managing Responses].
+* Submission Link: https://forms.gle/9N6S9DEfGbhiyuX78
 
 Resources:
 * [FirestoreGoogleAppsScript] 
