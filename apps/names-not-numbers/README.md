@@ -9,16 +9,17 @@ If you would like to share this website, please use the communication here: [int
 If you would like to contribute, please create an issue describing your planned changes before creating a PR. This is to avoid potential sticker-shock for the amount of effort you may spend contributing towards a feature that I ultimately don't plan on including. I have no specific guidelines for contribution.
 
 ### Roadmap
-Critical:
+High priority:
 * clean up secrets
 * change styling to 'Times New Roman'
 * include birth and death date, location of the dead
 
-Non-critical:
+Low priority or nice-to-have:
 * add "banner" for health workers
 * leave flowers
 * track visitors
 * "see more" for obituaries
+* donation to reputable charity integration
 
 Completed Roadmap:
 * use actual number of deaths
