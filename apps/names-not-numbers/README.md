@@ -13,6 +13,8 @@ High priority:
 * clean up secrets
 * change styling to 'Times New Roman'
 * include birth and death date, location of the dead
+* healthchecks
+* alarms
 
 Low priority or nice-to-have:
 * add "banner" for health workers

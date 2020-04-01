@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { 
-  Card, CardHeader, CardContent, Grid
+  Card, CardContent, Grid, Box
 } from '@material-ui/core';
 import malePlaceholder from '../assets/placeholder_male.jpg';
 import femalePlaceholder from '../assets/placeholder_female.jpg';
@@ -12,6 +12,9 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useData } from './firebase';
 import { GithubButton } from './GithubButton';
 import { FeedbackButton } from './FeedbackButton';
+import { EndMessage } from './EndMessage';
+
+const deaths = 42014;
 
 export default function Names(props) {
   const classes = useStyles();
@@ -39,8 +42,9 @@ export default function Names(props) {
         <InfiniteScroll
           dataLength={size}
           next={fetchData}
-          hasMore={size < 40000}
+          hasMore={size < deaths}
           loader={<LoadingSpinner/>}
+          endMessage={<EndMessage/>}
         >
 
         {[...Array(size).keys()].map((person, i) => {
@@ -54,6 +58,7 @@ export default function Names(props) {
             image: Math.random() <= 0.5 ?
               femalePlaceholder
               : malePlaceholder,
+            number: `#${i + 1}`,
           };
           return (
             <Card key={i} className={classes.card}>
@@ -71,10 +76,22 @@ export default function Names(props) {
                         src={row.image}
                       />
                     </Grid>
-                    <Grid item xs={9}>
+                    <Grid item xs={10}>
                       <Typography variant="caption">
                         {row.name}
                       </Typography>
+                      <Box 
+                        fontStyle="italic"
+                        alignContent="right"
+                        style={{ float: 'right' }}
+                      >
+                        <Typography
+                          variant="caption"
+                          color="textSecondary"
+                        >
+                          {row.number || ''}
+                        </Typography> 
+                      </Box>
                     </Grid>
                   </Grid>
                 </LazyLoad>
