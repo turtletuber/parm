@@ -1,6 +1,6 @@
 https://namesnotnumbers.app
 
-This site is designed to illustrate the human cost of ignoring the thread of Covid-19.
+This site is designed to illustrate the human cost of ignoring the threat of Covid-19.
 
 ### Sharing
 If you would like to share this website, please use the communication here: [introduction](./communication/introduction.md).
