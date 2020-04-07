@@ -39,6 +39,12 @@ After that, we need to setup [SSL].
 
 Once certs are setup, you can renew them with `sudo certbot renew`. It might make sense to setup a cron job to do this once a quarter.
 
+Quick reference:
+```
+# expand cert
+sudo certbot --expand -d your.app,www.domains.app,to.app,*.add.app
+```
+
 #### Set up for node
 Now we follow the [Setup NodeJs Production Application] guide. Note: install node 12, not node 8.
 
