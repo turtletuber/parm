@@ -11,7 +11,6 @@ If you would like to contribute, please create an issue describing your planned 
 ### Roadmap
 High priority:
 * clean up secrets
-* change styling to 'Times New Roman'
 * include birth and death date, location of the dead
 * healthchecks
 * alarms
@@ -32,6 +31,9 @@ Completed Roadmap:
 * virtualize loading of list
 * include real names of the dead
 * include photos of the dead
+
+Won't implement:
+* change styling to 'Times New Roman'
 
 ### Design
 #### Name intake
