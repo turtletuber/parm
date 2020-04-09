@@ -13,7 +13,7 @@ const theme = createMuiTheme({
 const withContainer = (Component: React.ComponentType) => () => {
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Component />
       </Container>
