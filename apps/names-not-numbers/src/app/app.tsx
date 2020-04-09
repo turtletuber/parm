@@ -7,7 +7,7 @@ import Names from './Names';
 const theme = createMuiTheme({
   palette: {
     type: 'light',
-  }
+  },
 });
 
 const withContainer = (Component: React.ComponentType) => () => {

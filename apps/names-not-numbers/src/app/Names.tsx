@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { 
-  Card, CardContent, Grid, Box
+  Card, CardContent, Grid, Box, Link
 } from '@material-ui/core';
 import malePlaceholder from '../assets/placeholder_male.jpg';
 import femalePlaceholder from '../assets/placeholder_female.jpg';
@@ -77,9 +77,6 @@ export default function Names(props) {
                       />
                     </Grid>
                     <Grid item xs={10}>
-                      <Typography variant="caption">
-                        {row.name}
-                      </Typography>
                       <Box 
                         fontStyle="italic"
                         alignContent="right"
@@ -92,10 +89,51 @@ export default function Names(props) {
                           {row.number || ''}
                         </Typography> 
                       </Box>
+                      <Typography variant="body2">
+                        {row.name}
+                      </Typography>
+                      <Typography variant="caption">
+                        {'July 15, 1950 - July 15, 2020'}
+                      </Typography>
+                      <br/>
+                      <Typography variant="caption">
+                        {'Town, Province, Country'}
+                      </Typography>
+                      <br/>
+                      <Typography 
+                        variant="body2"
+                        color="textSecondary"
+                        className={classes.quote}
+                      >
+                        {'"There but for the grace of God go I"'}
+                      </Typography>
+                      <Typography 
+                        variant="body2"
+                        className={classes.text}
+                      >
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                      </Typography>
                     </Grid>
                   </Grid>
                 </LazyLoad>
               </CardContent>
+              <Box
+                className={classes.fadeOut}
+                fontStyle="italic"
+                alignContent="right"
+              >
+                <Typography
+                  variant="caption"
+                  color="textSecondary"
+                  style={{ 
+                    position: 'absolute',
+                    bottom: '3%',
+                    right: '3%',
+                  }}
+                >
+                  <Link color="textSecondary">See more</Link>
+                </Typography>
+              </Box>
             </Card>
           );
         })}
