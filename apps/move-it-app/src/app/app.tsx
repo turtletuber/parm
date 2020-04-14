@@ -5,6 +5,7 @@ import {
 } from '@material-ui/core';
 import Backend from 'react-dnd-html5-backend';
 import { useDrop, useDrag, DndProvider } from 'react-dnd';
+import { Route, BrowserRouter } from 'react-router-dom';
 
 import { range } from '@parm/util';
 import './app.scss';
@@ -45,12 +46,14 @@ export const useStyles = makeStyles(theme => ({
 
 const withTheme = (Component: React.ComponentType) => () => {
   return (
-    <ThemeProvider theme={theme}>
-      <DndProvider backend={Backend} >
-        <CssBaseline />
-        <Component />
-      </DndProvider>
-    </ThemeProvider>
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <DndProvider backend={Backend} >
+          <CssBaseline />
+          <Component />
+        </DndProvider>
+      </ThemeProvider>
+    </BrowserRouter>
   );
 }
 
@@ -62,7 +65,10 @@ export const App = withTheme(() => {
    */
   return (
     <>
-      <Board/>
+      <Route
+        path="/*"
+        render={() => <Board/>}
+      />
     </>
   );
 });
