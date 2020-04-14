@@ -3,9 +3,11 @@ import {
   CssBaseline, ThemeProvider,
   createMuiTheme, makeStyles, Box,
 } from '@material-ui/core';
+import TouchBackend from 'react-dnd-touch-backend';
 import Backend from 'react-dnd-html5-backend';
 import { useDrop, useDrag, DndProvider } from 'react-dnd';
 import { Route, BrowserRouter } from 'react-router-dom';
+import { isBrowser } from 'react-device-detect';
 
 import { range } from '@parm/util';
 import './app.scss';
@@ -48,7 +50,11 @@ const withTheme = (Component: React.ComponentType) => () => {
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
-        <DndProvider backend={Backend} >
+        <DndProvider backend={isBrowser ? Backend : TouchBackend} options={{
+          enableMouseEvents: true,
+          enableKeyboardEvents: true, 
+          enableHoverOutsideTarget: true,
+        }}>
           <CssBaseline />
           <Component />
         </DndProvider>
