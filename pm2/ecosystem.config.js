@@ -34,7 +34,7 @@ module.exports = {
       name: 'move-it',
       cwd: '/home/prmichaelsen/workplace/ts-npm-template',
       script: 'ng',
-      args: 'run move-it-app:serve:production --allowed-hosts moveit.parm.app,www.moveit.parm.app',
+      args: 'run move-it-app:serve:production --allowed-hosts moveit.parm.app,www.moveit.parm.app,greenroomfinder.app',
       autorestart: true,
       max_memory_restart: '1G',
       out_file: '/dev/null',
