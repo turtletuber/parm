@@ -16,7 +16,7 @@ interface GridState {
 }
 
 const intialGridState: GridState = {
-  it: { x: 0, y: 0 },
+  it: { x: 2, y: 2 },
   blocks: [],
 };
 

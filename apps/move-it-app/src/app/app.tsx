@@ -6,6 +6,7 @@ import {
 
 import { range } from '@parm/util';
 import './app.scss';
+import { useGridState } from './hooks';
 
 
 const theme = createMuiTheme({
@@ -14,15 +15,29 @@ const theme = createMuiTheme({
   },
 });
 
+const tileColor = 'gray';
+const itColor = 'rgb(71, 193, 71)';
+const itBorderColor = 'rgb(133, 238, 133)';
 export const useStyles = makeStyles(theme => ({
+  it: {
+    height: '10em',
+    width: '10em',
+    backgroundColor: itColor,
+    position: 'relative',
+    borderRadius: '.5em',
+    borderColor: itBorderColor,
+  },
   tile: {
     height: '10em',
     width: '10em',
-    backgroundColor: 'gray',
+    backgroundColor: tileColor,
     position: 'relative',
     // borderRadius: '.5em',
     // margin: theme.spacing(1),
   },
+  grid: {
+    backgroundColor: tileColor,
+  }
 }));
 
 const withTheme = (Component: React.ComponentType) => () => {
@@ -51,18 +66,29 @@ export const App = withTheme(() => {
 const width = 25;
 const height = 25;
 const Board = () => {
-  return <>
+  const styles = useStyles();
+  return <Box className={styles.grid} >
     {range(width).map(i => (
       <GridRow key={i}>
-        {range(height).map(j => <GridItem key={i+'.'+j}/>)}
+        {range(height).map(j => <GridItem x={i} y={j} key={i+'.'+j}/>)}
       </GridRow>
     ))}
-  </>;
+  </Box>;
 }
 const GridRow = (props: {children: any}) => 
   <Box display="flex" {...props}/>
 
-const GridItem = () => 
-  <Box className={useStyles().tile}/>
+const GridItem = (props: {x: number, y: number}) => {
+  const { x, y } = props;
+  const styles = useStyles();
+  const { state } = useGridState();
+  if (x === state.it.x && y === state.it.y)
+    return (
+      <Box border={10} className={styles.it} />
+    );
+  return (
+    <Box className={styles.tile} />
+  );
+}
 
 export default App;
