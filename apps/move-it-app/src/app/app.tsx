@@ -1,12 +1,12 @@
 import React from 'react';
 import {
-  Container, CssBaseline, ThemeProvider,
-  Theme, createMuiTheme, makeStyles, Box, Grid 
+  CssBaseline, ThemeProvider,
+  createMuiTheme, makeStyles, Box,
 } from '@material-ui/core';
 
 import { range } from '@parm/util';
-
 import './app.scss';
+
 
 const theme = createMuiTheme({
   palette: {
@@ -25,23 +25,22 @@ export const useStyles = makeStyles(theme => ({
   },
 }));
 
-const withContainer = (Component: React.ComponentType) => () => {
+const withTheme = (Component: React.ComponentType) => () => {
   return (
     <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth={false}>
-        <CssBaseline />
-        <Component />
-      </Container>
+      <CssBaseline />
+      <Component />
     </ThemeProvider>
   );
 }
 
-export const App = withContainer(() => {
+export const App = withTheme(() => {
   /*
    * Replace the elements below with your own.
    *
    * Note: The corresponding styles are in the ./app.scss file.
    */
+  const styles = useStyles();
   return (
     <>
       <Board/>
@@ -49,13 +48,13 @@ export const App = withContainer(() => {
   );
 });
 
-const width = 10;
-const height = 10;
+const width = 25;
+const height = 25;
 const Board = () => {
   return <>
     {range(width).map(i => (
-      <GridRow>
-        {range(height).map(j => <GridItem />)}
+      <GridRow key={i}>
+        {range(height).map(j => <GridItem key={i+'.'+j}/>)}
       </GridRow>
     ))}
   </>;
