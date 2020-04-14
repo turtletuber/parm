@@ -46,6 +46,13 @@
     "names-not-numbers-e2e": {
       "tags": [],
       "implicitDependencies": ["names-not-numbers"]
+    },
+    "move-it-app": {
+      "tags": []
+    },
+    "move-it-app-e2e": {
+      "tags": [],
+      "implicitDependencies": ["move-it-app"]
     }
   }
 }

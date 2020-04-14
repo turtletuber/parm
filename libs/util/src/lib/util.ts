@@ -24,3 +24,6 @@ export const initConfig = <T>(config: T): T => {
   }
   return config;
 }
+
+
+export const range = size => [...Array(size).keys()];
