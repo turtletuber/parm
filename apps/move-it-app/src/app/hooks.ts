@@ -5,14 +5,14 @@ interface GridItem {
   x: number;
   y: number;
 }
-interface It extends GridItem {
+export interface IIt extends GridItem {
 }
-interface Block extends GridItem {
+export interface Block extends GridItem {
 }
 
-interface GridState {
+export interface GridState {
   blocks: Block[];
-  it: It;
+  it: IIt;
 }
 
 const intialGridState: GridState = {
@@ -23,12 +23,12 @@ const intialGridState: GridState = {
 interface GridStateHook {
   state: GridState;
   refreshData: () => void;
-  setItState: (it: It) => void;
+  setItState: (it: IIt) => void;
 }
 
 export function useGridState(): GridStateHook {
   const [state, setState] = useState({...intialGridState});
-  const setItState = (it: It) => setState({...state, it});
+  const setItState = (it: IIt) => setState({...state, it});
   const [guid, setGuid] = useState(uuidv1());
   const refreshData = useCallback(() => {
     setGuid(uuidv1());

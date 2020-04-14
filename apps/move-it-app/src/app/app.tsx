@@ -4,11 +4,11 @@ import {
   createMuiTheme, makeStyles, Box,
 } from '@material-ui/core';
 import Backend from 'react-dnd-html5-backend';
-import { useDrag, DndProvider } from 'react-dnd';
+import { useDrop, useDrag, DndProvider } from 'react-dnd';
 
 import { range } from '@parm/util';
 import './app.scss';
-import { useGridState } from './hooks';
+import { useGridState, GridState, IIt } from './hooks';
 import { It, Block, Tile }  from './objects';
 
 
@@ -60,7 +60,6 @@ export const App = withTheme(() => {
    *
    * Note: The corresponding styles are in the ./app.scss file.
    */
-  const styles = useStyles();
   return (
     <>
       <Board/>
@@ -71,11 +70,20 @@ export const App = withTheme(() => {
 const width = 25;
 const height = 25;
 const Board = () => {
+  const { state, setItState } = useGridState();
   const styles = useStyles();
   return <Box className={styles.grid} >
     {range(width).map(i => (
       <GridRow key={i}>
-        {range(height).map(j => <GridItem x={i} y={j} key={i+'.'+j}/>)}
+        {range(height).map(j => (
+          <GridItem
+            x={i}
+            y={j}
+            key={i + '.' + j}
+            state={state}
+            setItState={setItState}
+          />
+        ))}
       </GridRow>
     ))}
   </Box>;
@@ -83,16 +91,27 @@ const Board = () => {
 const GridRow = (props: {children: any}) => 
   <Box display="flex" {...props}/>
 
-const GridItem = (props: {x: number, y: number}) => {
-  const { x, y } = props;
+const GridItem = (props: {x: number, y: number, state: GridState, setItState: (it: IIt) => void }) => {
+  const { x, y, setItState, state } = props;
   const styles = useStyles();
-  const { state } = useGridState();
+  const [{ canDrop, isOver }, drop] = useDrop({
+    accept: It,
+    drop: () => {
+      setItState({ x, y });
+    },
+    collect: monitor => ({
+      isOver: monitor.isOver(),
+      canDrop: monitor.canDrop(),
+    }),
+  });
   if (x === state.it.x && y === state.it.y)
     return (
       <ItObject/>
     );
   return (
-    <Box className={styles.tile} />
+    <span ref={drop}>
+      <Box className={styles.tile} /> 
+    </span>
   );
 }
 
