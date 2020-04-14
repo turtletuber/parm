@@ -3,10 +3,13 @@ import {
   CssBaseline, ThemeProvider,
   createMuiTheme, makeStyles, Box,
 } from '@material-ui/core';
+import Backend from 'react-dnd-html5-backend';
+import { useDrag, DndProvider } from 'react-dnd';
 
 import { range } from '@parm/util';
 import './app.scss';
 import { useGridState } from './hooks';
+import { It, Block, Tile }  from './objects';
 
 
 const theme = createMuiTheme({
@@ -43,8 +46,10 @@ export const useStyles = makeStyles(theme => ({
 const withTheme = (Component: React.ComponentType) => () => {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Component />
+      <DndProvider backend={Backend} >
+        <CssBaseline />
+        <Component />
+      </DndProvider>
     </ThemeProvider>
   );
 }
@@ -84,10 +89,34 @@ const GridItem = (props: {x: number, y: number}) => {
   const { state } = useGridState();
   if (x === state.it.x && y === state.it.y)
     return (
-      <Box border={10} className={styles.it} />
+      <ItObject/>
     );
   return (
     <Box className={styles.tile} />
+  );
+}
+
+const ItObject = () => {
+  const styles = useStyles();
+  const [{ isDragging }, dragRef] = useDrag({
+    item: { type: It },
+    collect: monitor => ({
+      isDragging: monitor.isDragging(),
+    }),
+  });
+  return (
+    <span 
+      key="it"
+      ref={dragRef}
+    >
+      <Box
+        style={{
+          cursor: isDragging ? 'grabbing' : 'grab',
+        }}
+        border={10}
+        className={styles.it}
+      />
+    </span>
   );
 }
 

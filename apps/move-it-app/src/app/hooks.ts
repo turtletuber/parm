@@ -23,10 +23,12 @@ const intialGridState: GridState = {
 interface GridStateHook {
   state: GridState;
   refreshData: () => void;
+  setItState: (it: It) => void;
 }
 
 export function useGridState(): GridStateHook {
   const [state, setState] = useState({...intialGridState});
+  const setItState = (it: It) => setState({...state, it});
   const [guid, setGuid] = useState(uuidv1());
   const refreshData = useCallback(() => {
     setGuid(uuidv1());
@@ -37,5 +39,6 @@ export function useGridState(): GridStateHook {
   return {
     state,
     refreshData,
+    setItState,
   }
 }
