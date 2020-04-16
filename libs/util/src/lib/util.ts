@@ -24,8 +24,7 @@ export const initConfig = <T>(config: T): Complete<T> => {
     warnings.forEach(warning => console.warn(warning));
     throw new Error('Some configuration variables could not be loaded. Exiting.');
   }
-  return config;
-}
+  return config as any;
+} 
 
-
-export const range = size => [...Array(size).keys()];
+export const range = size => [...Array(size).keys()]; 
