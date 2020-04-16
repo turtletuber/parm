@@ -13,8 +13,15 @@ import { useData } from './firebase';
 import { GithubButton } from './GithubButton';
 import { FeedbackButton } from './FeedbackButton';
 import { EndMessage } from './EndMessage';
+import { Name } from './Name';
+import { RenderTruthy, RenderConditional, RenderFirst } from './RenderTruthy';
+import { not, isTruthy } from '@parm/util';
+import moment from 'moment';
 
 const deaths = 42014;
+const formatRow = (i: number) => `#${i + 1}`;
+const formatDate = (date: string) => 
+  moment(date).format('MMM Do, YYYY');
 
 export default function Names(props) {
   const classes = useStyles();
@@ -48,25 +55,24 @@ export default function Names(props) {
         >
 
         {[...Array(size).keys()].map((person, i) => {
-          const row = (i < data.length) ? {
-            name: data[i].name,
-            image: data[i].image || data[i].gender === 'Female' ? 
-              femalePlaceholder
-              : malePlaceholder,
-          } : {
-            name: 'Unnamed',
-            image: Math.random() <= 0.5 ?
-              femalePlaceholder
-              : malePlaceholder,
-            number: `#${i + 1}`,
-          };
+          const row = (i < data.length) ?
+            Name(data[i])
+            : {
+              ...Name({}),
+              name: 'Unnamed',
+              image: Math.random() <= 0.5 ?
+                femalePlaceholder
+                : malePlaceholder,
+              row: i,
+            };
+          if (i < data.length)
+            console.log(row);
           return (
             <Card key={i} className={classes.card}>
               <CardContent >
                 <LazyLoad
                   className={classes.avatar}
                   once
-                  // unmountIfInvisible
                   placeholder={<LoadingSpinner />}
                 >
                   <Grid container spacing={1}>
@@ -82,37 +88,67 @@ export default function Names(props) {
                         alignContent="right"
                         style={{ float: 'right' }}
                       >
-                        <Typography
-                          variant="caption"
-                          color="textSecondary"
-                        >
-                          {row.number || ''}
-                        </Typography> 
+                        <RenderTruthy o={row.number}>
+                          <Typography
+                            variant="caption"
+                            color="textSecondary"
+                          >
+                            {formatRow(row.number)}
+                          </Typography> 
+                        </RenderTruthy>
                       </Box>
                       <Typography variant="body2">
                         {row.name}
                       </Typography>
-                      <Typography variant="caption">
-                        {'July 15, 1950 - July 15, 2020'}
-                      </Typography>
+                      <RenderFirst>
+                        {(row.dateBorn && row.dateDeceased) && (
+                          <Typography variant="caption">
+                            {formatDate(row.dateBorn)} to {formatDate(row.dateDeceased)}
+                          </Typography> 
+                        )}
+                        {row.dateBorn && (
+                        <Typography variant="caption">
+                          Born {formatDate(row.dateBorn)}
+                        </Typography>
+                        )}
+                        {row.dateDeceased && (
+                        <Typography variant="caption">
+                          Deceased {formatDate(row.dateDeceased)}
+                         </Typography>
+                        )}
+                      </RenderFirst>
+                      <RenderConditional
+                        o={[
+                          row.town,
+                          row.province,
+                          row.country,
+                        ].filter(isTruthy)}
+                        test={o => o.length > 0}
+                      > 
+                      {o => (
+                        <Typography variant="caption">
+                          {o.join(',')}
+                        </Typography>
+                      )} 
+                      </RenderConditional>
                       <br/>
-                      <Typography variant="caption">
-                        {'Town, Province, Country'}
-                      </Typography>
-                      <br/>
-                      <Typography 
-                        variant="body2"
-                        color="textSecondary"
-                        className={classes.quote}
-                      >
-                        {'"There but for the grace of God go I"'}
-                      </Typography>
+                      <RenderTruthy o={row.epitaph}>
+                        <Typography
+                          variant="body2"
+                          color="textSecondary"
+                          className={classes.quote}
+                        >
+                          {`"${row.epitaph}"`}
+                        </Typography>
+                      </RenderTruthy>
+                      <RenderTruthy o={row.obituary}>
                       <Typography 
                         variant="body2"
                         className={classes.text}
                       >
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        {row.obituary}
                       </Typography>
+                      </RenderTruthy>
                     </Grid>
                   </Grid>
                 </LazyLoad>

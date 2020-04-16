@@ -6,6 +6,8 @@ export const not =
   <T>(predicate: (o: T) => boolean) =>
     (o: T) => !predicate(o);
 
+export const isTruthy = (o: any) => !!o;
+
 export const initConfig = <T>(config: T): Complete<T> => {
   const warnings = [];
   const validate = (path, o) => {
