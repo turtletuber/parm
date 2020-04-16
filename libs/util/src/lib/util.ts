@@ -1,10 +1,12 @@
 import { isObject } from 'util';
 
+export type Complete<T> = { [P in keyof T]-?: NonNullable<T[P]>};
+
 export const not =
   <T>(predicate: (o: T) => boolean) =>
     (o: T) => !predicate(o);
 
-export const initConfig = <T>(config: T): T => {
+export const initConfig = <T>(config: T): Complete<T> => {
   const warnings = [];
   const validate = (path, o) => {
     Object.keys(o).forEach(key => {
