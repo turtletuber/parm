@@ -1,6 +1,6 @@
 import { useState, useCallback, useLayoutEffect, useEffect } from 'react';
 
-export function useDimensions(hash: string, live = true) {
+export function useDimensions(deps: any[], trackWindowResize = true) {
   const [dimensions, setDimensions] = useState(new DOMRect());
   const [node, setNode] = useState(null as HTMLElement);
   const ref = useCallback(node => {
@@ -8,13 +8,13 @@ export function useDimensions(hash: string, live = true) {
   }, []);
   const captureDimensions = () => node && setDimensions(node.getBoundingClientRect());
   useEffect(() => {
-    if (live) {
+    if (trackWindowResize) {
       window.addEventListener('resize', captureDimensions);
       return () => window.removeEventListener('resize', captureDimensions);
     }
-  }, [node, live]);
+  }, [node, trackWindowResize]);
   useLayoutEffect(() => {
     captureDimensions();
-  }, [node, hash]);
+  }, [node, ...deps]);
   return { ref, dimensions };
 }

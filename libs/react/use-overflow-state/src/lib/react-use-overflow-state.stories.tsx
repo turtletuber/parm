@@ -5,12 +5,11 @@ import { useOverflowState } from './react-use-overflow-state';
 
 
 export const Component = ({overflowX, overflowY}) => {
-  const height = overflowY ? 300 : 200;
   const width = overflowX ? 300 : 200;
-  const hash = `${height}.${width}`;
+  const height = overflowY ? 300 : 200;
   const { 
     parentRef, childRef, isOverflowing,
-  } = useOverflowState(hash);
+  } = useOverflowState([width, height]);
   return (
     <div 
       ref={parentRef}
