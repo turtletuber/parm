@@ -590,6 +590,31 @@
           }
         }
       }
+    }, 
+    "react-use-dimensions": {
+      "root": "libs/react/use-dimensions",
+      "sourceRoot": "libs/react/use-dimensions/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/react/use-dimensions/tsconfig.lib.json",
+              "libs/react/use-dimensions/tsconfig.spec.json"
+            ],
+            "exclude": ["**/node_modules/**", "!libs/react/use-dimensions/**"]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/react/use-dimensions/jest.config.js",
+            "tsConfig": "libs/react/use-dimensions/tsconfig.spec.json"
+          }
+        }
+      }
     }
   },
   "cli": {

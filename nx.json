@@ -53,6 +53,9 @@
     "move-it-app-e2e": {
       "tags": [],
       "implicitDependencies": ["move-it-app"]
+    },
+    "react-use-dimensions": {
+      "tags": []
     }
   }
 }
