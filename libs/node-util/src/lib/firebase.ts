@@ -1,7 +1,7 @@
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import * as firebase from 'firebase-admin';
 import * as path from 'path';
-import { initConfig } from './util'; 
+import { initConfig } from '../../../util/src/lib/util'; 
 
 const config = initConfig({
   firebaseSecretsPath: process.env.FIREBASE_SECRETS_PATH || './env/parm-app.json',
