@@ -45,6 +45,13 @@ Quick reference:
 sudo certbot --expand -d your.app,www.domains.app,to.app,*.add.app
 ```
 
+#### Set up a *.parm.app wildcard domain.
+You must add a DNS challenge plugin.
+
+References:
+* [DNS Challenge]
+* [Certbot DNS Plugins]
+
 #### Set up for node
 Now we follow the [Setup NodeJs Production Application] guide. Note: install node 12, not node 8.
 
@@ -63,3 +70,5 @@ pm2 save
 [Setup NodeJs Production Application]: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-node-js-application-for-production-on-ubuntu-18-04
 [MongoDb]: https://docs.mongodb.com/manual/tutorial/install-mongodb-on-os-x/
 [MongoDb on Ubuntu]: https://www.digitalocean.com/community/tutorials/how-to-install-mongodb-on-ubuntu-18-04
+[DNS Challenge]: https://medium.com/@saurabh6790/generate-wildcard-ssl-certificate-using-lets-encrypt-certbot-273e432794d7
+[Certbot DNS Plugins]: https://certbot.eff.org/docs/using.html?highlight=dns#dns-plugins
