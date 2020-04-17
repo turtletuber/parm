@@ -590,7 +590,7 @@
           }
         }
       }
-    }, 
+    },
     "react-use-dimensions": {
       "root": "libs/react/use-dimensions",
       "sourceRoot": "libs/react/use-dimensions/src",
@@ -612,6 +612,34 @@
           "options": {
             "jestConfig": "libs/react/use-dimensions/jest.config.js",
             "tsConfig": "libs/react/use-dimensions/tsconfig.spec.json"
+          }
+        }
+      }
+    },
+    "react-use-overflow-state": {
+      "root": "libs/react/use-overflow-state",
+      "sourceRoot": "libs/react/use-overflow-state/src",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/react/use-overflow-state/tsconfig.lib.json",
+              "libs/react/use-overflow-state/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!libs/react/use-overflow-state/**"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "libs/react/use-overflow-state/jest.config.js",
+            "tsConfig": "libs/react/use-overflow-state/tsconfig.spec.json"
           }
         }
       }

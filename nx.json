@@ -56,6 +56,9 @@
     },
     "react-use-dimensions": {
       "tags": []
+    },
+    "react-use-overflow-state": {
+      "tags": []
     }
   }
 }

@@ -1,1 +1,1 @@
-export * from './lib/react-use-dimensions';
+export { useDimensions } from './lib/react-use-dimensions';

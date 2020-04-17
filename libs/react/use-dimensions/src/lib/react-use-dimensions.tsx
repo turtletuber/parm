@@ -1,6 +1,6 @@
 import { useState, useCallback, useLayoutEffect, useEffect } from 'react';
 
-export function useDimensions(live = true) {
+export function useDimensions(hash: string, live = true) {
   const [dimensions, setDimensions] = useState(new DOMRect());
   const [node, setNode] = useState(null as HTMLElement);
   const ref = useCallback(node => {
@@ -15,6 +15,6 @@ export function useDimensions(live = true) {
   }, [node, live]);
   useLayoutEffect(() => {
     captureDimensions();
-  }, [node]);
+  }, [node, hash]);
   return { ref, dimensions };
 }

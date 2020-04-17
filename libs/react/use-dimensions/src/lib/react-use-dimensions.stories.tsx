@@ -7,7 +7,7 @@ import { boolean } from '@storybook/addon-knobs';
 export const Component = () => {
   const { ref, dimensions: {
     height, width
-  } } = useDimensions(boolean('live', true));
+  } } = useDimensions('', boolean('live', true));
   return (
     <div ref={ref} className="app">
       {width}px x {height}px

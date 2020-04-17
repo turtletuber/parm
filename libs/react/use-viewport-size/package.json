@@ -1,5 +1,5 @@
 {
-  "name": "@prmichaelsen/react-use-viewport-size",
+  "name": "@parm/react-use-viewport-size",
   "version": "0.0.4",
   "peerDependencies": {
     "react": "*",

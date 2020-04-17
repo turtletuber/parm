@@ -25,7 +25,10 @@
       ],
       "@parm/greenroom-dto": ["libs/greenroom-dto/src/index.ts"],
       "@parm/util": ["libs/util/src/index.ts"],
-      "@parm/react/use-dimensions": ["libs/react/use-dimensions/src/index.ts"]
+      "@parm/react/use-dimensions": ["libs/react/use-dimensions/src/index.ts"],
+      "@parm/react/use-overflow-state": [
+        "libs/react/use-overflow-state/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

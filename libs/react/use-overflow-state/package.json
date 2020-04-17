@@ -1,5 +1,6 @@
+
 {
-  "name": "@parm/react-use-dimensions",
+  "name": "@parm/react-use-overflow-state",
   "version": "0.0.0",
   "peerDependencies": {
     "react": "*",
