@@ -24,7 +24,7 @@
         "libs/greenroom-rest-client/src/index.ts"
       ],
       "@parm/greenroom-dto": ["libs/greenroom-dto/src/index.ts"],
-      "@parm/util": ["libs/util/src/index.ts"]
+      "@parm/util": ["libs/util/src/index.ts"],
       "@parm/react/use-dimensions": ["libs/react/use-dimensions/src/index.ts"]
     }
   },
