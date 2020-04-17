@@ -5,7 +5,6 @@ const makeTransparent = (hexcode: string) =>
 
 export const useStyles = makeStyles(theme => ({
   card: {
-    height: '200px',
     marginTop: theme.spacing(1),
     position: 'relative',
   },
