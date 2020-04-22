@@ -1,24 +1,14 @@
 import * as firebase from 'firebase/app';
+import { firebaseSecrets } from '@parm/util';
 
 // Add the Firebase services that you want to use
 import 'firebase/auth';
 import 'firebase/firestore';
 
 // Initialize Cloud Firestore through Firebase
-// todo: hide secrets
-var firebaseConfig = {
-  apiKey: '',
-  authDomain: '',
-  databaseURL: '',
-  projectId: '',
-  storageBucket: '',
-  messagingSenderId: '',
-  appId: '',
-  measurementId: ''
-};
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-// firebase.analytics();
+firebase.initializeApp(firebaseSecrets);
+firebase.analytics();
 
 var db = firebase.firestore();
 
