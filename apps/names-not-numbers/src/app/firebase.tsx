@@ -12,16 +12,6 @@ firebase.analytics();
 
 var db = firebase.firestore();
 
-// export const data = [];
-
-// console.log('init firebase');
-// db.collection('names').onSnapshot(e => {
-//   e.docs.forEach(d => {
-//     console.log('data', d.data());
-//     data.push(d.data());
-//   });
-// });
-
 import { useState, useEffect, useCallback } from 'react';
 import uuidv1 from 'uuid/v1';
 
