@@ -21,8 +21,8 @@ const main = async () => {
   const db = firebase.firestore();
 
   const doc = await db
-    .collection('config')
-    .doc(env)
+    .collection(env)
+    .doc('secrets')
     .get();
   const secrets = doc.data();
 
@@ -35,7 +35,9 @@ const main = async () => {
 
   const location = 'libs';
   const packageName = 'util';
-  const fp = `../${location}/${packageName}/env/secrets.json`;
-  writeJson({ fp, data: secrets });
+  Object.keys(secrets).forEach(secret => {
+    const fp = `../${location}/${packageName}/env/secrets/${secret}.json`;
+    writeJson({ fp, data: secrets[secret] });
+  });
 }
 main();
