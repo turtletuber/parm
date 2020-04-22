@@ -5,6 +5,11 @@ This project was generated using [Nx](https://nx.dev).
 ## Development
 To get started, install nx via `npm i -g @nrwl/cli`, set the required Firebase admin secrets in `./env/parm-app.json` and then run `nx serve your-app` or `nx serve react:storybook` to start a development server. You can attach the debugger via vs code's debug tools.
 
+## Roadmap
+* Twitch connection
+* Discord connection
+* Reddit connection
+
 ## Library selection
 [awesome-nodejs] is a curated list of useful node libraries.
 
