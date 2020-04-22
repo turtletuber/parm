@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { Container, CssBaseline, ThemeProvider, Theme, createMuiTheme, Typography } from '@material-ui/core';
+import './firebase';
 import { environment } from '../environments/environment';
 import Names from './Names';
 
