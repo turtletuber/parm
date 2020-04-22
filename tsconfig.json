@@ -31,7 +31,8 @@
       "@parm/react/use-overflow-state": [
         "libs/react/use-overflow-state/src/index.ts"
       ],
-      "@parm/node-util": ["libs/node-util/src/index.ts"]
+      "@parm/node-util": ["libs/node-util/src/index.ts"],
+      "@parm/reddit": ["libs/reddit/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

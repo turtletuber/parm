@@ -2,3 +2,4 @@
 export * from './secrets/firebase';
 export * from './secrets/facebook';
 export * from './secrets/sendgrid';
+export * from './secrets/reddit';
