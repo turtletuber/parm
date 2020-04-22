@@ -106,6 +106,8 @@
     "eslint": "6.1.0",
     "ghooks": "^2.0.4",
     "jest": "24.1.0",
+    "json-loader": "^0.5.7",
+    "nunjucks": "^3.2.1",
     "prettier": "1.18.2",
     "react-docgen-typescript-loader": "^3.6.0",
     "ts-jest": "24.0.0",

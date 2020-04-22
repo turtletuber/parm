@@ -2,6 +2,11 @@
 const fs = require('fs');
 const path = require('path');
 const firebase = require('firebase-admin');
+const nunjucks = require('nunjucks');
+
+nunjucks.configure({
+  autoescape: false,
+});
 
 const main = async () => { 
   const env = process.env.NODE_ENV || 'production';
@@ -27,17 +32,21 @@ const main = async () => {
   const secrets = doc.data();
 
   const resolve = t => path.resolve(__dirname, t);
-  const writeJson = ({ fp, data }) => {
+  const writeJson = ({ fp, data, name }) => {
     const json = JSON.stringify(data, null, 2);
     const wt = resolve(fp);
-    fs.writeFileSync(wt, json, 'utf8');
+    const file = nunjucks.render('./templates/secret.njk', {
+      name,
+      json,
+    });
+    fs.writeFileSync(wt, file, 'utf8');
   }
 
   const location = 'libs';
   const packageName = 'util';
   Object.keys(secrets).forEach(secret => {
-    const fp = `../${location}/${packageName}/env/secrets/${secret}.json`;
-    writeJson({ fp, data: secrets[secret] });
+    const fp = `../${location}/${packageName}/env/secrets/${secret}.ts`;
+    writeJson({ fp, data: secrets[secret], name: secret });
   });
 }
 main();

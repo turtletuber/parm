@@ -9,5 +9,6 @@ pm2 delete all
 git fetch origin
 git reset --hard origin/master 
 npm i
+./tools/fetch-secrets.js
 pm2 start ./pm2/ecosystem.config.js
 pm2 save

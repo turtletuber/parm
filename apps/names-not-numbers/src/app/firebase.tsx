@@ -1,5 +1,5 @@
+import { firebase as firebaseSecrets } from '@parm/util';
 import * as firebase from 'firebase/app';
-import { firebaseSecrets } from '@parm/util';
 
 // Add the Firebase services that you want to use
 import 'firebase/auth';
@@ -8,7 +8,6 @@ import 'firebase/firestore';
 // Initialize Cloud Firestore through Firebase
 // Initialize Firebase
 firebase.initializeApp(firebaseSecrets);
-firebase.analytics();
 
 var db = firebase.firestore();
 
