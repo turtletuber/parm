@@ -44,6 +44,7 @@
     "conf": "^6.2.4",
     "document-register-element": "1.13.1",
     "evergreen-ui": "^4.22.0",
+    "facebook-sdk": "^0.3.3",
     "faker": "^4.1.0",
     "firebase": "^7.13.1",
     "firebase-admin": "^8.10.0",

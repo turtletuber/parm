@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import * as sendGrid from '@sendgrid/mail';
-import { config } from '../config';
+import { sendgrid } from '@parm/util';
 
 @Injectable()
 export class EmailService {
   public send() {
     // using SendGrid's v3 Node.js Library
     // https://github.com/sendgrid/sendgrid-nodejs
-    sendGrid.setApiKey(config.sendGrid.apiKey);
+    sendGrid.setApiKey(sendgrid.apiKey);
     const msg = {
       to: 'michaelsenpatrick@gmail.com',
       from: 'test@example.com',
