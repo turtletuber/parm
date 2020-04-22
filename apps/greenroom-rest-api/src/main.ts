@@ -9,6 +9,13 @@ import { AppModule } from './app/app.module';
 import { ValidationPipe } from '@nestjs/common/pipes';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
+import { facebook as facebookSecrets } from '@parm/util';
+var fbsdk = require('facebook-sdk');
+var facebook = new fbsdk.Facebook(facebookSecrets);
+facebook.api(`/${facebookSecrets.appId}`, function(data) {
+  console.log(data);
+}); 
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
