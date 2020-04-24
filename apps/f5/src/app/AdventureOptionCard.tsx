@@ -10,6 +10,7 @@ import {
 import { LoadingSpinner } from './LoadingSpinner';
 import LazyLoad from 'react-lazyload';
 import AddIcon from '@material-ui/icons/Add'; 
+import Markdown from 'markdown-to-jsx';
 
 export const AdventureOptionCard = (row: any) => {
   const classes = useStyles();
@@ -80,7 +81,9 @@ export const AdventureOptionCard = (row: any) => {
               )}
               <Grid item xs={canSelect ? 10 : 12}>
                 <Typography variant="body2" className={classes.text}>
-                  {row.text}
+                  <Markdown>
+                    {row.text || ''}
+                  </Markdown>
                 </Typography>
               </Grid>
             </Grid>
