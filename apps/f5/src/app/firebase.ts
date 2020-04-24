@@ -22,6 +22,7 @@ export interface Option {
   id: string;
   type: 'prompt' | 'action';
   creatorId: string;
+  createTime: firebase.firestore.Timestamp;
 }
 
 interface State {
@@ -61,8 +62,11 @@ export function useData() {
     });
   };
   async function createOption({ text, parent, type }: { text: string, parent: string, type: 'prompt' | 'action' }) {
+    const creatorId = storage.userId();
+    const createTime = firebase.firestore.Timestamp.fromDate(new Date());
     const optionRef = await db.collection('f5').add({
-      creatorId: storage.userId(),
+      creatorId,
+      createTime,
       text,
       children: [],
       parent,
@@ -70,6 +74,7 @@ export function useData() {
     });
     const option: Option = {
       creatorId: storage.userId(),
+      createTime,
       text,
       children: [],
       parent,
