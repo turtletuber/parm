@@ -40,5 +40,15 @@ module.exports = {
       out_file: '/dev/null',
       error_file: '/dev/null'
     },
+    {
+      name: 'f5',
+      cwd: '/home/prmichaelsen/workplace/ts-npm-template',
+      script: 'ng',
+      args: 'run f5:serve:production --allowed-hosts parm.app,www.parm.app',
+      autorestart: true,
+      max_memory_restart: '1G',
+      out_file: '/dev/null',
+      error_file: '/dev/null'
+    },
   ]
 };
