@@ -2,20 +2,45 @@
 
 ### F5
 
-F5 is s a massive multiplayer online text adventure.
+F5 is a massive multiplayer online text adventure.
 
 The multiplayer component is that if you reach the end of the "adventure" by following a certain path you have to wait for someone else to add the next part of the story, but currently that's not enforced. Once someone replies, the adventure continues.
 
-### Bugs
-* random option selection re-selects on every render
+### Play it
+https://parm.app/
+
+### Development
+```sh
+# fetch code and start dev server
+git clone https://github.com/prmichaelsen/parm.git
+npm i && npm i -g @nrwl/cli
+# fill this with the requisite secrets
+touch ./env/parm-app.json
+nx serve f5
+```
+You'll need some secrets, reach out to me if you want to run this locally and I can work with you.
 
 ### Roadmap
+* routing for each selection 🔴9️⃣
+* perma-link to a node 🟡6️⃣
+* go back 🟡3️⃣
+* algorithmic selection of available options 🟢6️⃣
+* some notification system for when someone has replied to your option that previously had 0 children 0️⃣
+
+### Completed Roadmap
+The newest features are at the top of this list.
+* markdown support
 * cookie to enforce users can't reply to self
-* routing for each selection
-* perma-link to a node
-* go back
-* algorithmic selection of available options
-* some notification system for when someone has replied to your option that previously had 0 children
+* random option selection re-selects on every render
+
+### Key
+This key is allows me to label roadmap items. Not everything will be assigned labels.
+
+If I provide two keys for one category, it means its somewhere inbetween.
+
+* 🟢🟡🔴 -  urgency, 🔴 being the most urgent
+* 0️⃣3️⃣6️⃣9️⃣ -  most important, 9️⃣ being the most imporant, 0️⃣ being optional
+* ✨🐞 - feature, bug
 
 ### FAQ
 
