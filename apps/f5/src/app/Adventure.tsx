@@ -8,19 +8,72 @@ import { GithubButton } from './GithubButton';
 import { FeedbackButton } from './FeedbackButton';
 import { EndMessage } from './EndMessage';
 import { AdventureOptionCard } from './AdventureOptionCard';
+import { storage } from './storage';
+import { Option } from './firebase';
+
+function hashCode(s) {
+  for(var i = 0, h = 0; i < s.length; i++)
+      h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+  return h;
+}
+
+const weight = (option: Option) => {
+  const userId = storage.userId();
+  const optionId = option.id;
+  const weight = hashCode(userId)/hashCode(optionId);
+  return {
+    ...option,
+    weight,
+  }
+}
 
 const deaths = 42014;
+const numOptions = 3;
+
 export default function Adventure(props) {
+  const userId = storage.userId();
   const classes = useStyles();
   const [size, setSize] = useState(4);
   const { state: data, setCurrent, createOption } = useData();
   const fetchData = () => 
     setSize(size + 3);
-  const current = data.nodes.find(n => n.id === data.current);
-  const children = data.nodes.filter(n => current.children.includes(n.id));
-  const isPrompt = current && current.type === 'prompt';
-  const canAddOption = isPrompt || children.length === 0;
-  const displayChildren = children.sort(() => Math.random() - 0.5).slice(0,3);
+  const state = () => {
+    const current = data.nodes.find(n => n.id === data.current);
+    if (!current) {
+      return {
+        current: null,
+        canReply: false,
+        isPrompt: false,
+        children: [],
+      };
+    }
+    const children = data.nodes
+      .filter(n => current.children.includes(n.id))
+      .map(n => weight(n))
+      .sort((a, b) => b.weight - a.weight)
+      .slice(0, numOptions) 
+      ;
+    const isPrompt = current.type === 'prompt';
+    const canReply = (isPrompt || children.length === 0) && userId !== current.creatorId;
+    return {
+      current,
+      canReply,
+      isPrompt,
+      children,
+    };
+  }
+
+  const {
+      current,
+      canReply,
+      isPrompt,
+      children,
+  } = state();
+
+  console.log('state', {
+    ...state(),
+    userId,
+  });
 
   return (
     <div className={classes.paper}>
@@ -36,7 +89,7 @@ export default function Adventure(props) {
         <InfiniteScroll
           dataLength={size}
           next={fetchData}
-          hasMore={size < deaths}
+          hasMore={canReply || children.length > 0}
           loader={<LoadingSpinner/>}
           endMessage={<EndMessage/>}
         >
@@ -47,12 +100,12 @@ export default function Adventure(props) {
             )
           })}
           <AdventureOptionCard key={'prompt'} current />
-          {displayChildren.map((node, i) => {
+          {children.map((node, i) => {
               return (
                 <AdventureOptionCard key={i} {...node} setCurrent={setCurrent} />
               )
           })}
-          {current && canAddOption && (
+          {canReply && (
             <AdventureOptionCard 
               key={'add'}
               new

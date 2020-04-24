@@ -12,14 +12,16 @@ firebase.initializeApp(firebaseSecrets);
 var db = firebase.firestore();
 
 import { useState, useEffect, useCallback } from 'react';
+import { storage } from './storage';
 import uuidv1 from 'uuid/v1';
 
-interface Option {
+export interface Option {
   parent: string;
   children: string[];
   text: string;
   id: string;
   type: 'prompt' | 'action';
+  creatorId: string;
 }
 
 interface State {
@@ -60,12 +62,14 @@ export function useData() {
   };
   async function createOption({ text, parent, type }: { text: string, parent: string, type: 'prompt' | 'action' }) {
     const optionRef = await db.collection('f5').add({
+      creatorId: storage.userId(),
       text,
       children: [],
       parent,
       type,
     });
     const option: Option = {
+      creatorId: storage.userId(),
       text,
       children: [],
       parent,

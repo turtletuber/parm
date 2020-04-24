@@ -17,7 +17,7 @@ export function EndMessage() {
   return (
     <div className={classes.paper}>
       <Typography variant="body2" color="textSecondary" align="center">
-        Thank you for visiting.
+        That's it for now. Share this adventure with a friend, wait for someone to continue where you left off, or go back to the start and try another path.
       </Typography>
     </div>
   );
