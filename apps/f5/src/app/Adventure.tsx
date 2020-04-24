@@ -34,17 +34,25 @@ export default function Adventure(props) {
   const userId = storage.userId();
   const classes = useStyles();
   const [size, setSize] = useState(4);
+  const [from, setFrom] = useQueryParam('from', StringParam);
+  const [to, setTo] = useQueryParam('to', StringParam);
+  const [focus, setFocus] = useQueryParam('focus', StringParam);
   const { state: data, setCurrent: setCurrentState, createOption } = useData();
   const fetchData = () => 
     setSize(size + 3);
   const state = () => {
-    const current = data.nodes.find(n => n.id === data.current);
+    const current = 
+     data.nodes.find(n => n.id === data.current)
+     || focus && data.nodes.find(n => n.id === focus)
+     || data.root
+    ;
     if (!current) {
       return {
         current: data.root,
         canReply: false,
         isPrompt: false,
         children: [],
+        prev: [],
       };
     }
     const children = data.nodes
@@ -55,24 +63,29 @@ export default function Adventure(props) {
       ;
     const isPrompt = current.type === 'prompt';
     const canReply = (isPrompt || children.length === 0) && userId !== current.creatorId;
+    const prev: Option[] = [];
+    let it = current;
+    const searchId = from || data.root.id;
+    while (it && it.id !== searchId) {
+      prev.push(it);
+      it = data.nodes.find(n => n.id === it.parent);
+    }
     return {
       current,
       canReply,
       isPrompt,
       children,
+      prev: prev.reverse(),
     };
   }
 
   const {
       current,
       canReply,
-      isPrompt,
       children,
+      prev,
   } = state();
 
-  const [from, setFrom] = useQueryParam('from', StringParam);
-  const [to, setTo] = useQueryParam('to', StringParam);
-  const [focus, setFocus] = useQueryParam('focus', StringParam);
   const setCurrent = (targetId: string) => {
     if (!from)
       setFrom(current.id);
@@ -85,7 +98,8 @@ export default function Adventure(props) {
   console.log('state', {
     ...state(),
     userId,
-    to, from, focus
+    to, from, focus,
+    prev,
   });
 
   return (
@@ -107,7 +121,7 @@ export default function Adventure(props) {
           endMessage={<EndMessage/>}
         >
           <AdventureOptionCard key={'current'} {...data.root} root />
-          {data.prev.map((node, i) => {
+          {prev.map((node, i) => {
             return (
               <AdventureOptionCard key={'prev-' + i} {...node} prev />
             )

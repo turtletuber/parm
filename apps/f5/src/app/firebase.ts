@@ -96,7 +96,6 @@ export function useData() {
   useEffect(() => {
     fetch().then(({nodes, root}) => setState({
         ...state,
-        current: state.current || root.id,
         nodes,
         root,
       }));
