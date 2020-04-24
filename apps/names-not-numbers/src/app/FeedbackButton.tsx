@@ -5,7 +5,7 @@ export const FeedbackButton = () => {
   return (
     <span 
       className={classes.rightShoulderButton}
-      onClick={()=> window.open("https://forms.gle/KJxi1b7AE3ey48vD8", "_blank")}
+      onClick={()=> window.open("https://docs.google.com/forms/d/e/1FAIpQLScNyQH8qODIN7895f7duAT3_NsQ54NfRiFzMr5yquhh5Aa_6A/viewform?usp=pp_url&entry.800675036=Names,+not+Numbers", "_blank")}
     >
       <a
         className="github-button"

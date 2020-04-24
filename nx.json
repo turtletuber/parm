@@ -65,6 +65,13 @@
     },
     "reddit": {
       "tags": []
+    },
+    "f5": {
+      "tags": []
+    },
+    "f5-e2e": {
+      "tags": [],
+      "implicitDependencies": ["f5"]
     }
   }
 }
