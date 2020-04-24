@@ -13,6 +13,11 @@ To get started, install nx via `npm i -g @nrwl/cli`, set the required Firebase a
 ## Library selection
 [awesome-nodejs] is a curated list of useful node libraries.
 
+## Add metadata to your website
+This is for the stuff that shows up in link previews and all that.
+
+Here's a resource on that: https://medium.com/slack-developer-blog/everything-you-ever-wanted-to-know-about-unfurling-but-were-afraid-to-ask-or-how-to-make-your-e64b4bb9254
+
 ## Quick start
 
 * `ng test`: run all tests
