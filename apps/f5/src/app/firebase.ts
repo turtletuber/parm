@@ -54,7 +54,7 @@ const fetch = async () => {
 export function useData() {
   const [state, setState] = useState({...initialState});
   const [guid, setGuid] = useState(uuidv1());
-  const setCurrent = (current) => {
+  const setCurrent = (current: string) => {
     setState({
         ...state,
         current,

@@ -10,6 +10,7 @@ import { EndMessage } from './EndMessage';
 import { AdventureOptionCard } from './AdventureOptionCard';
 import { storage } from './storage';
 import { Option } from './firebase';
+import { useQueryParam, StringParam } from 'use-query-params'; 
 
 function hashCode(s) {
   for(var i = 0, h = 0; i < s.length; i++)
@@ -27,21 +28,20 @@ const weight = (option: Option) => {
   }
 }
 
-const deaths = 42014;
 const numOptions = 3;
 
 export default function Adventure(props) {
   const userId = storage.userId();
   const classes = useStyles();
   const [size, setSize] = useState(4);
-  const { state: data, setCurrent, createOption } = useData();
+  const { state: data, setCurrent: setCurrentState, createOption } = useData();
   const fetchData = () => 
     setSize(size + 3);
   const state = () => {
     const current = data.nodes.find(n => n.id === data.current);
     if (!current) {
       return {
-        current: null,
+        current: data.root,
         canReply: false,
         isPrompt: false,
         children: [],
@@ -70,9 +70,22 @@ export default function Adventure(props) {
       children,
   } = state();
 
+  const [from, setFrom] = useQueryParam('from', StringParam);
+  const [to, setTo] = useQueryParam('to', StringParam);
+  const [focus, setFocus] = useQueryParam('focus', StringParam);
+  const setCurrent = (targetId: string) => {
+    if (!from)
+      setFrom(current.id);
+    if (!to || to === current.id)
+      setTo(targetId);
+    setFocus(targetId);
+    setCurrentState(targetId);
+  }
+
   console.log('state', {
     ...state(),
     userId,
+    to, from, focus
   });
 
   return (

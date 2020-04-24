@@ -32,9 +32,7 @@ export const App = withContainer(() => {
    * Note: The corresponding styles are in the ./app.scss file.
    */
   return (
-    <>
-      <Adventure/>
-    </>
+    <Adventure />
   );
 });
 

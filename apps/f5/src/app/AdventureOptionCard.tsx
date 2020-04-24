@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import IconButton from '@material-ui/core/IconButton';
-import Radio from '@material-ui/core/Radio';
 import Check from '@material-ui/icons/Check'; 
 import TextField from '@material-ui/core/TextField';
 import { useStyles } from './useStyles';
@@ -10,7 +9,7 @@ import {
 import { LoadingSpinner } from './LoadingSpinner';
 import LazyLoad from 'react-lazyload';
 import AddIcon from '@material-ui/icons/Add'; 
-import Markdown from 'markdown-to-jsx';
+import Markdown from 'markdown-to-jsx'; 
 
 export const AdventureOptionCard = (row: any) => {
   const classes = useStyles();
