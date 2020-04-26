@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Typography from '@material-ui/core/Typography';
 import { LoadingSpinner } from './LoadingSpinner';
 import { useStyles } from './useStyles';
@@ -45,9 +45,11 @@ export default function Adventure(props) {
     setSize(size + 3);
   const state = () => {
     const current = 
+     to && data.nodes.find(n => n.id === to)
+     || 
      data.nodes.find(n => n.id === data.current)
-     || focus && data.nodes.find(n => n.id === focus)
-     || data.root
+     || 
+     data.root
     ;
     if (!current) {
       return {
@@ -88,6 +90,18 @@ export default function Adventure(props) {
       children,
       prev,
   } = state();
+
+  useEffect(() => {
+    if (current && current.id === data.root.id) {
+      if (!to && !from && !focus) {
+        setQuery({
+          to: data.root.id,
+          from: data.root.id,
+          focus: data.root.id,
+        });
+      }
+    }
+  });
 
   const setCurrent = (targetId: string) => {
     const newQuery = { ...query };
