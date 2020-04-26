@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import clsx from 'clsx';
 import IconButton from '@material-ui/core/IconButton';
 import Check from '@material-ui/icons/Check'; 
@@ -21,12 +21,13 @@ import { useQueryParams, StringParam } from 'use-query-params';
 import ReactHoverObserver from 'react-hover-observer';
 import Grow from '@material-ui/core/Grow';
 import AnimateHeight from 'react-animate-height';
-import { useMeta } from './firebase';
+import { useMeta, useNodeView } from './firebase';
 import { storage } from './storage';
 
 export const AdventureOptionCard = (row: any) => {
   const userId = storage.userId();
   const history = useHistory();
+  const { views } = useNodeView(row.id);
   const { meta, setMeta } = useMeta(row.id);
   const [{ from, to }] = useQueryParams({
     from: StringParam,
@@ -44,23 +45,23 @@ export const AdventureOptionCard = (row: any) => {
     setExpanded(!expanded);
   };
   const liked = meta.likes.includes(userId);
-  const setLikes = () => {
+  const setLikes = useCallback(() => {
     if (liked) {
       meta.likes = meta.likes.filter(u => u !== userId);
     } else {
       meta.likes = [...meta.likes, userId];
     }
     setMeta(meta);
-  };
+  }, [row.id]);
 
-  const setCurrent = () => {
+  const setCurrent = useCallback(() => {
     const visited = meta.visited.includes(userId);
     if (!visited) {
       meta.visited = [...meta.visited, userId];
       setMeta(meta);
     } 
     row.setCurrent(row.id);
-  };
+  }, [row.id]);
   const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
   return (
     <Card className={classes.card} >

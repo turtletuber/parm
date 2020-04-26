@@ -14,6 +14,7 @@ var db = firebase.firestore();
 import { useState, useEffect, useCallback } from 'react';
 import { storage } from './storage';
 import uuidv1 from 'uuid/v1';
+import { StringParam, useQueryParams } from 'use-query-params';
 
 export interface Option {
   parent: string;
@@ -63,11 +64,36 @@ interface NodeMeta {
    * user ids of those who visited this node once or more
    */
   visited: string[],
+  /**
+   * num times this node's route was loaded
+   */
+  views: number,
 }
 
 const initialNodeMeta: NodeMeta = {
   likes: [],
   visited: [],
+  views: 0,
+}
+
+/**
+ * reference https://reacttraining.com/blog/react-router-v5-1/
+ */
+export function useNodeView(nodeId: string) {
+  const [{ to }] = useQueryParams({
+    to: StringParam,
+  });
+  const {meta, setMeta} = useMeta(nodeId);
+  useEffect(() => {
+    if (to === nodeId)
+      setMeta({
+        ...meta,
+        views: meta.views + 1,
+      }); 
+  }, [nodeId, to]);
+  return {
+    views: meta.views,
+  }
 }
 
 export function useMeta(nodeId: string) {
@@ -75,7 +101,7 @@ export function useMeta(nodeId: string) {
   useEffect(() => {
     if (!nodeId)
       return;
-    db.collection(NodeMeta).doc(nodeId).onSnapshot(e => {
+    const unsub = db.collection(NodeMeta).doc(nodeId).onSnapshot(e => {
       if (!e.exists) {
         // initialize data if doc doesn't exist
         db.collection(NodeMeta).doc(nodeId).set(meta);
@@ -86,6 +112,7 @@ export function useMeta(nodeId: string) {
         ...(e.data() as any),
       });
     });
+    return unsub;
   }, [nodeId]);
   return {
     meta,
