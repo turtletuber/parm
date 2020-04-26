@@ -11,6 +11,7 @@ import LazyLoad from 'react-lazyload';
 import AddIcon from '@material-ui/icons/Add'; 
 import Markdown from 'markdown-to-jsx'; 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'; 
+import LinkIcon from '@material-ui/icons/Link'; 
 import { useHistory } from 'react-router-dom';
 import { useQueryParams, StringParam } from 'use-query-params';
 
@@ -85,7 +86,15 @@ export const AdventureOptionCard = (row: any) => {
                   >
                     <Check />
                   </IconButton>
-                )}
+                ) || (
+                    <Grid item xs={1}>
+                      <IconButton
+                        href={`/?from=${from}&to=${row.id}&focus=${row.id}`}
+                      >
+                        <LinkIcon />
+                      </IconButton>
+                    </Grid>
+                  )}
               </Grid>
               <Grid item xs={10}>
                 <Typography variant="body2" className={classes.text}>
@@ -94,16 +103,16 @@ export const AdventureOptionCard = (row: any) => {
                   </Markdown>
                 </Typography>
               </Grid>
-              <Grid item xs={1}>
                 {row.showBackButton && (
+                <Grid item xs={1}>
                   <IconButton
                     onClick={() => history.goBack()}
                     disabled={from === to}
                   >
                     <ArrowUpwardIcon/>
                   </IconButton>
+                </Grid>
                 )}
-              </Grid>
             </Grid>
           )}
         </LazyLoad>
