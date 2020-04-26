@@ -59,10 +59,15 @@ interface NodeMeta {
    * user ids of those who liked it
    */
   likes: string[],
+  /**
+   * user ids of those who visited this node once or more
+   */
+  visited: string[],
 }
 
 const initialNodeMeta: NodeMeta = {
   likes: [],
+  visited: [],
 }
 
 export function useMeta(nodeId: string) {
@@ -76,7 +81,10 @@ export function useMeta(nodeId: string) {
         db.collection(NodeMeta).doc(nodeId).set(meta);
         return meta;
       }
-      setMeta(e.data() as any);
+      setMeta({
+        ...initialNodeMeta,
+        ...(e.data() as any),
+      });
     });
   }, [nodeId]);
   return {

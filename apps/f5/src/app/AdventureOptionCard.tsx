@@ -25,6 +25,7 @@ import { useMeta } from './firebase';
 import { storage } from './storage';
 
 export const AdventureOptionCard = (row: any) => {
+  const userId = storage.userId();
   const history = useHistory();
   const { meta, setMeta } = useMeta(row.id);
   const [{ from, to }] = useQueryParams({
@@ -42,15 +43,23 @@ export const AdventureOptionCard = (row: any) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
-  const liked = meta.likes.includes(storage.userId());
+  const liked = meta.likes.includes(userId);
   const setLikes = () => {
-    const userId = storage.userId();
     if (liked) {
       meta.likes = meta.likes.filter(u => u !== userId);
     } else {
       meta.likes = [...meta.likes, userId];
     }
     setMeta(meta);
+  };
+
+  const setCurrent = () => {
+    const visited = meta.visited.includes(userId);
+    if (!visited) {
+      meta.visited = [...meta.visited, userId];
+      setMeta(meta);
+    } 
+    row.setCurrent(row.id);
   };
   const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
   return (
@@ -111,7 +120,7 @@ export const AdventureOptionCard = (row: any) => {
                       <Grid item xs={1}>
                         {canSelect && (
                           <IconButton
-                            onClick={() => row.setCurrent(row.id)}
+                            onClick={setCurrent}
                             aria-label='choose'
                           >
                             <Check />
