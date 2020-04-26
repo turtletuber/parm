@@ -131,31 +131,29 @@ export const AdventureOptionCard = (row: any) => {
                   <Grow in={isHovering} timeout={300}>
                     <CardActions disableSpacing>
                       <Grid container direction='row-reverse'>
-                        <Grid item>
+                        {/* <Grid item>
                           <IconButton aria-label="share" className={classes.action}>
                             <ShareIcon />
                           </IconButton>
-                        </Grid>
-                        <Grid item>
+                        </Grid> */}
+                        {/* <Grid item>
                           <IconButton aria-label="add to favorites" className={classes.action}>
                             <FavoriteIcon />
                           </IconButton>
                         </Grid>
-                      </Grid>
+                      </Grid> */}
                       <Grid item>
                         <Link to={url}>
-                          <IconButton
-                            className={classes.action}
-                            href={url}
-                          >
-                            <LinkIcon />
+                          <IconButton>
+                            <LinkIcon/>
                           </IconButton>
                         </Link>
                       </Grid>
-                      <Grid item>
+                      {/* <Grid item>
                         <IconButton aria-label="settings" className={classes.action}>
                           <MoreVertIcon />
                         </IconButton>
+                      </Grid> */}
                       </Grid>
                     </CardActions>
                   </Grow>
