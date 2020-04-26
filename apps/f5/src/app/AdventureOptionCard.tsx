@@ -16,10 +16,11 @@ import LinkIcon from '@material-ui/icons/Link';
 import FavoriteIcon from '@material-ui/icons/Favorite'; 
 import ShareIcon from '@material-ui/icons/Share'; 
 import MoreVertIcon from '@material-ui/icons/MoreVert'; 
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 import { useQueryParams, StringParam } from 'use-query-params';
 import ReactHoverObserver from 'react-hover-observer';
 import Grow from '@material-ui/core/Grow';
+import Fade from '@material-ui/core/Fade';
 import AnimateHeight from 'react-animate-height';
 
 export const AdventureOptionCard = (row: any) => {
@@ -39,6 +40,7 @@ export const AdventureOptionCard = (row: any) => {
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+  const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
   return (
     <Card className={classes.card} >
         <LazyLoad
@@ -102,7 +104,7 @@ export const AdventureOptionCard = (row: any) => {
                           >
                             <Check />
                           </IconButton>
-                        )}
+                      )}
                       </Grid>
                       <Grid item xs={10}>
                         <Typography variant="body2" className={classes.text}>
@@ -141,12 +143,14 @@ export const AdventureOptionCard = (row: any) => {
                         </Grid>
                       </Grid>
                       <Grid item>
-                        <IconButton
-                          className={classes.action}
-                          href={`/?from=${from}&to=${row.id}&focus=${row.id}`}
-                        >
-                          <LinkIcon />
-                        </IconButton>
+                        <Link to={url}>
+                          <IconButton
+                            className={classes.action}
+                            href={url}
+                          >
+                            <LinkIcon />
+                          </IconButton>
+                        </Link>
                       </Grid>
                       <Grid item>
                         <IconButton aria-label="settings" className={classes.action}>
