@@ -148,11 +148,17 @@ export default function Adventure(props) {
           <AdventureOptionCard key={'prompt'} current />
           {children.map((node, i) => {
               return (
-                <AdventureOptionCard key={i} {...node} setCurrent={setCurrent} />
+                <AdventureOptionCard 
+                  showBackButton={i === children.length - 1}
+                  key={i}
+                  {...node}
+                  setCurrent={setCurrent} 
+                />
               )
           })}
           {canReply && (
             <AdventureOptionCard 
+              showBackButton={canReply}
               key={'add'}
               new
               parent={current.id}
