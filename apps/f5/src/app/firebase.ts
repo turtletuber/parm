@@ -51,6 +51,42 @@ const fetch = async () => {
   }
 }
 
+const Node = 'f5';
+const NodeMeta = 'f5.meta';
+
+interface NodeMeta {
+  /**
+   * user ids of those who liked it
+   */
+  likes: string[],
+}
+
+const initialNodeMeta: NodeMeta = {
+  likes: [],
+}
+
+export function useMeta(nodeId: string) {
+  const [meta, setMeta] = useState({...initialNodeMeta});
+  useEffect(() => {
+    if (!nodeId)
+      return;
+    db.collection(NodeMeta).doc(nodeId).onSnapshot(e => {
+      if (!e.exists) {
+        // initialize data if doc doesn't exist
+        db.collection(NodeMeta).doc(nodeId).set(meta);
+        return meta;
+      }
+      setMeta(e.data() as any);
+    });
+  }, [nodeId]);
+  return {
+    meta,
+    setMeta: (meta: NodeMeta) => 
+      db.collection(NodeMeta).doc(nodeId).set(meta)
+    ,
+  };
+}
+
 export function useData() {
   const [state, setState] = useState({...initialState});
   const [guid, setGuid] = useState(uuidv1());

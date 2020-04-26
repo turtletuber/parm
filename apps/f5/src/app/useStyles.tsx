@@ -64,6 +64,9 @@ export const useStyles = makeStyles(theme => ({
     height: '40%',
     bottom: '0',
   },
+  active: {
+    color: theme.palette.primary.main,
+  },
   action: {
     fontSize: '10',
     marginLeft: 'auto',

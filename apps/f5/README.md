@@ -24,7 +24,6 @@ You'll need some secrets, reach out to me if you want to run this locally and I 
 * track num times chosen 🟡6️⃣
 * tap to show menu 🟢9️⃣
 * algorithmic selection of available options 🟢6️⃣
-* favorites 🟢6️⃣
 * share options 🟢3️⃣
 * some notification system for when someone has replied to your option that previously had 0 children 0️⃣
 * report 0️⃣
@@ -32,6 +31,7 @@ You'll need some secrets, reach out to me if you want to run this locally and I 
 
 ### Completed Roadmap
 The newest features are at the top of this list.
+* favorites 🟢6️⃣
 * perma-link to a node 🟡6️⃣
 * go back 🟡3️⃣
 * routing for each selection 🔴9️⃣

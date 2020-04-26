@@ -20,11 +20,13 @@ import { useHistory, Link } from 'react-router-dom';
 import { useQueryParams, StringParam } from 'use-query-params';
 import ReactHoverObserver from 'react-hover-observer';
 import Grow from '@material-ui/core/Grow';
-import Fade from '@material-ui/core/Fade';
 import AnimateHeight from 'react-animate-height';
+import { useMeta } from './firebase';
+import { storage } from './storage';
 
 export const AdventureOptionCard = (row: any) => {
   const history = useHistory();
+  const { meta, setMeta } = useMeta(row.id);
   const [{ from, to }] = useQueryParams({
     from: StringParam,
     to: StringParam,
@@ -39,6 +41,16 @@ export const AdventureOptionCard = (row: any) => {
   const [expanded, setExpanded] = React.useState(false);
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+  const liked = meta.likes.includes(storage.userId());
+  const setLikes = () => {
+    const userId = storage.userId();
+    if (liked) {
+      meta.likes = meta.likes.filter(u => u !== userId);
+    } else {
+      meta.likes = [...meta.likes, userId];
+    }
+    setMeta(meta);
   };
   const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
   return (
@@ -136,20 +148,25 @@ export const AdventureOptionCard = (row: any) => {
                             <ShareIcon />
                           </IconButton>
                         </Grid> */}
-                        {/* <Grid item>
-                          <IconButton aria-label="add to favorites" className={classes.action}>
+                        <Grid item>
+                          <IconButton 
+                            aria-label={liked ? 'unlike' : 'like'}
+                            onClick={setLikes}
+                            className={clsx({
+                              [classes.active]: liked,
+                            })}
+                          >
                             <FavoriteIcon />
                           </IconButton>
                         </Grid>
-                      </Grid> */}
-                      <Grid item>
-                        <Link to={url}>
-                          <IconButton>
-                            <LinkIcon/>
-                          </IconButton>
-                        </Link>
-                      </Grid>
-                      {/* <Grid item>
+                        <Grid item>
+                          <Link to={url}>
+                            <IconButton>
+                              <LinkIcon />
+                            </IconButton>
+                          </Link>
+                        </Grid>
+                        {/* <Grid item>
                         <IconButton aria-label="settings" className={classes.action}>
                           <MoreVertIcon />
                         </IconButton>
