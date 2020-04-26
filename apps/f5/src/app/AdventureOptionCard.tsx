@@ -14,6 +14,7 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import LinkIcon from '@material-ui/icons/Link'; 
 import { useHistory } from 'react-router-dom';
 import { useQueryParams, StringParam } from 'use-query-params';
+import ReactHoverObserver from 'react-hover-observer';
 
 export const AdventureOptionCard = (row: any) => {
   const history = useHistory();
@@ -36,85 +37,86 @@ export const AdventureOptionCard = (row: any) => {
           once
           placeholder={<LoadingSpinner />}
         >
-          {row.current && (
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              className={classes.quote}
-              component="div"
-            >
-              What now?
-            </Typography>
-          ) ||
-          row.new && (
-            <Grid container spacing={1}>
-              <Grid item xs={1}/>
-              <Grid item xs={row.canReply ? 11 : 10}>
-                <TextField
-                  style={{width: '100%'}}
-                  id="new-option-input"
-                  label={row.type === 'prompt' ? 'Divinate' : 'Improvise'}
-                  placeholder="Type your dialogue or actions here..."
-                  multiline
-                  value={text}
-                  onChange={handleChange}
-                />
-              </Grid>
-              <Grid item xs={1}>
-                <IconButton
-                  onClick={() => {
-                    row.createOption({
-                      text,
-                      parent: row.parent,
-                      type: row.type,
-                    });
-                    setText('');
-                  }}
+          <ReactHoverObserver>
+            {({ isHovering }) =>
+              row.current && (
+                <Typography
+                  variant="body2"
+                  color="textSecondary"
+                  className={classes.quote}
+                  component="div"
                 >
-                  <AddIcon/>
-                </IconButton>
-              </Grid>
-            </Grid>
-          ) ||
-          loading || (
-            <Grid container spacing={1}>
-              <Grid item xs={1}>
-                {canSelect && (
-                  <IconButton
-                    onClick={() => row.setCurrent(row.id)}
-                    aria-label='choose'
-                  >
-                    <Check />
-                  </IconButton>
-                ) || (
-                    <Grid item xs={1}>
+                  What now?
+                </Typography>
+              ) ||
+              row.new && (
+                <Grid container spacing={1}>
+                  <Grid item xs={1} />
+                  <Grid item xs={row.canReply ? 11 : 10}>
+                    <TextField
+                      style={{ width: '100%' }}
+                      id="new-option-input"
+                      label={row.type === 'prompt' ? 'Divinate' : 'Improvise'}
+                      placeholder="Type your dialogue or actions here..."
+                      multiline
+                      value={text}
+                      onChange={handleChange}
+                    />
+                  </Grid>
+                  <Grid item xs={1}>
+                    <IconButton
+                      onClick={() => {
+                        row.createOption({
+                          text,
+                          parent: row.parent,
+                          type: row.type,
+                        });
+                        setText('');
+                      }}
+                    >
+                      <AddIcon />
+                    </IconButton>
+                  </Grid>
+                </Grid>
+              ) ||
+              loading || (
+                <Grid container spacing={1}>
+                  <Grid item xs={1}>
+                    {canSelect && (
+                      <IconButton
+                        onClick={() => row.setCurrent(row.id)}
+                        aria-label='choose'
+                      >
+                        <Check />
+                      </IconButton>
+                    )}
+                  </Grid>
+                  <Grid item xs={10}>
+                    <Typography variant="body2" className={classes.text}>
+                      <Markdown>
+                        {row.text || ''}
+                      </Markdown>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={1}>
+                    {row.showBackButton && (
+                      <IconButton
+                        onClick={() => history.goBack()}
+                        disabled={from === to}
+                      >
+                        <ArrowUpwardIcon />
+                      </IconButton>
+                    ) || isHovering && (
                       <IconButton
                         href={`/?from=${from}&to=${row.id}&focus=${row.id}`}
                       >
                         <LinkIcon />
                       </IconButton>
-                    </Grid>
-                  )}
-              </Grid>
-              <Grid item xs={10}>
-                <Typography variant="body2" className={classes.text}>
-                  <Markdown>
-                    {row.text || ''}
-                  </Markdown>
-                </Typography>
-              </Grid>
-                {row.showBackButton && (
-                <Grid item xs={1}>
-                  <IconButton
-                    onClick={() => history.goBack()}
-                    disabled={from === to}
-                  >
-                    <ArrowUpwardIcon/>
-                  </IconButton>
+                    )}
+                  </Grid>
                 </Grid>
-                )}
-            </Grid>
-          )}
+              )}
+          </ReactHoverObserver>
         </LazyLoad>
       </CardContent>
     </Card>

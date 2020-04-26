@@ -7,6 +7,7 @@ export const useStyles = makeStyles(theme => ({
   card: {
     marginTop: theme.spacing(1),
     position: 'relative',
+    minHeight: '88px',
   },
   cards: {
     width: '100%',
