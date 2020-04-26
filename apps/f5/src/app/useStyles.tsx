@@ -64,4 +64,20 @@ export const useStyles = makeStyles(theme => ({
     height: '40%',
     bottom: '0',
   },
+  action: {
+    fontSize: '10',
+    marginLeft: 'auto',
+  },
+  // expand: {
+  //   height: 0,
+  //   transitionDuration: '0.3s',
+  //   // transitionProperty: 'height',
+  //   // transition: theme.transitions.create('transform', {
+  //   //   duration: theme.transitions.duration.shortest, 
+  //   // }),
+  // },
+  // expandOpen: {
+  //   transitionDuration: '0.3s',
+  //   height: '100%',
+  // },
 }));
