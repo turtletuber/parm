@@ -21,7 +21,6 @@ nx serve f5
 You'll need some secrets, reach out to me if you want to run this locally and I can work with you.
 
 ### Roadmap
-* track num times chosen 🟡6️⃣
 * tap to show menu 🟢9️⃣
 * algorithmic selection of available options 🟢6️⃣
 * share options 🟢3️⃣
@@ -31,6 +30,8 @@ You'll need some secrets, reach out to me if you want to run this locally and I 
 
 ### Completed Roadmap
 The newest features are at the top of this list.
+* track node views
+* track num times chosen 🟡6️⃣
 * favorites 🟢6️⃣
 * perma-link to a node 🟡6️⃣
 * go back 🟡3️⃣
