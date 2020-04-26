@@ -126,7 +126,7 @@ export const AdventureOptionCard = (row: any) => {
                     </Grid>
                   )}
               </CardContent>
-              {!row.current && (
+              {!row.current && !row.new && (
                 <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
                   <Grow in={isHovering} timeout={300}>
                     <CardActions disableSpacing>
