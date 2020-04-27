@@ -21,15 +21,16 @@ nx serve f5
 You'll need some secrets, reach out to me if you want to run this locally and I can work with you.
 
 ### Roadmap
-* tap to show menu 🟢9️⃣
 * algorithmic selection of available options 🟢6️⃣
 * share options 🟢3️⃣
 * some notification system for when someone has replied to your option that previously had 0 children 0️⃣
 * report 0️⃣
 * edit 0️⃣
+* generalize core code for use in other apps 0️⃣
 
 ### Completed Roadmap
 The newest features are at the top of this list.
+* tap to show menu 🟢9️⃣
 * track node views
 * track num times chosen 🟡6️⃣
 * favorites 🟢6️⃣
