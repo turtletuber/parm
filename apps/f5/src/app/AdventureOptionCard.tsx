@@ -91,10 +91,10 @@ export const AdventureOptionCard = (row: any) => {
               ) 
 
               || row.new && (
+                <>
                   <CardContent>
                     <Grid container spacing={1}>
-                      <Grid item xs={1} />
-                      <Grid item xs={row.canReply ? 11 : 10}>
+                      <Grid item xs={12}>
                         <TextField
                           style={{ width: '100%' }}
                           id="new-option-input"
@@ -105,22 +105,32 @@ export const AdventureOptionCard = (row: any) => {
                           onChange={handleChange}
                         />
                       </Grid>
-                      <Grid item xs={1}>
-                        <IconButton
-                          onClick={() => {
-                            row.createOption({
-                              text,
-                              parent: row.parent,
-                              type: row.type,
-                            });
-                            setText('');
-                          }}
-                        >
-                          <AddIcon />
-                        </IconButton>
-                      </Grid>
                     </Grid>
-                  </CardContent> 
+                  </CardContent>
+                  <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
+                    <Grow in={isHovering} timeout={300}>
+                      <CardActions disableSpacing>
+                        <Grid container direction="row-reverse">
+                          <Grid item>
+                            <IconButton
+                              onClick={() => {
+                                row.createOption({
+                                  text,
+                                  parent: row.parent,
+                                  type: row.type,
+                                });
+                                setText('');
+                              }}
+                            >
+                              <AddIcon />
+                            </IconButton>
+                          </Grid>
+
+                        </Grid>
+                      </CardActions>
+                    </Grow>
+                  </AnimateHeight>
+                </> 
                 )
 
                 || loading || (
@@ -129,45 +139,6 @@ export const AdventureOptionCard = (row: any) => {
                   <Grow in={isHovering} timeout={300}>
                   <CardActions disableSpacing>
                     <Grid container direction="row-reverse">
-                      {canSelect && (
-                        <Grid item>
-                          <IconButton
-                            onClick={setCurrent}
-                            aria-label='choose'
-                          >
-                            <Check />
-                          </IconButton>
-                        </Grid>
-                      )}
-                      {row.showBackButton && (
-                        <Grid item>
-                          <IconButton
-                            onClick={() => history.goBack()}
-                            disabled={from === to}
-                          >
-                            <ArrowUpwardIcon />
-                          </IconButton>
-                        </Grid>
-                      )}
-                    </Grid>
-                  </CardActions>
-                  </Grow>
-                  </AnimateHeight>
-                  <CardContent >
-                    <Typography variant="body2" className={classes.text}>
-                      <Markdown>
-                        {row.text || ''}
-                      </Markdown>
-                    </Typography>
-                  </CardContent>
-                </>
-                )}
-
-              {!row.current && !row.new && (
-                <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
-                  <Grow in={isHovering} timeout={300}>
-                    <CardActions disableSpacing>
-                      <Grid container direction='row-reverse'>
                         {/* <Grid item>
                           <IconButton aria-label="share" className={classes.action}>
                             <ShareIcon />
@@ -196,6 +167,45 @@ export const AdventureOptionCard = (row: any) => {
                           <MoreVertIcon />
                         </IconButton>
                       </Grid> */}
+                    </Grid>
+                  </CardActions>
+                  </Grow>
+                  </AnimateHeight>
+                  <CardContent >
+                    <Typography variant="body2" className={classes.text}>
+                      <Markdown>
+                        {row.text || ''}
+                      </Markdown>
+                    </Typography>
+                  </CardContent>
+                </>
+                )}
+
+              {!row.current && !row.new && (
+                <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
+                  <Grow in={isHovering} timeout={300}>
+                    <CardActions disableSpacing>
+                      <Grid container direction='row-reverse'>
+                      {canSelect && (
+                        <Grid item>
+                          <IconButton
+                            onClick={setCurrent}
+                            aria-label='choose'
+                          >
+                            <Check />
+                          </IconButton>
+                        </Grid>
+                      )}
+                      {row.showBackButton && (
+                        <Grid item>
+                          <IconButton
+                            onClick={() => history.goBack()}
+                            disabled={from === to}
+                          >
+                            <ArrowUpwardIcon />
+                          </IconButton>
+                        </Grid>
+                      )}
                       </Grid>
                     </CardActions>
                   </Grow>
