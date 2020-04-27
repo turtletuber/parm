@@ -14,6 +14,7 @@ import Markdown from 'markdown-to-jsx';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'; 
 import LinkIcon from '@material-ui/icons/Link'; 
 import FavoriteIcon from '@material-ui/icons/Favorite'; 
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'; 
 import ShareIcon from '@material-ui/icons/Share'; 
 import MoreVertIcon from '@material-ui/icons/MoreVert'; 
 import { useHistory, Link } from 'react-router-dom';
@@ -52,16 +53,16 @@ export const AdventureOptionCard = (row: any) => {
       meta.likes = [...meta.likes, userId];
     }
     setMeta(meta);
-  }, [row.id]);
+  }, [row.id, liked]);
 
+  const visited = meta.visited.includes(userId);
   const setCurrent = useCallback(() => {
-    const visited = meta.visited.includes(userId);
     if (!visited) {
       meta.visited = [...meta.visited, userId];
       setMeta(meta);
     } 
     row.setCurrent(row.id);
-  }, [row.id]);
+  }, [row.id, visited]);
   const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
   return (
     <Card className={classes.card} >
@@ -166,7 +167,7 @@ export const AdventureOptionCard = (row: any) => {
                               [classes.active]: liked,
                             })}
                           >
-                            <FavoriteIcon />
+                            {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
                           </IconButton>
                         </Grid>
                         <Grid item>
