@@ -1,5 +1,6 @@
 import { firebase as firebaseSecrets } from '@parm/util';
 import * as firebase from 'firebase/app';
+import { environment } from '../environments/environment';
 
 // Add the Firebase services that you want to use
 import 'firebase/auth';
@@ -10,6 +11,16 @@ import 'firebase/firestore';
 firebase.initializeApp(firebaseSecrets);
 
 var db = firebase.firestore();
+
+// only dev uses separate data collections.
+// prod and qa share their data collections.
+const env = environment.stage === 'dev' ? 'dev' : null;
+const app = environment.app;
+const Node = env ? `${env}.${app}` : app;
+const NodeMeta = `${app}.meta`;
+console.log({
+  env, app, Node, NodeMeta
+});
 
 import { useState, useEffect, useCallback } from 'react';
 import { storage } from './storage';
@@ -41,7 +52,7 @@ const initialState: State = {
 }; 
 
 const fetch = async () => {
-  const e = await db.collection('f5').get();
+  const e = await db.collection(Node).get();
   const nodes: any[] = e.docs.map(d => ({
     id: d.id,
     ...d.data(),
@@ -51,9 +62,6 @@ const fetch = async () => {
     root: nodes.find(n => n.isRoot),
   }
 }
-
-const Node = 'f5';
-const NodeMeta = 'f5.meta';
 
 interface NodeMeta {
   /**
@@ -137,7 +145,7 @@ export function useData() {
   async function createOption({ text, parent, type }: { text: string, parent: string, type: 'prompt' | 'action' }) {
     const creatorId = storage.userId();
     const createTime = firebase.firestore.Timestamp.fromDate(new Date());
-    const optionRef = await db.collection('f5').add({
+    const optionRef = await db.collection(Node).add({
       creatorId,
       createTime,
       text,
@@ -156,7 +164,7 @@ export function useData() {
     };
     let parentNode = state.nodes.find(n => n.id === parent);
     parentNode.children.push(option.id);
-    await db.collection('f5').doc(parentNode.id).update(parentNode);
+    await db.collection(Node).doc(parentNode.id).update(parentNode);
     const { nodes, root } = await fetch();
     parentNode = nodes.find(n => n.id === parent);
     setState({
