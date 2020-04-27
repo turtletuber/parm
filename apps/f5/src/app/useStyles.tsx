@@ -31,12 +31,12 @@ export const useStyles = makeStyles(theme => ({
   },
   menuButton: {
     zIndex: 100,
-    margin: 0,
+    margin: '0 !important' as any,
     top: 'auto',
     right: 20,
     bottom: 20,
     left: 'auto',
-    position: 'fixed',
+    position: 'fixed !important' as any,
   },
   text: {
     display: 'inline-block',
@@ -93,4 +93,11 @@ export const useStyles = makeStyles(theme => ({
   //   transitionDuration: '0.3s',
   //   height: '100%',
   // },
+  endMessage: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
 }));
