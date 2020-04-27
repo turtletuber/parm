@@ -85,6 +85,8 @@ export function useNodeView(nodeId: string) {
   });
   const {meta, setMeta} = useMeta(nodeId);
   useEffect(() => {
+    if (!nodeId)
+      return;
     if (to === nodeId)
       setMeta({
         ...meta,
