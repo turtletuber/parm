@@ -5,7 +5,7 @@ import Check from '@material-ui/icons/Check';
 import TextField from '@material-ui/core/TextField';
 import { useStyles } from './useStyles';
 import { 
-  Card, CardContent, Grid, Typography, CardActions,
+  Card, CardContent, Grid, Typography, CardActions, CardHeader,
 } from '@material-ui/core';
 import { LoadingSpinner } from './LoadingSpinner';
 import LazyLoad from 'react-lazyload';
@@ -72,12 +72,13 @@ export const AdventureOptionCard = (row: any) => {
           placeholder={<LoadingSpinner />}
         >
         <ReactHoverObserver
-          hoverOffDelayInMs={300}
+          hoverOffDelayInMs={100}
         >
           {({ isHovering }) => (
             <>
-              <CardContent>
-                {row.current && (
+
+              {row.current && (
+                <CardContent>
                   <Typography
                     variant="body2"
                     color="textSecondary"
@@ -86,8 +87,11 @@ export const AdventureOptionCard = (row: any) => {
                   >
                     What now?
                   </Typography>
-                ) ||
-                  row.new && (
+                </CardContent>
+              ) 
+
+              || row.new && (
+                  <CardContent>
                     <Grid container spacing={1}>
                       <Grid item xs={1} />
                       <Grid item xs={row.canReply ? 11 : 10}>
@@ -116,39 +120,49 @@ export const AdventureOptionCard = (row: any) => {
                         </IconButton>
                       </Grid>
                     </Grid>
-                  ) ||
-                  loading || (
-                    <Grid container spacing={1}>
-                      <Grid item xs={1}>
-                        {canSelect && (
+                  </CardContent> 
+                )
+
+                || loading || (
+                  <>
+                <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
+                  <Grow in={isHovering} timeout={300}>
+                  <CardActions disableSpacing>
+                    <Grid container direction="row-reverse">
+                      {canSelect && (
+                        <Grid item>
                           <IconButton
                             onClick={setCurrent}
                             aria-label='choose'
                           >
                             <Check />
                           </IconButton>
+                        </Grid>
                       )}
-                      </Grid>
-                      <Grid item xs={10}>
-                        <Typography variant="body2" className={classes.text}>
-                          <Markdown>
-                            {row.text || ''}
-                          </Markdown>
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={1}>
-                        {row.showBackButton && (
+                      {row.showBackButton && (
+                        <Grid item>
                           <IconButton
                             onClick={() => history.goBack()}
                             disabled={from === to}
                           >
                             <ArrowUpwardIcon />
                           </IconButton>
-                        )}
-                      </Grid>
+                        </Grid>
+                      )}
                     </Grid>
-                  )}
-              </CardContent>
+                  </CardActions>
+                  </Grow>
+                  </AnimateHeight>
+                  <CardContent >
+                    <Typography variant="body2" className={classes.text}>
+                      <Markdown>
+                        {row.text || ''}
+                      </Markdown>
+                    </Typography>
+                  </CardContent>
+                </>
+                )}
+
               {!row.current && !row.new && (
                 <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
                   <Grow in={isHovering} timeout={300}>

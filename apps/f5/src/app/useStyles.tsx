@@ -7,7 +7,7 @@ export const useStyles = makeStyles(theme => ({
   card: {
     marginTop: theme.spacing(1),
     position: 'relative',
-    minHeight: '88px',
+    // minHeight: '88px',
   },
   cards: {
     width: '100%',
@@ -24,7 +24,9 @@ export const useStyles = makeStyles(theme => ({
   },
   text: {
     display: 'inline-block',
-    marginTop: theme.spacing(2),
+    margin: 'auto',
+    marginLeft: theme.spacing(1),
+    marginRigh: theme.spacing(1),
   },
   italic: {
     fontStyle: 'italic',
