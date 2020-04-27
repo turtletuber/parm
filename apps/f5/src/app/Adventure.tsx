@@ -4,13 +4,26 @@ import { LoadingSpinner } from './LoadingSpinner';
 import { useStyles } from './useStyles';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { useData } from './firebase';
-import { GithubButton } from './GithubButton';
-import { FeedbackButton } from './FeedbackButton';
 import { EndMessage } from './EndMessage';
 import { AdventureOptionCard } from './AdventureOptionCard';
 import { storage } from './storage';
 import { Option } from './firebase';
 import { useQueryParams, StringParam } from 'use-query-params'; 
+import ListItem from '@material-ui/core/ListItem';
+import List from '@material-ui/core/List';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import Drawer from '@material-ui/core/Drawer';
+import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@material-ui/core/IconButton';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import FeedbackIcon from '@material-ui/icons/Feedback'; 
+import OpenInNewIcon from '@material-ui/icons/OpenInNew'; 
+import AppBar from '@material-ui/core/AppBar';
+import App from './app';
+import { Fab, useTheme } from '@material-ui/core';
 
 function hashCode(s) {
   for(var i = 0, h = 0; i < s.length; i++)
@@ -31,9 +44,11 @@ const weight = (option: Option) => {
 const numOptions = 3;
 
 export default function Adventure(props) {
+  const theme = useTheme();
   const userId = storage.userId();
   const classes = useStyles();
   const [size, setSize] = useState(4);
+  const [expanded, setExpanded] = useState(false);
   const [query, setQuery] = useQueryParams({
     to: StringParam,
     from: StringParam,
@@ -118,15 +133,51 @@ export default function Adventure(props) {
     ...state(),
     userId,
     to, from, focus,
-    prev,
+    prev, scrollY,
   });
+
+  const MyList = () => (
+    <span role="presentation">
+      <List className={classes.list}>
+        <ListItem
+          button
+          component="a"
+          aria-label="Contribute on GitHub"
+          href="https://github.com/prmichaelsen/parm/tree/master/apps/f5"
+          target="_blank"
+          rel="noopener"
+        >
+          <ListItemIcon>
+            <GitHubIcon />
+          </ListItemIcon>
+          <ListItemText primary="Contribute">
+          </ListItemText>
+        </ListItem>
+        <ListItem button>
+          <ListItemIcon>
+            <FeedbackIcon/>
+          </ListItemIcon>
+          <ListItemText primary="Feedback"/>
+        </ListItem>
+      </List>
+      <Fab onClick={() => setExpanded(false)} className={classes.menuButton}>
+        {theme.direction === 'ltr' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+      </Fab>
+    </span>
+  );
 
   return (
     <div className={classes.paper}>
-      <span className={classes.rightShoulder}>
-        <GithubButton />
-        <FeedbackButton />
-      </span>
+      <Fab
+        className={classes.menuButton}
+        aria-label="open menu"
+        onClick={() => setExpanded(true)}
+      >
+        <MenuIcon />
+      </Fab>
+      <Drawer anchor="right" open={expanded} onClose={() => setExpanded(false)}>
+        <MyList/> 
+      </Drawer> 
       <Typography component="h1" variant="h5">
         <Typography component="span"> Oh fuck! </Typography>
         <Typography component="span" className={classes.italic}> Oh fuck! </Typography>

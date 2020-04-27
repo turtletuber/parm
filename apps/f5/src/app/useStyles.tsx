@@ -7,7 +7,6 @@ export const useStyles = makeStyles(theme => ({
   card: {
     marginTop: theme.spacing(1),
     position: 'relative',
-    minHeight: '88px',
   },
   cards: {
     width: '100%',
@@ -17,14 +16,33 @@ export const useStyles = makeStyles(theme => ({
     borderRadius: '5px',
   },
   paper: {
-    marginTop: theme.spacing(5),
+    marginTop: theme.spacing(4),
+    marginBottom: theme.spacing(25),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
+  appBar: {
+    top: 'auto',
+    bottom: 0,
+  },
+  list: {
+    width: 250,
+  },
+  menuButton: {
+    zIndex: 100,
+    margin: 0,
+    top: 'auto',
+    right: 20,
+    bottom: 20,
+    left: 'auto',
+    position: 'fixed',
+  },
   text: {
     display: 'inline-block',
-    marginTop: theme.spacing(2),
+    margin: 'auto',
+    marginLeft: theme.spacing(1),
+    marginRight: theme.spacing(1),
   },
   italic: {
     fontStyle: 'italic',
@@ -35,14 +53,6 @@ export const useStyles = makeStyles(theme => ({
   form: {
     width: '100%', // Fix IE 11 issue.
     marginTop: theme.spacing(3),
-  },
-  rightShoulder: {
-    position: 'absolute',
-    right: '1.5%',
-    top: '1.5%',
-  },
-  rightShoulderButton: {
-    marginLeft: '3px',
   },
   quote: {
     display: 'inline-block',

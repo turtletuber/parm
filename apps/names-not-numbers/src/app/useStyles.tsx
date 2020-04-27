@@ -33,7 +33,7 @@ export const useStyles = makeStyles(theme => ({
     marginTop: theme.spacing(3),
   },
   rightShoulder: {
-    position: 'absolute',
+    position: 'fixed',
     right: '1.5%',
     top: '1.5%',
   },
