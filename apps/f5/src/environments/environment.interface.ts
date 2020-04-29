@@ -36,3 +36,16 @@ export interface Enviroment {
     maxResponses: number,
   },
 }
+
+interface OtherOptions {
+  /** the 'what now?' text */
+  promptText: string,
+  /** default 'Diviniate' **/
+  newPromptLabel: string,
+  newPromptPlaceholder: string,
+  /** default 'Improvise' **/
+  newActionLabel: string,
+  newActionPlaceholder: string,
+  validatePrompt: (text: string) => boolean,
+  validateAction: (text: string) => boolean,
+}
