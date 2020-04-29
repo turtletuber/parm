@@ -201,7 +201,7 @@ export default function Adventure(props) {
               return (
                 <AdventureOptionCard 
                   showBackButton={i === children.length - 1}
-                  key={i}
+                  key={node.id}
                   {...node}
                   setCurrent={setCurrent} 
                 />
