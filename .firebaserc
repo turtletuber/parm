@@ -1,0 +1,23 @@
+{
+  "projects": {
+    "default": "parm-app"
+  },
+  "targets": {
+    "parm-app": {
+      "hosting": {
+        "f5": [
+          "f5-0000"
+        ],
+        "storybook/react": [
+          "parm-storybook-react"
+        ],
+        "names-not-numbers": [
+          "parm-0001"
+        ],
+        "one-word-story": [
+          "parm-one-word-story"
+        ]
+      }
+    }
+  }
+}

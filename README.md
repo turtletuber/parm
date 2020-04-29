@@ -142,6 +142,11 @@ You can now navigate to http://localhost:3333/api to see the explorer and http:/
 ## Help with PM2
 Check out [PM2 devhints](https://devhints.io/pm2).
 
+## Firebase hosting
+Followed this guide to set up firebase hosting.
+
+https://www.youtube.com/watch?v=NrkFBmBFA6k
+
 ### References
 * [jenkins-github]
 * [Swagger]
