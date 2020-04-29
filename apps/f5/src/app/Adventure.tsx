@@ -21,9 +21,11 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FeedbackIcon from '@material-ui/icons/Feedback'; 
 import OpenInNewIcon from '@material-ui/icons/OpenInNew'; 
-import AppBar from '@material-ui/core/AppBar';
-import App from './app';
-import { Fab, useTheme } from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import { Fab, useTheme, Divider } from '@material-ui/core';
+import Switch from '@material-ui/core/Switch';
+import BrushIcon from '@material-ui/icons/Brush';
+import { useDarkMode } from './hooks';
 
 function hashCode(s) {
   for(var i = 0, h = 0; i < s.length; i++)
@@ -45,6 +47,7 @@ const numOptions = 3;
 
 export default function Adventure(props) {
   const theme = useTheme();
+  const { isDarkMode, toggleDarkMode } = props;
   const userId = storage.userId();
   const classes = useStyles();
   const [size, setSize] = useState(4);
@@ -158,6 +161,19 @@ export default function Adventure(props) {
             <FeedbackIcon/>
           </ListItemIcon>
           <ListItemText primary="Feedback"/>
+        </ListItem>
+        <Divider/>
+        <ListItem>
+          <ListItemIcon>
+            <BrushIcon/>
+          </ListItemIcon>
+          <Grid component="label" container alignItems="center" spacing={1}>
+            <Grid item>Light</Grid>
+            <Grid item>
+              <Switch checked={isDarkMode} onChange={toggleDarkMode}/>
+            </Grid>
+            <Grid item>Dark</Grid>
+          </Grid>
         </ListItem>
       </List>
       <Fab onClick={() => setExpanded(false)} className={classes.menuButton}>

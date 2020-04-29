@@ -1,25 +1,27 @@
 import React from 'react';
 
-import { Container, CssBaseline, ThemeProvider, Theme, createMuiTheme, Typography } from '@material-ui/core';
-import Adventure from './Adventure';
+import { Container, CssBaseline, ThemeProvider, createMuiTheme, useMediaQuery } from '@material-ui/core';
+import Adventure from './Adventure'; 
+import { useDarkMode } from './hooks';
 
-const theme = createMuiTheme({
-  palette: {
-    type: 'light',
-  },
-  typography: {
-    button: {
-      textTransform: 'none'
+const withContainer = (Component: React.ComponentType<any>) => () => {
+  const { isDarkMode, toggleDarkMode } = useDarkMode();
+  console.log({isDarkMode});
+  const theme = createMuiTheme({
+    palette: {
+      type: isDarkMode ? 'dark' : 'light',
+    },
+    typography: {
+      button: {
+        textTransform: 'none'
+      }
     }
-  }
-});
-
-const withContainer = (Component: React.ComponentType) => () => {
+  });
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
         <CssBaseline />
-        <Component />
+        <Component isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       </Container>
     </ThemeProvider>
   );
