@@ -23,4 +23,16 @@ export interface Enviroment {
   app: string,
   /** which stage */
   stage: dev | qa | prod,
+
+  /** app configuration */ 
+  config: {
+    /** the header text for the app */
+    header: string,
+    /** the root node text */
+    rootText: string,
+    /** the num responses shown per option */
+    numResponses: number,
+    /** the max responses allowed per option */
+    maxResponses: number,
+  },
 }

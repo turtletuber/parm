@@ -6,4 +6,10 @@ import { Enviroment } from './environment.interface';
 export const environment: Enviroment = {
   app: 'one-word-story',
   stage: 'prod',
+  config: {
+    header: 'One Word Story',
+    rootText: 'Once',
+    numResponses: 1,
+    maxResponses: 1,
+  }
 };

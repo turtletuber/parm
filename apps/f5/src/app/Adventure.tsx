@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { environment } from '../environments/environment';
 import Typography from '@material-ui/core/Typography';
 import { LoadingSpinner } from './LoadingSpinner';
 import { useStyles } from './useStyles';
@@ -24,6 +25,7 @@ import OpenInNewIcon from '@material-ui/icons/OpenInNew';
 import AppBar from '@material-ui/core/AppBar';
 import App from './app';
 import { Fab, useTheme } from '@material-ui/core';
+import Markdown from 'markdown-to-jsx';
 
 function hashCode(s) {
   for(var i = 0, h = 0; i < s.length; i++)
@@ -41,7 +43,8 @@ const weight = (option: Option) => {
   }
 }
 
-const numOptions = 3;
+const numOptions = environment.config.numResponses;
+const maxResponses = environment.config.maxResponses;
 
 export default function Adventure(props) {
   const theme = useTheme();
@@ -82,7 +85,11 @@ export default function Adventure(props) {
       .slice(0, numOptions) 
       ;
     const isPrompt = current.type === 'prompt';
-    const canReply = (isPrompt || children.length === 0) && userId !== current.creatorId;
+    const canReply = 
+      (isPrompt || children.length === 0)
+      && userId !== current.creatorId
+      && (children.length < maxResponses || maxResponses === -1)
+      ;
     const prev: Option[] = [];
     let it = current;
     const searchId = from || data.root.id;
@@ -179,8 +186,9 @@ export default function Adventure(props) {
         <MyList/> 
       </Drawer> 
       <Typography component="h1" variant="h5">
-        <Typography component="span"> Oh fuck! </Typography>
-        <Typography component="span" className={classes.italic}> Oh fuck! </Typography>
+        <Markdown>
+          {environment.config.header}
+        </Markdown>
       </Typography>
       <div className={classes.cards}>
         <InfiniteScroll

@@ -8,6 +8,7 @@ module.exports = {
       metaDescription: 'Build a story with people from around the web one word at a time.',
       header: 'One Word Story',
       rootText: 'Once',
+      numResponses: 1,
     },
   ],
 }
