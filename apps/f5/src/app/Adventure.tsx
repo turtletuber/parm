@@ -43,8 +43,8 @@ const weight = (option: Option) => {
   }
 }
 
-const numOptions = environment.config.numResponses;
-const maxResponses = environment.config.maxResponses;
+const numOptions = environment.numResponses;
+const maxResponses = environment.maxResponses;
 
 export default function Adventure(props) {
   const theme = useTheme();
@@ -187,7 +187,7 @@ export default function Adventure(props) {
       </Drawer> 
       <Typography component="h1" variant="h5">
         <Markdown>
-          {environment.config.header}
+          {environment.header}
         </Markdown>
       </Typography>
       <div className={classes.cards}>

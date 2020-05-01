@@ -7,7 +7,7 @@ type dev = 'dev';
 /**
  * the gamma stage.
  * 
- * for use in staging/integration enviroments.
+ * for use in staging/integration Environments.
  * Uses same data as prod.
  */
 type qa = 'qa'; 
@@ -18,23 +18,22 @@ type qa = 'qa';
  */
 type prod = 'prod'; 
 
-export interface Enviroment {
+export interface Environment {
   /** which app to deploy */
   app: string,
   /** which stage */
   stage: dev | qa | prod,
 
-  /** app configuration */ 
-  config: {
-    /** the header text for the app */
-    header: string,
-    /** the root node text */
-    rootText: string,
-    /** the num responses shown per option */
-    numResponses: number,
-    /** the max responses allowed per option */
-    maxResponses: number,
-  },
+  /** app configuration */
+  /** the header text for the app */
+  header: string,
+  /** the num responses shown per option */
+  numResponses: number,
+  /** the max responses allowed per option */
+  maxResponses: number,
+  metaTitle: string,
+  metaDescription: string,
+  title: string,
 }
 
 interface OtherOptions {
