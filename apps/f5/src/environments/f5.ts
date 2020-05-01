@@ -4,12 +4,12 @@
 import { Environment } from './environment.interface';
 
 export const environment: Environment = {
+  "header": "Oh fuck! _Oh fuck!_",
+  "maxResponses": -1,
+  "title": "F5",
   "app": "f5",
   "numResponses": 3,
   "stage": "prod",
   "metaTitle": "FUCKFUCKFUCKFUCKFUCK",
-  "metaDescription": "Oh fuck! Ohhhhhh FFFFFFUCK. You just spilled a fuckton of hot fucking water on your lap! What now?",
-  "header": "Oh fuck! _Oh fuck!_",
-  "maxResponses": -1,
-  "title": "F5"
+  "metaDescription": "Oh fuck! Ohhhhhh FFFFFFUCK. You just spilled a fuckton of hot fucking water on your lap! What now?"
 };

@@ -1,0 +1,50 @@
+import * as path from 'path';
+import * as fs from 'fs';
+import * as nunjucks from 'nunjucks';
+
+nunjucks.configure({
+  autoescape: false,
+});
+
+/** resolve relative or absolute paths easily */
+export const resolve = t => {
+  if (!path.isAbsolute(t)) {
+    return path.resolve(process.cwd(), t);
+  }
+  return path.resolve(__dirname, t);
+}
+
+/** check file exists */
+export const exists = t => fs.existsSync(resolve(t));
+
+/** write json to disk with 2-space-indent */
+export const writeJson = ({ fp, data }) => {
+  const json = JSON.stringify(data, null, 2);
+  const wt = resolve(fp);
+  fs.writeFileSync(wt, json, 'utf8');
+}
+
+/** write data disk using the environment template */
+export const writeEnv = ({ fp, data }) => {
+  const json = JSON.stringify(data, null, 2);
+  const wt = resolve(fp);
+  const file = nunjucks.render('./templates/environment.njk', { json });
+  fs.writeFileSync(wt, file, 'utf8');
+}
+
+/** get current env */
+export const environment = () => {
+  const env = process.env.NODE_ENV || 'production';
+  switch (env) {
+    case 'production':
+      return 'prod';
+    case 'qa':
+      return 'qa';
+    case 'development':
+      return 'dev';
+    case 'test':
+      return 'test';
+    default:
+      return 'prod';
+  }
+}

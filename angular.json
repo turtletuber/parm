@@ -806,10 +806,6 @@
                 {
                   "replace": "apps/f5/src/environments/environment.ts",
                   "with": "./apps/f5/src/environments/one-word-story.ts"
-                },
-                {
-                  "replace": "apps/f5/src/app/validate.ts",
-                  "with": "apps/f5/src/app/validate.one-word-story.ts"
                 }
               ]
             },
@@ -849,10 +845,6 @@
                 {
                   "replace": "apps/f5/src/environments/environment.ts",
                   "with": "./apps/f5/src/environments/one-word-story.ts"
-                },
-                {
-                  "replace": "apps/f5/src/app/validate.ts",
-                  "with": "apps/f5/src/app/validate.one-word-story.ts"
                 }
               ]
             },
@@ -935,6 +927,21 @@
               "**/node_modules/**",
               "!apps/f5-e2e/**"
             ]
+          }
+        }
+      }
+    },
+    "tools-scripts-f5": {
+      "root": "tools/scripts/f5",
+      "sourceRoot": "tools/scripts/f5",
+      "projectType": "library",
+      "schematics": {},
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "tools/scripts/jest.config.js",
+            "tsConfig": "tools/scripts/tsconfig.spec.json"
           }
         }
       }
