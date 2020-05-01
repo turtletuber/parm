@@ -806,6 +806,10 @@
                 {
                   "replace": "apps/f5/src/environments/environment.ts",
                   "with": "./apps/f5/src/environments/one-word-story.ts"
+                },
+                {
+                  "replace": "apps/f5/src/app/validate.ts",
+                  "with": "apps/f5/src/app/validate.one-word-story.ts"
                 }
               ]
             },
@@ -845,6 +849,10 @@
                 {
                   "replace": "apps/f5/src/environments/environment.ts",
                   "with": "./apps/f5/src/environments/one-word-story.ts"
+                },
+                {
+                  "replace": "apps/f5/src/app/validate.ts",
+                  "with": "apps/f5/src/app/validate.one-word-story.ts"
                 }
               ]
             },

@@ -24,6 +24,7 @@ import Grow from '@material-ui/core/Grow';
 import AnimateHeight from 'react-animate-height';
 import { useMeta, useNodeView } from './firebase';
 import { storage } from './storage';
+import { validate } from './validate';
 
 export const AdventureOptionCard = (row: any) => {
   const userId = storage.userId();
@@ -63,6 +64,9 @@ export const AdventureOptionCard = (row: any) => {
     } 
     row.setCurrent(row.id);
   }, [row.id, visited]);
+
+  const [hasBlurred, setBlurred] = useState(false);
+  const onBlur = () => setBlurred(true);
   const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
   return (
     <Card className={classes.card} >
@@ -103,6 +107,9 @@ export const AdventureOptionCard = (row: any) => {
                           multiline
                           value={text}
                           onChange={handleChange}
+                          onBlur={onBlur}
+                          error={hasBlurred && validate(text) !== true}
+                          helperText={hasBlurred && validate(text)}
                         />
                       </Grid>
                     </Grid>
@@ -114,12 +121,13 @@ export const AdventureOptionCard = (row: any) => {
                           <Grid item>
                             <IconButton
                               onClick={() => {
-                                row.createOption({
-                                  text,
-                                  parent: row.parent,
-                                  type: row.type,
-                                });
-                                setText('');
+                                if (validate(text) === true) {
+                                  row.createOption({
+                                    text: text.trim(),
+                                    parent: row.parent,
+                                    type: row.type,
+                                  });
+                                }
                               }}
                             >
                               <AddIcon />
