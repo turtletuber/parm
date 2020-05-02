@@ -12,7 +12,7 @@ nunjucks.configure({
   autoescape: false,
 }); 
 
-const main = async () => {
+export const preBundle = async () => {
   const env = environment();
   const collection = `${env}.parm.f5.apps`;
 
@@ -29,6 +29,7 @@ const main = async () => {
   
   const apps: App[] = e.docs.map(d => d.data() as App);
   apps.forEach(app => {
+    console.log(`pre-bundling ${app.app}...`);
     // save the app config in the source dir
     const fp = `./apps/f5/src/environments/${app.app}.ts`;
     writeEnv({ fp, data: app });
@@ -60,15 +61,12 @@ const main = async () => {
     // build target
     serveTarget.configurations = {
       ...serveTarget.configurations,
-      [app.app]: { buildTarget: `fb:build:${app.app}` },
+      [app.app]: { buildTarget: `f5:build:${app.app}` },
     };
 
     writeJson({
       fp: './angular.json',
       data: workspace,
     });
-  });
-
-  
+  }); 
 }
-main();

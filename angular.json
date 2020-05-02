@@ -870,10 +870,10 @@
               "buildTarget": "f5:build:production"
             },
             "one-word-story": {
-              "buildTarget": "fb:build:one-word-story"
+              "buildTarget": "f5:build:one-word-story"
             },
             "f5": {
-              "buildTarget": "fb:build:f5"
+              "buildTarget": "f5:build:f5"
             }
           }
         },
