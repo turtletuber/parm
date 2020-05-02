@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
+import * as execa from 'execa';
 import * as nunjucks from 'nunjucks';
 
 nunjucks.configure({
@@ -48,3 +49,20 @@ export const environment = () => {
       return 'prod';
   }
 }
+
+export const run = (
+  cmd: string,
+  args?: string[],
+  print: boolean = true,
+) => new Promise((resolve, reject) => {
+  const _args = args || [];
+  console.log([cmd, _args]
+    .filter(a => a !== undefined)
+    .join(' '));
+    const child = execa(cmd, _args, { 
+      stdio: print ? 'inherit' : 'pipe',
+    });
+    child.on('data', msg => console.log(msg));
+    child.on('data', msg => console.error(msg));
+    child.on('exit', code => resolve(code));
+});
