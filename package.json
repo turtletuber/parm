@@ -69,6 +69,7 @@
     "react-lazyload": "^2.6.6",
     "react-loader-spinner": "^3.1.5",
     "react-router-dom": "5.1.2",
+    "react-singleton-hook": "^2.2.103",
     "react-use-dimensions": "^1.2.1",
     "react-use-scroll-position": "^2.0.0",
     "reflect-metadata": "^0.1.13",

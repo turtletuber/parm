@@ -21,11 +21,13 @@ import IconButton from '@material-ui/core/IconButton';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import FeedbackIcon from '@material-ui/icons/Feedback'; 
+import BrushIcon from '@material-ui/icons/Brush'; 
 import OpenInNewIcon from '@material-ui/icons/OpenInNew'; 
 import AppBar from '@material-ui/core/AppBar';
 import App from './app';
-import { Fab, useTheme } from '@material-ui/core';
+import { Fab, useTheme, Divider, Grid, Switch } from '@material-ui/core';
 import Markdown from 'markdown-to-jsx';
+import { useThemePrefs } from './hooks';
 
 function hashCode(s) {
   for(var i = 0, h = 0; i < s.length; i++)
@@ -47,7 +49,7 @@ const numOptions = environment.numResponses;
 const maxResponses = environment.maxResponses;
 
 export default function Adventure(props) {
-  const theme = useTheme();
+  const { theme, isDark, toggleDark } = useThemePrefs();
   const userId = storage.userId();
   const classes = useStyles();
   const [size, setSize] = useState(4);
@@ -165,6 +167,19 @@ export default function Adventure(props) {
             <FeedbackIcon/>
           </ListItemIcon>
           <ListItemText primary="Feedback"/>
+        </ListItem>
+        <Divider/>
+        <ListItem>
+          <ListItemIcon>
+            <BrushIcon/>
+          </ListItemIcon>
+          <Grid component="label" container alignItems="center" spacing={1}>
+            <Grid item>Light</Grid>
+            <Grid item>
+              <Switch checked={isDark} onChange={toggleDark}/>
+            </Grid>
+            <Grid item>Dark</Grid>
+          </Grid>
         </ListItem>
       </List>
       <Fab onClick={() => setExpanded(false)} className={classes.menuButton}>

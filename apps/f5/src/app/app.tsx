@@ -2,19 +2,10 @@ import React from 'react';
 
 import { Container, CssBaseline, ThemeProvider, Theme, createMuiTheme, Typography } from '@material-ui/core';
 import Adventure from './Adventure';
-
-const theme = createMuiTheme({
-  palette: {
-    type: 'light',
-  },
-  typography: {
-    button: {
-      textTransform: 'none'
-    }
-  }
-});
+import { useThemePrefs } from './hooks';
 
 const withContainer = (Component: React.ComponentType) => () => {
+  const { theme } = useThemePrefs(); 
   return (
     <ThemeProvider theme={theme}>
       <Container component="main" maxWidth="sm">
