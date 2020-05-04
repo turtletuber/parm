@@ -21,15 +21,23 @@ nx serve f5
 You'll need some secrets, reach out to me if you want to run this locally and I can work with you.
 
 ### Roadmap
+* tweak UI to be less frustrating 🟡6️⃣
+* left-to-right and top-to-bottom toggles 🟢3️⃣
+* set default top-to-bottom via device media query 🟢3️⃣
+* set default theme coolor via theme pref media query 🟢3️⃣
 * algorithmic selection of available options 🟢6️⃣
 * share options 🟢3️⃣
 * some notification system for when someone has replied to your option that previously had 0 children 0️⃣
 * report 0️⃣
 * edit 0️⃣
-* generalize core code for use in other apps 0️⃣
+* music sharing app 0️⃣
+* animate button slider 0️⃣
+* animate new option loading 0️⃣
 
 ### Completed Roadmap
 The newest features are at the top of this list.
+* generalize core code for use in other apps 0️⃣
+* theming
 * tap to show menu 🟢9️⃣
 * track node views
 * track num times chosen 🟡6️⃣
