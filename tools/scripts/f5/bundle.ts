@@ -6,7 +6,7 @@ export const bundle = async () => {
   const promises = apps.map(app => new Promise(r => {
     run('nx', [
       'run',
-      `f5:bundle:${app.app}`,
+      `f5:build:${app.app}`,
     ]).then(r);
   }));
   await Promise.all(promises);
