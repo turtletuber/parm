@@ -201,7 +201,11 @@ export const AdventureOptionCard = (row: any) => {
                             >{children}</Typography>
                           ),
                           code: ({children, className: lang, ...props}) => {
-                            console.log(props);
+                            if (!lang) {
+                              return (
+                                <code key={props.key}>{children}</code>
+                              )
+                            }
                             return (
                               <AceEditor
                                 maxLines={Infinity}
