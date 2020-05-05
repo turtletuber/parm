@@ -184,7 +184,15 @@ export const AdventureOptionCard = (row: any) => {
                       <Markdown options={{
                         forceBlock: false,
                         overrides: {
-
+                          blockquote: ({children, ...props}) => (
+                            <Typography
+                              {...props}
+                              variant="body2"
+                              color="textSecondary"
+                              className={classes.quote}
+                              component="div"
+                            >{children}</Typography>
+                          ),
                         },
                       }}>
                       {`
