@@ -26,6 +26,13 @@ import { useMeta, useNodeView } from './firebase';
 import { storage } from './storage';
 import { validate } from './validate';
 
+import AceEditor from 'react-ace';
+ 
+import 'ace-builds/src-noconflict/mode-java';
+import 'ace-builds/src-noconflict/mode-typescript';
+import 'ace-builds/src-noconflict/theme-github';
+import 'ace-builds/src-noconflict/theme-monokai';
+
 export const AdventureOptionCard = (row: any) => {
   const userId = storage.userId();
   const history = useHistory();
@@ -180,7 +187,7 @@ export const AdventureOptionCard = (row: any) => {
                   </Grow>
                   </AnimateHeight>
                   <CardContent >
-                    <Typography variant="body2" className={classes.text}>
+                    {/* <Typography variant="body2" className={classes.text}> */}
                       <Markdown options={{
                         forceBlock: false,
                         overrides: {
@@ -193,6 +200,18 @@ export const AdventureOptionCard = (row: any) => {
                               component="div"
                             >{children}</Typography>
                           ),
+                          code: ({children, className: lang, ...props}) => {
+                            console.log(props);
+                            return (
+                              <AceEditor
+                                maxLines={Infinity}
+                                mode={lang ? lang.split('-')[1] : ''}
+                                theme="monokai"
+                                value={children}
+                                readOnly
+                              />
+                            );
+                          }, 
                         },
                       }}>
                       {`
@@ -289,7 +308,7 @@ What data structure does a bst with only left children and no right children loo
 # extraneous 200 level concepts
 If you went to uni, then these concepts are generally considered in the 200 level in the states. So, you should probably know them if you went to uni for computer science.
 
-### generics, or parameterized types
+### generics, or parameterized types 
 
 > &#8505; - This is first on this list for a reason. You will definitely surprise your interviewer if you don't how to use generics. The caveat is that if you mostly work in a language like python or javascript, you would have never encountered this concept. But if you say you know Java and you can't use generics then this will raise alarms to your interviewer.
 
@@ -424,7 +443,7 @@ My final tips for your interview are this:
 Cheers, and good luck.
                       `}
                       </Markdown>
-                    </Typography>
+                    {/* </Typography> */}
                   </CardContent>
                 </>
                 )}
