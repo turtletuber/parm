@@ -235,7 +235,7 @@ At the very least, you should have written code to do these things _at least onc
 * why you would use one over an array
 * how they are implemented at a super high-level
 
-> &#8505; - hashtables are basically the answer to _every_ code question, so you better know this. It should be your first  thought when you start a question. _"I wonder if I could use a hashtable for this?"_ If not, good, no harm done. But if the problem _could have been solved with a hashtable_, and you _didn't think of that_, the interviewer will notice.
+> ℹ️ - hashtables are basically the answer to _every_ code question, so you better know this. It should be your first  thought when you start a question. _"I wonder if I could use a hashtable for this?"_ If not, good, no harm done. But if the problem _could have been solved with a hashtable_, and you _didn't think of that_, the interviewer will notice.
 
 ### all the basic sort algorithms - because they are considered trivial
 #### you must be able to implement 
@@ -282,7 +282,7 @@ The priority queue is an awesome data structure. At the very least, know this ex
 ### time complexity
 For all of the above, you should be able to reason about time complexity.
 
-> &#8505; - The rest I would not consider "need to know", because they are usually implemented for you. But basic linear/logn searches and graph traversal are a must. If not simply because they're like the abcs of computing, and you don't want to look illiterate.
+> ℹ️ - The rest I would not consider "need to know", because they are usually implemented for you. But basic linear/logn searches and graph traversal are a must. If not simply because they're like the abcs of computing, and you don't want to look illiterate.
 
 ## what you _might_ want to know
 ### heaps
@@ -343,7 +343,8 @@ Someone wrote this \`List\` class without knowing what type of data you were goi
 
 ## pointers & references
 What are pointers and references? You should read about them and obtain a rudimentary understanding. They are very important, but usually you don't notice they exist unless you're programming at a very low-level language. 
-> &#8505; - In the context of programming languages, low-level means you're closer to writing 1's and 0's, whereas high-level means you're closer to writing English.
+
+> ℹ️ - In the context of programming languages, low-level means you're closer to writing 1's and 0's, whereas high-level means you're closer to writing English.
 
 ## linked lists
 for what it's worth, if you're new to this, linked lists _are hard_. They seem super simple when you draw pictures of them, until you're doing stuff like:
