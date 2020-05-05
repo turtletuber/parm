@@ -59,6 +59,21 @@
           "destination": "/index.html"
         }
       ]
+    },
+    {
+      "target": "parm",
+      "public": "dist/apps/parm",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }

@@ -16,6 +16,9 @@
         ],
         "one-word-story": [
           "parm-one-word-story"
+        ],
+        "parm": [
+          "parm-parm"
         ]
       }
     }

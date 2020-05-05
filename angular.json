@@ -817,6 +817,15 @@
                   "with": "./apps/f5/src/environments/f5.ts"
                 }
               ]
+            },
+            "parm": {
+              "outputPath": "dist/apps/parm",
+              "fileReplacements": [
+                {
+                  "replace": "apps/f5/src/environments/environment.ts",
+                  "with": "./apps/f5/src/environments/parm.ts"
+                }
+              ]
             }
           }
         },
@@ -856,6 +865,15 @@
                   "with": "./apps/f5/src/environments/f5.ts"
                 }
               ]
+            },
+            "parm": {
+              "outputPath": "dist/apps/parm",
+              "fileReplacements": [
+                {
+                  "replace": "apps/f5/src/environments/environment.ts",
+                  "with": "./apps/f5/src/environments/parm.ts"
+                }
+              ]
             }
           }
         },
@@ -874,6 +892,9 @@
             },
             "f5": {
               "buildTarget": "f5:build:f5"
+            },
+            "parm": {
+              "buildTarget": "f5:build:parm"
             }
           }
         },
