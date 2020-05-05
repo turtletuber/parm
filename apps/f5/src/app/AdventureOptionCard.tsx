@@ -30,10 +30,13 @@ import AceEditor from 'react-ace';
  
 import 'ace-builds/src-noconflict/mode-java';
 import 'ace-builds/src-noconflict/mode-typescript';
-import 'ace-builds/src-noconflict/theme-github';
-import 'ace-builds/src-noconflict/theme-monokai';
+import 'ace-builds/src-noconflict/theme-xcode';
+import 'ace-builds/src-noconflict/theme-twilight';
+import { useThemePrefs } from './hooks';
 
 export const AdventureOptionCard = (row: any) => {
+  const { isDark } = useThemePrefs();
+  const aceTheme = isDark ? 'twilight' : 'xcode';
   const userId = storage.userId();
   const history = useHistory();
   const { views } = useNodeView(row.id);
@@ -210,7 +213,7 @@ export const AdventureOptionCard = (row: any) => {
                               <AceEditor
                                 maxLines={Infinity}
                                 mode={lang ? lang.split('-')[1] : ''}
-                                theme="monokai"
+                                theme={aceTheme}
                                 value={children}
                                 readOnly
                               />
@@ -323,8 +326,8 @@ you should understand:
 
 #### here's a quick overview
 
-\`\`\`java
-// creating an array of ints without generics
+\`\`\`java 
+// creating an array of ints without generics 
 int[] myArray = new int[] {};
 
 // creating lists for ints and strings, respectively
@@ -333,7 +336,7 @@ StringList myStringList = new StringList();
 
 // creating a list for each using generics
 List<int> myGenericIntList = new ArrayList<int>();
-List<string> myGenericStringList = new ArrayList<string>();
+List<string> myGenericStringList = new ArrayList<string>(); 
 \`\`\`
 
 Someone wrote this \`List\` class without knowing what type of data you were going to put into it. That's because it doesn't matter. The operations for adding an \`int\` to a list are the exact same as they are for adding a \`string\` to a list. That means they can defer assigning types to its contents until the exact moment you need to use it. Instead of writing one class for each data type we want to contain, we only need _one generic class_. This becomes insanely powerful as the number of types you want to parameterize increases. For instance, consider Java's \`Dictionary<TKey, TValue>\` class, which means you now have the square of the number of types in Java combinations that you don't have to write classes for. You can just use the one generic class, instead.
@@ -345,7 +348,7 @@ What are pointers and references? You should read about them and obtain a rudime
 ## linked lists
 for what it's worth, if you're new to this, linked lists _are hard_. They seem super simple when you draw pictures of them, until you're doing stuff like:
 
-\`\`\`typescript
+\`\`\`typescript 
 let prev = null;
 let reverse = null;
 let it = head;
