@@ -68,7 +68,6 @@ export const AdventureOptionCard = (row: any) => {
   const [hasBlurred, setBlurred] = useState(false);
   const onBlur = () => setBlurred(true);
   const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
-  const isHovering = true;
   return (
     <Card className={classes.card} >
         <LazyLoad
@@ -79,7 +78,7 @@ export const AdventureOptionCard = (row: any) => {
         <ReactHoverObserver
           hoverOffDelayInMs={100}
         >
-          {({ isHovering2 }) => (
+          {({ isHovering }) => (
             <>
 
               {row.current && (
