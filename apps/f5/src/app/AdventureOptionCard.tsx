@@ -10,7 +10,6 @@ import {
 import { LoadingSpinner } from './LoadingSpinner';
 import LazyLoad from 'react-lazyload';
 import AddIcon from '@material-ui/icons/Add'; 
-import Markdown from 'markdown-to-jsx'; 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'; 
 import LinkIcon from '@material-ui/icons/Link'; 
 import FavoriteIcon from '@material-ui/icons/Favorite'; 
@@ -21,22 +20,13 @@ import { useHistory, Link } from 'react-router-dom';
 import { useQueryParams, StringParam } from 'use-query-params';
 import ReactHoverObserver from 'react-hover-observer';
 import Grow from '@material-ui/core/Grow';
-import AnimateHeight from 'react-animate-height';
 import { useMeta, useNodeView } from './firebase';
 import { storage } from './storage';
 import { validate } from './validate';
-
-import AceEditor from 'react-ace';
- 
-import 'ace-builds/src-noconflict/mode-java';
-import 'ace-builds/src-noconflict/mode-typescript';
-import 'ace-builds/src-noconflict/theme-xcode';
-import 'ace-builds/src-noconflict/theme-twilight';
-import { useThemePrefs } from './hooks';
+import AnimateHeight from 'react-animate-height';
+import { Markdown } from './Markdown';
 
 export const AdventureOptionCard = (row: any) => {
-  const { isDark } = useThemePrefs();
-  const aceTheme = isDark ? 'twilight' : 'xcode';
   const userId = storage.userId();
   const history = useHistory();
   const { views } = useNodeView(row.id);
@@ -78,6 +68,7 @@ export const AdventureOptionCard = (row: any) => {
   const [hasBlurred, setBlurred] = useState(false);
   const onBlur = () => setBlurred(true);
   const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
+  const isHovering = true;
   return (
     <Card className={classes.card} >
         <LazyLoad
@@ -88,7 +79,7 @@ export const AdventureOptionCard = (row: any) => {
         <ReactHoverObserver
           hoverOffDelayInMs={100}
         >
-          {({ isHovering }) => (
+          {({ isHovering2 }) => (
             <>
 
               {row.current && (
@@ -189,37 +180,8 @@ export const AdventureOptionCard = (row: any) => {
                   </CardActions>
                   </Grow>
                   </AnimateHeight>
-                  <CardContent >
-                    <Markdown options={{
-                      forceBlock: false,
-                      overrides: {
-                        blockquote: ({children, ...props}) => (
-                          <Typography
-                            {...props}
-                            variant="body2"
-                            color="textSecondary"
-                            className={classes.quote}
-                            component="div"
-                          >{children}</Typography>
-                        ),
-                        code: ({children, className: lang, ...props}) => {
-                          if (!lang) {
-                            return (
-                              <code key={props.key}>{children}</code>
-                            )
-                          }
-                          return (
-                            <AceEditor
-                              maxLines={Infinity}
-                              mode={lang ? lang.split('-')[1] : ''}
-                              theme={aceTheme}
-                              value={children}
-                              readOnly
-                            />
-                          );
-                        }, 
-                      },
-                    }}>
+                  <CardContent>
+                    <Markdown>
                       {row.text || ''}
                     </Markdown>
                   </CardContent>
