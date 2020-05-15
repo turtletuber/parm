@@ -2,7 +2,7 @@
 To deploy all f5 apps:
 ```sh
 # *requires npm i -g typescript ts-node
-./tools/scrips/f5/0-deploy.ts
+./tools/scripts/f5/0-deploy.ts
 ```
 
 This script:
