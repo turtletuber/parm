@@ -190,40 +190,38 @@ export const AdventureOptionCard = (row: any) => {
                   </Grow>
                   </AnimateHeight>
                   <CardContent >
-                    {/* <Typography variant="body2" className={classes.text}> */}
-                      <Markdown options={{
-                        forceBlock: false,
-                        overrides: {
-                          blockquote: ({children, ...props}) => (
-                            <Typography
-                              {...props}
-                              variant="body2"
-                              color="textSecondary"
-                              className={classes.quote}
-                              component="div"
-                            >{children}</Typography>
-                          ),
-                          code: ({children, className: lang, ...props}) => {
-                            if (!lang) {
-                              return (
-                                <code key={props.key}>{children}</code>
-                              )
-                            }
+                    <Markdown options={{
+                      forceBlock: false,
+                      overrides: {
+                        blockquote: ({children, ...props}) => (
+                          <Typography
+                            {...props}
+                            variant="body2"
+                            color="textSecondary"
+                            className={classes.quote}
+                            component="div"
+                          >{children}</Typography>
+                        ),
+                        code: ({children, className: lang, ...props}) => {
+                          if (!lang) {
                             return (
-                              <AceEditor
-                                maxLines={Infinity}
-                                mode={lang ? lang.split('-')[1] : ''}
-                                theme={aceTheme}
-                                value={children}
-                                readOnly
-                              />
-                            );
-                          }, 
-                        },
-                      }}>
-                        {row.text || ''}
-                      </Markdown>
-                    {/* </Typography> */}
+                              <code key={props.key}>{children}</code>
+                            )
+                          }
+                          return (
+                            <AceEditor
+                              maxLines={Infinity}
+                              mode={lang ? lang.split('-')[1] : ''}
+                              theme={aceTheme}
+                              value={children}
+                              readOnly
+                            />
+                          );
+                        }, 
+                      },
+                    }}>
+                      {row.text || ''}
+                    </Markdown>
                   </CardContent>
                 </>
                 )}

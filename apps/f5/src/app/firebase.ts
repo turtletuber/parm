@@ -56,6 +56,10 @@ const fetch = async () => {
   const nodes: any[] = e.docs.map(d => ({
     id: d.id,
     ...d.data(),
+    // firebase encodes \n as \\n
+    text: d.data().text
+      .replace(/\\\n/g, '\n')
+      .replace(/\\\t/g, '\t')
   }));
   return {
     nodes,
