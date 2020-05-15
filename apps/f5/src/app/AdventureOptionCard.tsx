@@ -26,7 +26,17 @@ import { useMeta, useNodeView } from './firebase';
 import { storage } from './storage';
 import { validate } from './validate';
 
+import AceEditor from 'react-ace';
+ 
+import 'ace-builds/src-noconflict/mode-java';
+import 'ace-builds/src-noconflict/mode-typescript';
+import 'ace-builds/src-noconflict/theme-xcode';
+import 'ace-builds/src-noconflict/theme-twilight';
+import { useThemePrefs } from './hooks';
+
 export const AdventureOptionCard = (row: any) => {
+  const { isDark } = useThemePrefs();
+  const aceTheme = isDark ? 'twilight' : 'xcode';
   const userId = storage.userId();
   const history = useHistory();
   const { views } = useNodeView(row.id);
@@ -180,11 +190,38 @@ export const AdventureOptionCard = (row: any) => {
                   </Grow>
                   </AnimateHeight>
                   <CardContent >
-                    <Typography variant="body2" className={classes.text}>
-                      <Markdown>
-                        {row.text || ''}
-                      </Markdown>
-                    </Typography>
+                    <Markdown options={{
+                      forceBlock: false,
+                      overrides: {
+                        blockquote: ({children, ...props}) => (
+                          <Typography
+                            {...props}
+                            variant="body2"
+                            color="textSecondary"
+                            className={classes.quote}
+                            component="div"
+                          >{children}</Typography>
+                        ),
+                        code: ({children, className: lang, ...props}) => {
+                          if (!lang) {
+                            return (
+                              <code key={props.key}>{children}</code>
+                            )
+                          }
+                          return (
+                            <AceEditor
+                              maxLines={Infinity}
+                              mode={lang ? lang.split('-')[1] : ''}
+                              theme={aceTheme}
+                              value={children}
+                              readOnly
+                            />
+                          );
+                        }, 
+                      },
+                    }}>
+                      {row.text || ''}
+                    </Markdown>
                   </CardContent>
                 </>
                 )}
