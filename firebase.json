@@ -74,6 +74,21 @@
           "destination": "/index.html"
         }
       ]
+    },
+    {
+      "target": "streamster",
+      "public": "dist/apps/streamster",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }

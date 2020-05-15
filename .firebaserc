@@ -19,6 +19,9 @@
         ],
         "parm": [
           "parm-parm"
+        ],
+        "streamster": [
+          "streamster-tools"
         ]
       }
     }

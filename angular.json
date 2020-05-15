@@ -826,6 +826,15 @@
                   "with": "./apps/f5/src/environments/parm.ts"
                 }
               ]
+            },
+            "streamster": {
+              "outputPath": "dist/apps/streamster",
+              "fileReplacements": [
+                {
+                  "replace": "apps/f5/src/environments/environment.ts",
+                  "with": "./apps/f5/src/environments/streamster.ts"
+                }
+              ]
             }
           }
         },
@@ -874,6 +883,15 @@
                   "with": "./apps/f5/src/environments/parm.ts"
                 }
               ]
+            },
+            "streamster": {
+              "outputPath": "dist/apps/streamster",
+              "fileReplacements": [
+                {
+                  "replace": "apps/f5/src/environments/environment.ts",
+                  "with": "./apps/f5/src/environments/streamster.ts"
+                }
+              ]
             }
           }
         },
@@ -895,6 +913,9 @@
             },
             "parm": {
               "buildTarget": "f5:build:parm"
+            },
+            "streamster": {
+              "buildTarget": "f5:build:streamster"
             }
           }
         },
