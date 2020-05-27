@@ -18,12 +18,9 @@ import ShareIcon from '@material-ui/icons/Share';
 import MoreVertIcon from '@material-ui/icons/MoreVert'; 
 import { useHistory, Link } from 'react-router-dom';
 import { useQueryParams, StringParam } from 'use-query-params';
-import ReactHoverObserver from 'react-hover-observer';
-import Grow from '@material-ui/core/Grow';
 import { useMeta, useNodeView } from './firebase';
 import { storage } from './storage';
 import { validate } from './validate';
-import AnimateHeight from 'react-animate-height';
 import { Markdown } from './Markdown';
 
 export const AdventureOptionCard = (row: any) => {
@@ -36,7 +33,7 @@ export const AdventureOptionCard = (row: any) => {
     to: StringParam,
   });
   const classes = useStyles();
-  const loading = row == null ? <LoadingSpinner/> : false;
+  const loading = row == null ? <LoadingSpinner /> : false;
   const canSelect = !row.root && !row.prev;
   const [text, setText] = useState('');
   const handleChange = (event) => {
@@ -61,7 +58,7 @@ export const AdventureOptionCard = (row: any) => {
     if (!visited) {
       meta.visited = [...meta.visited, userId];
       setMeta(meta);
-    } 
+    }
     row.setCurrent(row.id);
   }, [row.id, visited]);
 
@@ -70,156 +67,133 @@ export const AdventureOptionCard = (row: any) => {
   const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
   return (
     <Card className={classes.card} >
-        <LazyLoad
-          className={classes.avatar}
-          once
-          placeholder={<LoadingSpinner />}
-        >
-        <ReactHoverObserver
-          hoverOffDelayInMs={100}
-        >
-          {({ isHovering }) => (
-            <>
-
-              {row.current && (
-                <CardContent>
-                  <Typography
-                    variant="body2"
-                    color="textSecondary"
-                    className={classes.quote}
-                    component="div"
-                  >
-                    What now?
+      <LazyLoad
+        className={classes.avatar}
+        once
+        placeholder={<LoadingSpinner />}
+      >
+        {row.current && (
+          <CardContent>
+            <Typography
+              variant="body2"
+              color="textSecondary"
+              className={classes.quote}
+              component="div"
+            >
+              What now?
                   </Typography>
-                </CardContent>
-              ) 
+          </CardContent>
+        )
 
-              || row.new && (
-                <>
-                  <CardContent>
-                    <Grid container spacing={1}>
-                      <Grid item xs={12}>
-                        <TextField
-                          style={{ width: '100%' }}
-                          id="new-option-input"
-                          label={row.type === 'prompt' ? 'Divinate' : 'Improvise'}
-                          placeholder="Type your dialogue or actions here..."
-                          multiline
-                          value={text}
-                          onChange={handleChange}
-                          onBlur={onBlur}
-                          error={hasBlurred && validate(text) !== true}
-                          helperText={hasBlurred && validate(text)}
-                        />
-                      </Grid>
-                    </Grid>
-                  </CardContent>
-                  <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
-                    <Grow in={isHovering} timeout={300}>
-                      <CardActions disableSpacing>
-                        <Grid container direction="row-reverse">
-                          <Grid item>
-                            <IconButton
-                              onClick={() => {
-                                if (validate(text) === true) {
-                                  row.createOption({
-                                    text: text.trim(),
-                                    parent: row.parent,
-                                    type: row.type,
-                                  });
-                                }
-                              }}
-                            >
-                              <AddIcon />
-                            </IconButton>
-                          </Grid>
+          || row.new && (
+            <>
+              <CardContent>
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    <TextField
+                      style={{ width: '100%' }}
+                      id="new-option-input"
+                      label={row.type === 'prompt' ? 'Divinate' : 'Improvise'}
+                      placeholder="Type your dialogue or actions here..."
+                      multiline
+                      value={text}
+                      onChange={handleChange}
+                      onBlur={onBlur}
+                      error={hasBlurred && validate(text) !== true}
+                      helperText={hasBlurred && validate(text)}
+                    />
+                  </Grid>
+                </Grid>
+              </CardContent>
+              <CardActions disableSpacing>
+                <Grid container direction="row-reverse">
+                  <Grid item>
+                    <IconButton
+                      onClick={() => {
+                        if (validate(text) === true) {
+                          row.createOption({
+                            text: text.trim(),
+                            parent: row.parent,
+                            type: row.type,
+                          });
+                        }
+                      }}
+                    >
+                      <AddIcon />
+                    </IconButton>
+                  </Grid>
+                </Grid>
+              </CardActions>
+            </>
+          )
 
-                        </Grid>
-                      </CardActions>
-                    </Grow>
-                  </AnimateHeight>
-                </> 
-                )
-
-                || loading || (
-                  <>
-                <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
-                  <Grow in={isHovering} timeout={300}>
-                  <CardActions disableSpacing>
-                    <Grid container direction="row-reverse">
-                        {/* <Grid item>
+          || loading || (
+            <>
+              <CardActions disableSpacing>
+                <Grid container direction="row-reverse">
+                  {/* <Grid item>
                           <IconButton aria-label="share" className={classes.action}>
                             <ShareIcon />
                           </IconButton>
                         </Grid> */}
-                        <Grid item>
-                          <IconButton 
-                            aria-label={liked ? 'unlike' : 'like'}
-                            onClick={setLikes}
-                            className={clsx({
-                              [classes.active]: liked,
-                            })}
-                          >
-                            {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
-                          </IconButton>
-                        </Grid>
-                        <Grid item>
-                          <Link to={url}>
-                            <IconButton>
-                              <LinkIcon />
-                            </IconButton>
-                          </Link>
-                        </Grid>
-                        {/* <Grid item>
+                  <Grid item>
+                    <IconButton
+                      aria-label={liked ? 'unlike' : 'like'}
+                      onClick={setLikes}
+                      className={clsx({
+                        [classes.active]: liked,
+                      })}
+                    >
+                      {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+                    </IconButton>
+                  </Grid>
+                  <Grid item>
+                    <Link to={url}>
+                      <IconButton>
+                        <LinkIcon />
+                      </IconButton>
+                    </Link>
+                  </Grid>
+                  {/* <Grid item>
                         <IconButton aria-label="settings" className={classes.action}>
                           <MoreVertIcon />
                         </IconButton>
                       </Grid> */}
-                    </Grid>
-                  </CardActions>
-                  </Grow>
-                  </AnimateHeight>
-                  <CardContent>
-                    <Markdown>
-                      {row.text || ''}
-                    </Markdown>
-                  </CardContent>
-                </>
-                )}
-
+                </Grid>
+              </CardActions>
+              <CardContent>
+                <Markdown>
+                  {row.text || ''}
+                </Markdown>
+              </CardContent>
               {!row.current && !row.new && (
-                <AnimateHeight height={!isHovering ? 0 : 'auto'} duration={300} >
-                  <Grow in={isHovering} timeout={300}>
-                    <CardActions disableSpacing>
-                      <Grid container direction='row-reverse'>
-                      {canSelect && (
-                        <Grid item>
-                          <IconButton
-                            onClick={setCurrent}
-                            aria-label='choose'
-                          >
-                            <Check />
-                          </IconButton>
-                        </Grid>
-                      )}
-                      {row.showBackButton && (
-                        <Grid item>
-                          <IconButton
-                            onClick={() => history.goBack()}
-                            disabled={from === to}
-                          >
-                            <ArrowUpwardIcon />
-                          </IconButton>
-                        </Grid>
-                      )}
+                <CardActions disableSpacing>
+                  <Grid container direction='row-reverse'>
+                    {canSelect && (
+                      <Grid item>
+                        <IconButton
+                          onClick={setCurrent}
+                          aria-label='choose'
+                        >
+                          <Check />
+                        </IconButton>
                       </Grid>
-                    </CardActions>
-                  </Grow>
-                </AnimateHeight>
+                    )}
+                    {row.showBackButton && (
+                      <Grid item>
+                        <IconButton
+                          onClick={() => history.goBack()}
+                          disabled={from === to}
+                        >
+                          <ArrowUpwardIcon />
+                        </IconButton>
+                      </Grid>
+                    )}
+                  </Grid>
+                </CardActions>
               )}
             </>
           )}
-        </ReactHoverObserver>
       </LazyLoad>
     </Card>
   );
