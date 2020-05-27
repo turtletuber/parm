@@ -835,6 +835,15 @@
                   "with": "./apps/f5/src/environments/streamster.ts"
                 }
               ]
+            },
+            "stacktrace": {
+              "outputPath": "dist/apps/stacktrace",
+              "fileReplacements": [
+                {
+                  "replace": "apps/f5/src/environments/environment.ts",
+                  "with": "./apps/f5/src/environments/stacktrace.ts"
+                }
+              ]
             }
           }
         },
@@ -892,6 +901,15 @@
                   "with": "./apps/f5/src/environments/streamster.ts"
                 }
               ]
+            },
+            "stacktrace": {
+              "outputPath": "dist/apps/stacktrace",
+              "fileReplacements": [
+                {
+                  "replace": "apps/f5/src/environments/environment.ts",
+                  "with": "./apps/f5/src/environments/stacktrace.ts"
+                }
+              ]
             }
           }
         },
@@ -916,6 +934,9 @@
             },
             "streamster": {
               "buildTarget": "f5:build:streamster"
+            },
+            "stacktrace": {
+              "buildTarget": "f5:build:stacktrace"
             }
           }
         },

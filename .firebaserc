@@ -1,27 +1,27 @@
 {
-  "projects": {
-    "default": "parm-app"
-  },
   "targets": {
     "parm-app": {
       "hosting": {
-        "f5": [
-          "f5-0000"
+        "streamster": [
+          "streamster-tools"
         ],
-        "storybook/react": [
-          "parm-storybook-react"
-        ],
-        "names-not-numbers": [
-          "parm-0001"
+        "stacktrace": [
+          "stacktracecards"
         ],
         "one-word-story": [
           "parm-one-word-story"
         ],
+        "f5": [
+          "f5-0000"
+        ],
         "parm": [
           "parm-parm"
         ],
-        "streamster": [
-          "streamster-tools"
+        "names-not-numbers": [
+          "parm-0001"
+        ],
+        "storybook/react": [
+          "parm-storybook-react"
         ]
       }
     }

@@ -34,6 +34,8 @@ export interface Environment {
   metaTitle: string,
   metaDescription: string,
   title: string,
+  /** the firebase host to deploy to, eg 'stacktracecards' */
+  host: string,
 }
 
 interface OtherOptions {

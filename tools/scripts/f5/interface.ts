@@ -6,4 +6,5 @@ export interface App {
   header: string,
   numResponses: number,
   maxResponses: number,
+  host: string,
 }

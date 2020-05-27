@@ -89,6 +89,21 @@
           "destination": "/index.html"
         }
       ]
+    },
+    {
+      "target": "stacktrace",
+      "public": "dist/apps/stacktrace",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
     }
   ]
 }
