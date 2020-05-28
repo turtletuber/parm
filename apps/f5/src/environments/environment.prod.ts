@@ -10,5 +10,6 @@ export const environment: Environment = {
   "metaDescription": "Oh fuck! Ohhhhhh FFFFFFUCK. You just spilled a fuckton of hot fucking water on your lap! What now?",
   "header": "Oh fuck! _Oh fuck!_",
   "maxResponses": -1,
-  "title": "F5"
+  "title": "F5",
+  "host": "",
 };
