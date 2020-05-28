@@ -17,6 +17,7 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import ShareIcon from '@material-ui/icons/Share'; 
 import MoreVertIcon from '@material-ui/icons/MoreVert'; 
 import { useHistory, Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 import { useQueryParams, StringParam } from 'use-query-params';
 import { useMeta, useNodeView } from './firebase';
 import { storage } from './storage';
@@ -64,9 +65,9 @@ export const AdventureOptionCard = (row: any) => {
 
   const [hasBlurred, setBlurred] = useState(false);
   const onBlur = () => setBlurred(true);
-  const url = `/?from=${from}&to=${row.id}&focus=${row.id}`;
+  const url = `/?from=${from}&to=${row.id}&focus=${row.id}#${row.id}`;
   return (
-    <Card className={classes.card} >
+    <Card className={classes.card} id={row.id}>
       <LazyLoad
         className={classes.avatar}
         once
