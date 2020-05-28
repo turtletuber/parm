@@ -60,7 +60,10 @@ export default function Adventure(props) {
     focus: StringParam,
   });
   const { to, from, focus } = query;
-  const { state: data, setCurrent: setCurrentState, createOption } = useData();
+  const { 
+    state: data, setCurrent: setCurrentState,
+    createOption, updateNode,
+  } = useData();
   const fetchData = () => 
     setSize(size + 3);
   const state = () => {
@@ -213,16 +216,27 @@ export default function Adventure(props) {
           loader={<LoadingSpinner/>}
           endMessage={<EndMessage/>}
         >
-          <AdventureOptionCard key={'current'} {...data.root} root />
+          <AdventureOptionCard 
+            createOption={updateNode}
+            key={'current'}
+            {...data.root}
+            root
+          />
           {prev.map((node, i) => {
             return (
-              <AdventureOptionCard key={'prev-' + i} {...node} prev />
+              <AdventureOptionCard 
+                createOption={updateNode}
+                key={'prev-' + i}
+                {...node}
+                prev
+              />
             )
           })}
           <AdventureOptionCard key={'prompt'} current />
           {children.map((node, i) => {
               return (
                 <AdventureOptionCard 
+                  createOption={updateNode}
                   showBackButton={i === children.length - 1}
                   key={node.id}
                   {...node}

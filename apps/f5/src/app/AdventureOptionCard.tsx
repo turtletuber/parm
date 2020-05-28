@@ -12,6 +12,7 @@ import LazyLoad from 'react-lazyload';
 import AddIcon from '@material-ui/icons/Add'; 
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'; 
 import LinkIcon from '@material-ui/icons/Link'; 
+import EditIcon from '@material-ui/icons/Edit'; 
 import FavoriteIcon from '@material-ui/icons/Favorite'; 
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'; 
 import ShareIcon from '@material-ui/icons/Share'; 
@@ -26,6 +27,7 @@ import { Markdown } from './Markdown';
 
 export const AdventureOptionCard = (row: any) => {
   const userId = storage.userId();
+  const isAuthor = userId === row.creatorId;
   const history = useHistory();
   const { views } = useNodeView(row.id);
   const { meta, setMeta } = useMeta(row.id);
@@ -36,7 +38,24 @@ export const AdventureOptionCard = (row: any) => {
   const classes = useStyles();
   const loading = row == null ? <LoadingSpinner /> : false;
   const canSelect = !row.root && !row.prev;
+  const [isEditing, setEditing] = useState(row.new || false);
   const [text, setText] = useState('');
+  const handleToggleEdit = () => {
+    if (isEditing) {
+      if (validate(text) === true) {
+        row.createOption({
+          text: text.trim(),
+          id: row.id,
+          parent: row.parent,
+          type: row.type,
+        });
+        setEditing(false);
+      }
+    } else {
+      setText(row.text);
+      setEditing(true);
+    }
+  }
   const handleChange = (event) => {
     setText(event.target.value);
   };
@@ -86,7 +105,7 @@ export const AdventureOptionCard = (row: any) => {
           </CardContent>
         )
 
-          || row.new && (
+          || isEditing && (
             <>
               <CardContent>
                 <Grid container spacing={1}>
@@ -109,17 +128,7 @@ export const AdventureOptionCard = (row: any) => {
               <CardActions disableSpacing>
                 <Grid container direction="row-reverse">
                   <Grid item>
-                    <IconButton
-                      onClick={() => {
-                        if (validate(text) === true) {
-                          row.createOption({
-                            text: text.trim(),
-                            parent: row.parent,
-                            type: row.type,
-                          });
-                        }
-                      }}
-                    >
+                    <IconButton onClick={handleToggleEdit}>
                       <AddIcon />
                     </IconButton>
                   </Grid>
@@ -155,6 +164,19 @@ export const AdventureOptionCard = (row: any) => {
                       </IconButton>
                     </Link>
                   </Grid>
+                  {isAuthor && (
+                    <Grid item>
+                      <IconButton
+                        aria-label={isEditing ? 'unlike' : 'like'}
+                        onClick={handleToggleEdit}
+                        className={clsx({
+                          [classes.active]: isEditing,
+                        })}
+                      >
+                        <EditIcon />
+                      </IconButton>
+                    </Grid>
+                  )}
                   {/* <Grid item>
                         <IconButton aria-label="settings" className={classes.action}>
                           <MoreVertIcon />
@@ -167,7 +189,7 @@ export const AdventureOptionCard = (row: any) => {
                   {row.text || ''}
                 </Markdown>
               </CardContent>
-              {!row.current && !row.new && (
+              {!row.current && !isEditing && (
                 <CardActions disableSpacing>
                   <Grid container direction='row-reverse'>
                     {canSelect && (

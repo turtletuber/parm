@@ -146,6 +146,19 @@ export function useData() {
         prev: [...state.prev, state.nodes.find(n => n.id === current)],
     });
   };
+  async function updateNode({ text, id }: { text: string, id: string }) {
+    const updateTime = firebase.firestore.Timestamp.fromDate(new Date());
+    await db.collection(Node).doc(id).set({
+      text,
+      updateTime,
+    }, { merge: true });
+    const { nodes, root } = await fetch();
+    setState({
+        ...state,
+        root,
+        nodes,
+    });
+  };
   async function createOption({ text, parent, type }: { text: string, parent: string, type: 'prompt' | 'action' }) {
     const creatorId = storage.userId();
     const createTime = firebase.firestore.Timestamp.fromDate(new Date());
@@ -189,5 +202,6 @@ export function useData() {
     state,
     setCurrent,
     createOption,
+    updateNode,
   }
 }
