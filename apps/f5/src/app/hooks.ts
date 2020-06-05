@@ -1,6 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles'; 
 import { useState, useMemo } from 'react';
 import { singletonHook } from 'react-singleton-hook';
+import { storage } from './storage';
 
 const theme = createMuiTheme({
   palette: {
@@ -19,7 +20,7 @@ interface ThemeState {
 }
 
 const initialThemeState: ThemeState = {
-  isDark: false,
+  isDark: storage.isDark(),
   isTop: false,
 }
 
@@ -27,7 +28,10 @@ let setThemeState: React.Dispatch<React.SetStateAction<ThemeState>> = () => { th
 
 const useThemeState = singletonHook(initialThemeState, () => {
   const [state, setState] = useState(initialThemeState);
-  setThemeState = setState;
+  setThemeState = (state: ThemeState) => {
+    storage.setIsDark(state.isDark);
+    setState(state);
+  };
   return state;
 });
 
