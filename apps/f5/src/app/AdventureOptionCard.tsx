@@ -17,6 +17,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'; 
 import ShareIcon from '@material-ui/icons/Share'; 
 import MoreVertIcon from '@material-ui/icons/MoreVert'; 
+import ImageIcon from '@material-ui/icons/Image';
 import { useHistory, Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { useQueryParams, StringParam } from 'use-query-params';
@@ -24,6 +25,7 @@ import { useMeta, useNodeView } from './firebase';
 import { storage } from './storage';
 import { validate } from './validate';
 import { Markdown } from './Markdown';
+import { ImgUploader } from './ImageUploader';
 
 export const AdventureOptionCard = (row: any) => {
   const userId = storage.userId();
@@ -122,6 +124,12 @@ export const AdventureOptionCard = (row: any) => {
                       error={hasBlurred && validate(text) !== true}
                       helperText={hasBlurred && validate(text)}
                     />
+                  </Grid>
+                </Grid>
+                <Grid container spacing={1}>
+                  <Grid item xs={12}>
+                    <ImgUploader/>
+                    {/* <input type="file" id="fileinput" accept="image/*"/> */}
                   </Grid>
                 </Grid>
               </CardContent>
