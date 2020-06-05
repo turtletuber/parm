@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import ImageUploader from 'react-images-upload';
 import Grid from '@material-ui/core/Grid';
+import { useImages } from './firebase';
   
 type onChange = (files: File[], pictures: string[]) => void
 const initialState: File[] = [];
  
 export const ImgUploader = () => { 
   const [state, setState] = useState(initialState);
+  const { uploadImage } = useImages();
   const onDrop: onChange = (pictures) => {
+    pictures.forEach(f => {
+      try {
+        uploadImage(f)
+      } catch (e) {
+        console.log(e)
+      }
+    });
     setState([
       ...pictures
     ]);
