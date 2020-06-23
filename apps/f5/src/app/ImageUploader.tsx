@@ -25,9 +25,9 @@ export const ImgUploader = () => {
       try {
         const result = await uploadImage(f);
         const url = await result.ref.getDownloadURL();
-        setCompleted([
+        setCompleted(prev => [
           url,
-          ...completed,
+          ...prev,
         ]);
         console.log(url);
       } catch (e) {
