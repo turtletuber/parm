@@ -5,6 +5,7 @@ import { environment } from '../environments/environment';
 // Add the Firebase services that you want to use
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/storage';
 
 // Initialize Cloud Firestore through Firebase
 // Initialize Firebase
@@ -18,6 +19,7 @@ const env = environment.stage === 'dev' ? 'dev' : null;
 const app = environment.app;
 const Node = env ? `${env}.${app}` : app;
 const NodeMeta = `${app}.meta`;
+const ImagesStore = `${app}/images`;
 console.log({
   env, app, Node, NodeMeta
 });
@@ -86,6 +88,26 @@ const initialNodeMeta: NodeMeta = {
   likes: [],
   visited: [],
   views: 0,
+}
+
+export function useImages() {
+  const uploadImage = async (file: File) => {
+    const uuid = uuidv1();
+    const id = `${ImagesStore}/${uuid}`;
+    const ref = firebase.storage().ref(id);
+    const metadata = {
+      contentType: file.type,
+    }
+    try {
+      return await ref.put(file, metadata);
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  return {
+    uploadImage,
+  };
 }
 
 /**

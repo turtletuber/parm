@@ -17,6 +17,7 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder'; 
 import ShareIcon from '@material-ui/icons/Share'; 
 import MoreVertIcon from '@material-ui/icons/MoreVert'; 
+import ImageIcon from '@material-ui/icons/Image';
 import { useHistory, Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { useQueryParams, StringParam } from 'use-query-params';

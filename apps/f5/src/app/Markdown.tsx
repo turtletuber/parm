@@ -11,6 +11,7 @@ import 'ace-builds/src-noconflict/theme-twilight';
 import { useThemePrefs } from './hooks';
 import { useStyles } from './useStyles';
 import { YoutubeLinkConverter } from './YoutubeLinkConverter';
+import { ImgUploader } from './ImageUploader';
 
 export const Markdown = ({ children }) => {
   const { isDark } = useThemePrefs();
@@ -48,6 +49,7 @@ export const Markdown = ({ children }) => {
           );
         },
         YoutubeLinkConverter,
+        ImgUploader,
       },
     }}>
       {children}
