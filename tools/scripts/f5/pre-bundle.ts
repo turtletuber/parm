@@ -5,6 +5,7 @@ import { firebase } from './firebase';
 import { 
   environment, writeEnv, writeJson
 } from './util';
+import * as readdirsr from 'recursive-readdir';
 
 import * as nunjucks from 'nunjucks';
 
@@ -26,6 +27,14 @@ export const preBundle = async () => {
   const buildTarget = f5.architect.build;
   const bundleTarget = f5.architect.bundle;
   const serveTarget = f5.architect.serve;
+
+  const files: string[] = await new Promise((res, rej) => 
+    readdirsr('./apps/f5/src/', (err, files) => {
+      if (err)
+        rej(err);
+      res(files);
+    })
+  );
   
   const apps: App[] = e.docs.map(d => d.data() as App);
   apps.forEach(app => {
@@ -34,6 +43,18 @@ export const preBundle = async () => {
     const fp = `./apps/f5/src/environments/${app.app}.ts`;
     writeEnv({ fp, data: app });
 
+    // dynamically replace any files
+    // that include the name of the app
+    // as a suffix, eg ./file.parm.ts
+    // will overwrite the default ./file.ts
+    const suffix = `.${app.app}.ts`;
+    const replacements = files
+      .filter(f => f.includes(suffix))
+      .map(f => ({
+        replace: f.replace(suffix, '.ts'),
+        with: f, 
+      }));
+
     const configuration = {
       "outputPath": `dist/apps/${app.app}`,
       "fileReplacements": [
@@ -41,6 +62,7 @@ export const preBundle = async () => {
           "replace": "apps/f5/src/environments/environment.ts",
           "with": fp,
         },
+        ...replacements,
       ]
     };
 
