@@ -167,9 +167,11 @@ export default function Adventure(props) {
         </ListItem>
         <ListItem 
           button
+          component="a"
           href="https://forms.gle/KJxi1b7AE3ey48vD8"
           target="_blank"
           aria-label="Contact & Feedback"
+          rel="noopener"
         >
           <ListItemIcon>
             <FeedbackIcon/>
