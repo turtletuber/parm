@@ -830,8 +830,8 @@
                   "with": "./apps/f5/src/environments/parm.ts"
                 },
                 {
-                  "replace": "apps/f5/src/app/AdventureOptionCard.tsx",
-                  "with": "apps/f5/src/app/AdventureOptionCard.parm.tsx"
+                  "replace": "apps/f5/src/app/Adventure.tsx",
+                  "with": "apps/f5/src/app/Adventure.parm.tsx"
                 }
               ]
             },
@@ -904,8 +904,8 @@
                   "with": "./apps/f5/src/environments/parm.ts"
                 },
                 {
-                  "replace": "apps/f5/src/app/AdventureOptionCard.tsx",
-                  "with": "apps/f5/src/app/AdventureOptionCard.parm.tsx"
+                  "replace": "apps/f5/src/app/Adventure.tsx",
+                  "with": "apps/f5/src/app/Adventure.parm.tsx"
                 }
               ]
             },
