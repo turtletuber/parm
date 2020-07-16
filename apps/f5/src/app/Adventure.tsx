@@ -165,7 +165,12 @@ export default function Adventure(props) {
           <ListItemText primary="Contribute">
           </ListItemText>
         </ListItem>
-        <ListItem button>
+        <ListItem 
+          button
+          href="https://forms.gle/KJxi1b7AE3ey48vD8"
+          target="_blank"
+          aria-label="Contact & Feedback"
+        >
           <ListItemIcon>
             <FeedbackIcon/>
           </ListItemIcon>
