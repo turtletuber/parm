@@ -12,6 +12,7 @@ import { useThemePrefs } from './hooks';
 import { useStyles } from './useStyles';
 import { YoutubeLinkConverter } from './YoutubeLinkConverter';
 import { ImgUploader } from './ImageUploader';
+import { Admin } from './Admin';
 
 export const Markdown = ({ children }) => {
   const { isDark } = useThemePrefs();
@@ -50,6 +51,7 @@ export const Markdown = ({ children }) => {
         },
         YoutubeLinkConverter,
         ImgUploader,
+        Admin,
       },
     }}>
       {children}

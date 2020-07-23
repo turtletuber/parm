@@ -19,6 +19,8 @@ const env = environment.stage === 'dev' ? 'dev' : null;
 const app = environment.app;
 const Node = env ? `${env}.${app}` : app;
 const NodeMeta = `${app}.meta`;
+const Roles = `${app}.roles`;
+
 const ImagesStore = `${app}/images`;
 console.log({
   env, app, Node, NodeMeta
@@ -28,6 +30,10 @@ import { useState, useEffect, useCallback } from 'react';
 import { storage } from './storage';
 import uuidv1 from 'uuid/v1';
 import { StringParam, useQueryParams } from 'use-query-params';
+
+export interface RoleDocument {
+  roles: string[];
+}
 
 export interface Option {
   parent: string;
@@ -130,6 +136,20 @@ export function useNodeView(nodeId: string) {
   return {
     views: meta.views,
   }
+}
+
+export function useRoles() {
+  const [roles, setRoles] = useState([]);
+  useEffect(() => {
+    const userId = storage.userId();
+    db.collection(Roles).doc(userId).onSnapshot(e => {
+      const doc = e.data();
+      if (!doc)
+        return [];
+      setRoles(doc.roles || []);
+    });
+  });
+  return roles;
 }
 
 export function useMeta(nodeId: string) {
