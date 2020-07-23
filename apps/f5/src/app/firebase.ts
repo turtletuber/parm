@@ -96,7 +96,32 @@ const initialNodeMeta: NodeMeta = {
   views: 0,
 }
 
-export function useImages() {
+export function useImages(limit: number = 100) {
+  if (limit === null)
+    limit = 1000;
+  const [pageToken, setPageToken] = useState(null);
+  const [urls, setUrls] = useState([]);
+  const ref = firebase.storage().ref(ImagesStore);
+  const nextPage = () => {
+    ref.list({
+      maxResults: limit,
+      pageToken: pageToken,
+    }).then(async (result) => {
+      setPageToken(result.nextPageToken);
+      setUrls(await Promise.all(result.items.map(i =>
+        i.getDownloadURL()
+      )));
+    }).catch((e) => { throw new (e); });
+  }
+  if (pageToken === null)
+    nextPage();
+  return {
+    nextPage,
+    urls,
+  }
+}
+
+export function useImageUpload() {
   const uploadImage = async (file: File) => {
     const uuid = uuidv1();
     const id = `${ImagesStore}/${uuid}`;

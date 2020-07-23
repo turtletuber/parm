@@ -12,6 +12,7 @@ import { useThemePrefs } from './hooks';
 import { useStyles } from './useStyles';
 import { YoutubeLinkConverter } from './YoutubeLinkConverter';
 import { ImgUploader } from './ImageUploader';
+import { ImgViewer } from './ImageViewer';
 import { Admin } from './Admin';
 
 export const Markdown = ({ children }) => {
@@ -52,6 +53,7 @@ export const Markdown = ({ children }) => {
         YoutubeLinkConverter,
         ImgUploader,
         Admin,
+        ImgViewer,
       },
     }}>
       {children}
