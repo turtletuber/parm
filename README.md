@@ -147,6 +147,12 @@ Followed this guide to set up firebase hosting.
 
 https://www.youtube.com/watch?v=NrkFBmBFA6k
 
+## Added gcloud
+* install: https://cloud.google.com/sdk/docs/quickstart-macos
+* call pubsub from an http function: https://cloud.google.com/functions/docs/calling/pubsub
+* nx cloud function builder plugin: https://github.com/JoelCode/gcp-function
+* nx function support issue: https://github.com/nrwl/nx/issues/836
+
 ### References
 * [jenkins-github]
 * [Swagger]
