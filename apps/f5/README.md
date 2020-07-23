@@ -1,3 +1,21 @@
+> July 22 2020
+
+### F5
+F5 started out as a multiplayer, player-built choose your own online text adventure.
+
+I wrote code to support different hosting different types of text adventures with only the one codebase. For instance, you could create a live config that would define a "one word story" text adventure. This would be deployed along with any other configurations on each deploy.
+
+The one word story almost served like a blog and before I knew it, I was using f5 to serve my blog.
+
+Since then, I've mostly abandoned the text adventure apps (though they still work to my knowledge).
+
+Now the focus is building out this blog. It has very strange patterns. Here are the key features:
+* you can define values in the live config which are then bundled with the app at build time
+* you can define build-time file overrides by appending your app name to any existing file in the codebase
+* you can add whitelisted React components to your markdown in blog posts and they will render correctly
+
+It's been an interesting experiment. I will continue to simply use this as a playground for proofing React components and hosting random tools or widgets I build.
+
 > April 24 2020
 
 ### F5
