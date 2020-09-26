@@ -38,6 +38,19 @@ nx serve f5
 ```
 You'll need some secrets, reach out to me if you want to run this locally and I can work with you.
 
+## Deployment
+To deploy all f5 apps:
+```sh
+# *requires npm i -g typescript ts-node
+./tools/scripts/f5/deploy.ts
+```
+
+This script:
+* pulls the live config for each app from firestore
+* bundles the apps
+* updates the dist with some assets
+* deploys to firebase hosting 
+
 ### Roadmap
 * tweak UI to be less frustrating 🟡6️⃣
 * left-to-right and top-to-bottom toggles 🟢3️⃣

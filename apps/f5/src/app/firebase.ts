@@ -96,9 +96,7 @@ const initialNodeMeta: NodeMeta = {
   views: 0,
 }
 
-export function useImages(limit: number = 100) {
-  if (limit === null)
-    limit = 1000;
+export function useImages(limit: number = 1000) {
   const [pageToken, setPageToken] = useState(null);
   const [urls, setUrls] = useState([]);
   const ref = firebase.storage().ref(ImagesStore);
