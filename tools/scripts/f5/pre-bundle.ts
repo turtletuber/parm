@@ -22,7 +22,7 @@ export const preBundle = async () => {
     .collection(collection)
     .get();
     
-  const workspace = require('../../../angular.json');
+  const workspace = require('../../../workspace.json');
   const f5 = workspace.projects.f5;
   const buildTarget = f5.architect.build;
   const bundleTarget = f5.architect.bundle;
@@ -87,7 +87,7 @@ export const preBundle = async () => {
     };
 
     writeJson({
-      fp: './angular.json',
+      fp: './workspace.json',
       data: workspace,
     });
   }); 

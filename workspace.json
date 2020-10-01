@@ -1009,25 +1009,10 @@
           }
         }
       }
-    },
-    "tools-scripts-f5": {
-      "root": "tools/scripts/f5",
-      "sourceRoot": "tools/scripts/f5",
-      "projectType": "library",
-      "schematics": {},
-      "architect": {
-        "test": {
-          "builder": "@nrwl/jest:jest",
-          "options": {
-            "jestConfig": "tools/scripts/jest.config.js",
-            "tsConfig": "tools/scripts/tsconfig.spec.json"
-          }
-        }
-      }
     }
   },
   "cli": {
-    "defaultCollection": "@nrwl/react"
+    "defaultCollection": "@nrwl/workspace"
   },
   "schematics": {
     "@nrwl/react": {
