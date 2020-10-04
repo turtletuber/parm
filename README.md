@@ -155,6 +155,11 @@ Don't put it in a sub dir because that somehow breaks stuff.
 
 See [gcp-function] for more info.
 
+### Stripe
+I followed this guide to start with stripe.
+
+https://stripe.com/docs/development/quickstart
+
 ### References
 * [jenkins-github]
 * [Swagger]
