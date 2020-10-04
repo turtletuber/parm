@@ -160,6 +160,10 @@ I followed this guide to start with stripe.
 
 https://stripe.com/docs/development/quickstart
 
+### Random images
+Will provide a random image
+https://picsum.photos/280/320?random=4
+
 ### References
 * [jenkins-github]
 * [Swagger]

@@ -1,7 +1,5 @@
 // Set your secret key. Remember to switch to your live secret key in production!
 
-import { mainModule } from "process";
-
 // See your keys here: https://dashboard.stripe.com/account/apikeys
 const stripe = require('stripe')('SECRET');
 
