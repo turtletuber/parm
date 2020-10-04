@@ -1076,6 +1076,73 @@
           }
         }
       }
+    },
+    "function-create-checkout": {
+      "root": "apps/function-create-checkout",
+      "sourceRoot": "apps/function-create-checkout/src",
+      "projectType": "application",
+      "prefix": "function-create-checkout",
+      "schematics": {},
+      "architect": {
+        "serve": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "npx @google-cloud/functions-framework --target functionCreateCheckout --source ./dist/apps/function-create-checkout"
+              }
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:lint",
+          "options": {
+            "linter": "eslint",
+            "tsConfig": [
+              "apps/function-create-checkout/tsconfig.app.json"
+            ],
+            "exclude": [
+              "**/node_modules/**",
+              "!apps/function-create-checkout/**/*"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "options": {
+            "jestConfig": "apps/function-create-checkout/jest.config.js",
+            "tsConfig": "apps/function-create-checkout/tsconfig.spec.json",
+            "passWithNoTests": true
+          }
+        },
+        "build": {
+          "builder": "@joelcode/gcp-function:build",
+          "options": {
+            "outputPath": "dist/apps/function-create-checkout",
+            "main": "apps/function-create-checkout/src/index.ts",
+            "yamlConfig": "apps/function-create-checkout/src/environments/.production.yaml",
+            "tsConfig": "apps/function-create-checkout/tsconfig.app.json",
+            "packageJson": "apps/function-create-checkout/package.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false
+            }
+          }
+        },
+        "deploy": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "commands": [
+              {
+                "command": "gcloud functions deploy functionCreateCheckout --trigger-http --runtime nodejs10 --region us-central1 --env-vars-file ./dist/apps/function-create-checkout/.production.yaml --source ./dist/apps/function-create-checkout --max-instances 10 --allow-unauthenticated"
+              }
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

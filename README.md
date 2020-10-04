@@ -155,6 +155,13 @@ Don't put it in a sub dir because that somehow breaks stuff.
 
 See [gcp-function] for more info.
 
+Secrets management:
+* https://cloud.google.com/functions/docs/env-var
+
+```
+gcloud functions deploy FUNCTION_NAME --set-env-vars FOO=bar
+```
+
 ### Stripe
 I followed this guide to start with stripe.
 

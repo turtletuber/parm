@@ -1,0 +1,4 @@
+apiSecret: 'my-secret-key'
+projectId: 'my-project-id'
+location: 'global'
+STRIPE_SECRET_KEY: dummy-value

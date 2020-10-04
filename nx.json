@@ -101,6 +101,9 @@
     },
     "hello-world": {
       "tags": []
+    },
+    "function-create-checkout": {
+      "tags": []
     }
   }
 }
