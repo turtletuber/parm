@@ -147,6 +147,14 @@ Followed this guide to set up firebase hosting.
 
 https://www.youtube.com/watch?v=NrkFBmBFA6k
 
+## Create a firebase google cloud function
+```sh
+nx generate @joelcode/gcp-function:http function-name
+```
+Don't put it in a sub dir because that somehow breaks stuff.
+
+See [gcp-function] for more info.
+
 ### References
 * [jenkins-github]
 * [Swagger]
@@ -154,6 +162,7 @@ https://www.youtube.com/watch?v=NrkFBmBFA6k
 * [parm/swagger] - the commit that adds swagger
 * [awesome-nodejs] - curated list of useful nodejs libraries
 * [openapi-generator] - generate api clients from oas3
+* [gcp-function] - generate google cloud functions
 
  <!-- References -->
 [jenkins-github]: https://stackoverflow.com/questions/14274293/show-current-state-of-jenkins-build-on-github-repo/16246831#16246831
@@ -162,3 +171,4 @@ https://www.youtube.com/watch?v=NrkFBmBFA6k
 [parm/swagger]: https://github.com/prmichaelsen/parm/tree/swagger
 [awesome-nodejs]: https://github.com/sindresorhus/awesome-nodejs
 [openapi-generator]: https://github.com/OpenAPITools/openapi-generator
+[gcp-function]: https://github.com/JoelCode/gcp-function
