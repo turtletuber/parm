@@ -1,4 +1,5 @@
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+import { stripe as secrets } from '@parm/util';
+const stripe = require('stripe')(secrets.secretKey);
 
 export const functionCreateCheckout = async (req: any, res?: any) => {
   const domainURL = 'https://parm.app?focus=';
