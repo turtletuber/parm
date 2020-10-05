@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as execa from 'execa';
+const execa = require('execa');
 import * as nunjucks from 'nunjucks';
 
 nunjucks.configure({
