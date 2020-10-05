@@ -145,7 +145,7 @@ export default function Adventure(props) {
     ...state(),
     userId,
     to, from, focus,
-    prev, scrollY,
+    prev,
   });
 
   const MyList = () => (

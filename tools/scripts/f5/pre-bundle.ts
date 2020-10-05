@@ -5,7 +5,7 @@ import { firebase } from './firebase';
 import { 
   environment, writeEnv, writeJson
 } from './util';
-import * as readdirsr from 'recursive-readdir';
+const readdirsr =  require('recursive-readdir');
 
 import * as nunjucks from 'nunjucks';
 
