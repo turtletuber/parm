@@ -21,14 +21,17 @@ import ImageIcon from '@material-ui/icons/Image';
 import { useHistory, Link } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import { useQueryParams, StringParam } from 'use-query-params';
-import { useMeta, useNodeView } from './firebase';
+import { useMeta, useNodeView, useRoles } from './firebase';
 import { storage } from './storage';
 import { validate } from './validate';
 import { Markdown } from './Markdown';
 
 export const AdventureOptionCard = (row: any) => {
+  const roles = useRoles();
   const userId = storage.userId();
   const isAuthor = userId === row.creatorId;
+  const isAdmin = roles.includes('admin');
+  const canEdit = isAuthor || isAdmin;
   const history = useHistory();
   const { views } = useNodeView(row.id);
   const { meta, setMeta } = useMeta(row.id);
@@ -165,10 +168,10 @@ export const AdventureOptionCard = (row: any) => {
                       </IconButton>
                     </Link>
                   </Grid>
-                  {isAuthor && (
+                  {canEdit && (
                     <Grid item>
                       <IconButton
-                        aria-label={isEditing ? 'unlike' : 'like'}
+                        aria-label={'edit'}
                         onClick={handleToggleEdit}
                         className={clsx({
                           [classes.active]: isEditing,
