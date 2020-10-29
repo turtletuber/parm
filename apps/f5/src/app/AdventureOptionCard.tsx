@@ -181,11 +181,6 @@ export const AdventureOptionCard = (row: any) => {
                       </IconButton>
                     </Grid>
                   )}
-                  {/* <Grid item>
-                        <IconButton aria-label="settings" className={classes.action}>
-                          <MoreVertIcon />
-                        </IconButton>
-                      </Grid> */}
                 </Grid>
               </CardActions>
               <CardContent>
