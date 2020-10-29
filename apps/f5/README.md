@@ -38,6 +38,11 @@ nx serve f5
 ```
 You'll need some secrets, reach out to me if you want to run this locally and I can work with you.
 
+Run a specific app for local development:
+```sh
+nx run f5:serve:parm 
+```
+
 ## Deployment
 To deploy all f5 apps:
 ```sh
