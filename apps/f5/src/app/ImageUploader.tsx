@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import ImageUploader from 'react-images-upload';
 import Grid from '@material-ui/core/Grid';
-import { useImages } from './firebase';
+import { useImageUpload } from './firebase';
 import IconButton from '@material-ui/core/IconButton';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward'; 
 import Button from '@material-ui/core/Button';
@@ -13,7 +13,7 @@ const initialCompleted: string[] = [];
 export const ImgUploader = () => { 
   const [pending, setPending] = useState([...initialPending]);
   const [completed, setCompleted] = useState([...initialCompleted]);
-  const { uploadImage } = useImages();
+  const { uploadImage } = useImageUpload();
   const onDrop: onChange = (pictures) => {
     setPending([
       ...pictures
