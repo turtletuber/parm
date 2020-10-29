@@ -66,7 +66,7 @@
     "react-dom": "^16.12.0",
     "react-hover-observer": "^2.1.1",
     "react-images-upload": "^1.2.8",
-    "react-infinite-scroll-component": "^5.0.4",
+    "react-infinite-scroll-component": "^5.1.0",
     "react-lazyload": "^2.6.6",
     "react-loader-spinner": "^3.1.5",
     "react-router-dom": "5.1.2",

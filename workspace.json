@@ -834,6 +834,10 @@
                   "with": "apps/f5/src/app/Adventure.parm.tsx"
                 },
                 {
+                  "replace": "apps/f5/src/app/AdventureOptionCard.tsx",
+                  "with": "apps/f5/src/app/AdventureOptionCard.parm.tsx"
+                },
+                {
                   "replace": "apps/f5/src/app/EndMessage.tsx",
                   "with": "apps/f5/src/app/EndMessage.parm.tsx"
                 }
@@ -910,6 +914,10 @@
                 {
                   "replace": "apps/f5/src/app/Adventure.tsx",
                   "with": "apps/f5/src/app/Adventure.parm.tsx"
+                },
+                {
+                  "replace": "apps/f5/src/app/AdventureOptionCard.tsx",
+                  "with": "apps/f5/src/app/AdventureOptionCard.parm.tsx"
                 },
                 {
                   "replace": "apps/f5/src/app/EndMessage.tsx",

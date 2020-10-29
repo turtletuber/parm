@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { environment } from '../environments/environment';
 import Typography from '@material-ui/core/Typography';
 import { LoadingSpinner } from './LoadingSpinner';
@@ -7,132 +7,31 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import { useData } from './firebase';
 import { EndMessage } from './EndMessage';
 import { AdventureOptionCard } from './AdventureOptionCard';
-import { storage } from './storage';
 import { Option } from './firebase';
 import { useQueryParams, StringParam } from 'use-query-params'; 
-import { Fab, useTheme, Divider, Grid, Switch } from '@material-ui/core';
 import Markdown from 'markdown-to-jsx';
-import { useThemePrefs } from './hooks';
 import SideBar from './SideBar';
 
-function hashCode(s) {
-  for(var i = 0, h = 0; i < s.length; i++)
-      h = Math.imul(31, h) + s.charCodeAt(i) | 0;
-  return h;
-}
-
-const weight = (option: Option) => {
-  const userId = storage.userId();
-  const optionId = option.id;
-  const weight = hashCode(userId)/hashCode(optionId);
-  return {
-    ...option,
-    weight,
-  }
-}
-
-const numOptions = environment.numResponses;
-const maxResponses = environment.maxResponses;
-
 export default function Adventure(props) {
-  const userId = storage.userId();
   const classes = useStyles();
-  const [size, setSize] = useState(4);
+  const [afterSize, setAfterSize] = useState(4);
+  const [beforeSize, setBeforeSize] = useState(1);
   const [query, setQuery] = useQueryParams({
-    to: StringParam,
-    from: StringParam,
     focus: StringParam,
   });
-  const { to, from, focus } = query;
   const { 
     state: data, setCurrent: setCurrentState,
     createOption, updateNode,
   } = useData();
-  const fetchData = () => 
-    setSize(size + 3);
-  const state = () => {
-    const current = 
-     to && data.nodes.find(n => n.id === to)
-     || 
-     data.nodes.find(n => n.id === data.current)
-     || 
-     data.root
-    ;
-    if (!current) {
-      return {
-        current: data.root,
-        canReply: false,
-        isPrompt: false,
-        children: [],
-        prev: [],
-      };
-    }
-    const children = data.nodes
-      .filter(n => current.children.includes(n.id))
-      .map(n => weight(n))
-      .sort((a, b) => b.weight - a.weight)
-      .slice(0, numOptions) 
-      ;
-    const isPrompt = current.type === 'prompt';
-    const canReply = 
-      (isPrompt || children.length === 0)
-      && userId !== current.creatorId
-      && (children.length < maxResponses || maxResponses === -1)
-      ;
-    const prev: Option[] = [];
-    let it = current;
-    const searchId = from || data.root.id;
-    while (it && it.id !== searchId) {
-      prev.push(it);
-      it = data.nodes.find(n => n.id === it.parent);
-    }
-    return {
-      current,
-      canReply,
-      isPrompt,
-      children,
-      prev: prev.reverse(),
-    };
-  }
+  const fetchAfter = () => 
+    setAfterSize(afterSize + 3); 
+  const fetchBefore = () => 
+    setBeforeSize(beforeSize + 3); 
 
-  const {
-      current,
-      canReply,
-      children,
-      prev,
-  } = state();
-
-  useEffect(() => {
-    if (current && current.id === data.root.id) {
-      if (!to && !from && !focus) {
-        setQuery({
-          to: data.root.id,
-          from: data.root.id,
-          focus: data.root.id,
-        });
-      }
-    }
-  });
-
-  const setCurrent = (targetId: string) => {
-    const newQuery = { ...query };
-    if (!from)
-      newQuery.from = current.id;
-    if (!to || to === current.id)
-      newQuery.to = targetId;
-    newQuery.focus = targetId;
-    setQuery(newQuery);
-    setCurrentState(targetId);
-  }
-
-  console.log('state', {
-    ...state(),
-    userId,
-    to, from, focus,
-    prev,
-  });
-
+  const rootId = data.root && data.root.id;
+  const focus = query.focus || rootId;
   const nodes: Option[] = data.nodes;
+  const focusNode = nodes.find(n => n.id === focus);
 
   return (
     <div className={classes.paper}>
@@ -142,36 +41,42 @@ export default function Adventure(props) {
           {environment.header}
         </Markdown>
       </Typography>
-      <div className={classes.cards}>
-        <InfiniteScroll
-          dataLength={size}
-          next={fetchData}
-          hasMore={size < nodes.length}
-          loader={<LoadingSpinner/>}
-          endMessage={<EndMessage/>}
-        >
-          {nodes.map((node, i) => {
-            return (
-              <AdventureOptionCard 
-                createOption={updateNode}
-                key={'prev-' + i}
-                {...node}
-                prev
-              />
-            )
-          })}
-          {current &&
+      {focusNode && (
+        <div className={classes.cards}>
+          <AdventureOptionCard 
+            createOption={updateNode}
+            key={'focus'}
+            {...focusNode}
+            prev
+          />
+          <InfiniteScroll
+            dataLength={afterSize}
+            next={fetchAfter}
+            hasMore={afterSize < nodes.length}
+            loader={<LoadingSpinner/>}
+            endMessage={<EndMessage/>}
+          >
+            {nodes.slice(0, afterSize).map((node, i) => {
+              return (
+                <AdventureOptionCard 
+                  createOption={updateNode}
+                  key={'after-' + i}
+                  {...node}
+                  prev
+                />
+              )
+            })}
             <AdventureOptionCard 
               showBackButton={false}
               key={'add'}
               new
-              parent={current.id}
+              parent={data.root.id}
               createOption={createOption}
               type={'action'}
             />
-          }
-        </InfiniteScroll>
-      </div>
+          </InfiniteScroll>
+        </div>
+      )}
     </div>
   );
 }
