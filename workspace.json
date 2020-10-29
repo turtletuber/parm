@@ -828,6 +828,14 @@
                 {
                   "replace": "apps/f5/src/environments/environment.ts",
                   "with": "./apps/f5/src/environments/parm.ts"
+                },
+                {
+                  "replace": "apps/f5/src/app/Adventure.tsx",
+                  "with": "apps/f5/src/app/Adventure.parm.tsx"
+                },
+                {
+                  "replace": "apps/f5/src/app/EndMessage.tsx",
+                  "with": "apps/f5/src/app/EndMessage.parm.tsx"
                 }
               ]
             },
@@ -898,6 +906,14 @@
                 {
                   "replace": "apps/f5/src/environments/environment.ts",
                   "with": "./apps/f5/src/environments/parm.ts"
+                },
+                {
+                  "replace": "apps/f5/src/app/Adventure.tsx",
+                  "with": "apps/f5/src/app/Adventure.parm.tsx"
+                },
+                {
+                  "replace": "apps/f5/src/app/EndMessage.tsx",
+                  "with": "apps/f5/src/app/EndMessage.parm.tsx"
                 }
               ]
             },
