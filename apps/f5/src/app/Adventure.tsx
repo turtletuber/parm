@@ -10,24 +10,7 @@ import { AdventureOptionCard } from './AdventureOptionCard';
 import { storage } from './storage';
 import { Option } from './firebase';
 import { useQueryParams, StringParam } from 'use-query-params'; 
-import ListItem from '@material-ui/core/ListItem';
-import List from '@material-ui/core/List';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import Drawer from '@material-ui/core/Drawer';
-import MenuIcon from '@material-ui/icons/Menu';
-import IconButton from '@material-ui/core/IconButton';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-import FeedbackIcon from '@material-ui/icons/Feedback'; 
-import BrushIcon from '@material-ui/icons/Brush'; 
-import OpenInNewIcon from '@material-ui/icons/OpenInNew'; 
-import AppBar from '@material-ui/core/AppBar';
-import App from './app';
-import { Fab, useTheme, Divider, Grid, Switch } from '@material-ui/core';
 import Markdown from 'markdown-to-jsx';
-import { useThemePrefs } from './hooks';
 import SideBar from './SideBar';
 
 function hashCode(s) {
@@ -147,8 +130,6 @@ export default function Adventure(props) {
     prev,
   });
 
-  const nodes: Option[] = data.nodes;
-
   return (
     <div className={classes.paper}>
       <SideBar/>
@@ -161,11 +142,17 @@ export default function Adventure(props) {
         <InfiniteScroll
           dataLength={size}
           next={fetchData}
-          hasMore={size < nodes.length}
+          hasMore={canReply || children.length > 0}
           loader={<LoadingSpinner/>}
           endMessage={<EndMessage/>}
         >
-          {nodes.map((node, i) => {
+          <AdventureOptionCard 
+            createOption={updateNode}
+            key={'current'}
+            {...data.root}
+            root
+          />
+          {prev.map((node, i) => {
             return (
               <AdventureOptionCard 
                 createOption={updateNode}
@@ -175,16 +162,28 @@ export default function Adventure(props) {
               />
             )
           })}
-          {current &&
+          <AdventureOptionCard key={'prompt'} current />
+          {children.map((node, i) => {
+              return (
+                <AdventureOptionCard 
+                  createOption={updateNode}
+                  showBackButton={i === children.length - 1}
+                  key={node.id}
+                  {...node}
+                  setCurrent={setCurrent} 
+                />
+              )
+          })}
+          {canReply && (
             <AdventureOptionCard 
-              showBackButton={false}
+              showBackButton={canReply}
               key={'add'}
               new
               parent={current.id}
               createOption={createOption}
-              type={'action'}
+              type={current.type === 'prompt' ? 'action' : 'prompt'}
             />
-          }
+          )}
         </InfiniteScroll>
       </div>
     </div>
