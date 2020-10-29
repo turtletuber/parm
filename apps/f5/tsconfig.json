@@ -6,7 +6,7 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "types": ["node", "jest"],
-    "lib": ["dom"]
+    "lib": ["es2017", "ES6", "dom", "dom.iterable"]
   },
   "files": [
     "../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
