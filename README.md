@@ -2,8 +2,20 @@
 
 This project was generated using [Nx](https://nx.dev).
 
+To get the most out of Nx, consider the Nx console vs code plugin.
+This helps you generate commands. You can see a list of commands,
+which schematics are installed, and what options are available along with their descriptions. The tool generates the preview terminal commands in the
+console while you edit the options via the gui.
+
 ## Development
-To get started, install nx via `npm i -g @nrwl/cli`, set the required Firebase admin secrets in `./env/parm-app.json` and then run `nx serve your-app` or `nx serve react:storybook` to start a development server. You can attach the debugger via vs code's debug tools.
+To get started, install nx via `npm i -g @nrwl/cli`, set the required Firebase admin secrets in `./env/parm-app.json` and then run `nx serve your-app` or `nx run react:storybook` to start a development server. You can attach the debugger via vs code's debug tools.
+
+React storybooks in the `libs/react` directory will be dynamically included simply by using the `.stories.tsx` postfix.
+
+To see the live storybook:
+```sh
+nx run react:storybook
+```
 
 ## Roadmap
 * Twitch connection
@@ -74,6 +86,21 @@ When using Nx, you can create multiple applications and libraries in the same wo
 Run `ng g @nrwl/angular:lib my-lib` to generate a library.
 
 > You can also use any of the plugins above to generate libraries as well.
+
+### Generate a new react library
+> Nov 1 2020
+
+Use this whenever you create a new react shared component or hook.
+
+It will create the component in its _own_ library. This is following
+my principle of one component per lib.
+
+Additionally, you will get storybooks for free. Just create a `.stories.tsx`.
+
+```sh
+nx generate @nrwl/react:library --name=date-add --directory=react --no-interactive --dry-run-
+nx generate @nrwl/react:component --name=DateSubtracter --project=react-date-subtracter --export --no-interactive --dry-run 
+```
 
 Libraries are sharable across libraries and applications. They can be imported from `@parm/mylib`.
 
