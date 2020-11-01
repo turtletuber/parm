@@ -33,6 +33,17 @@ export default function Adventure(props) {
   const nodes: Option[] = data.nodes;
   const focusNode = nodes.find(n => n.id === focus);
 
+  const CreateCard = () => (
+    <AdventureOptionCard 
+      showBackButton={false}
+      key={'add'}
+      new
+      parent={rootId}
+      createOption={createOption}
+      type={'action'}
+    />
+  );
+
   return (
     <div className={classes.paper}>
       <SideBar/>
@@ -41,14 +52,18 @@ export default function Adventure(props) {
           {environment.header}
         </Markdown>
       </Typography>
-      {focusNode && (
         <div className={classes.cards}>
-          <AdventureOptionCard 
-            createOption={updateNode}
-            key={'focus'}
-            {...focusNode}
-            prev
-          />
+          {focus === 'create' && (
+            <CreateCard/>
+          )}
+          {focusNode && (
+            <AdventureOptionCard 
+              createOption={updateNode}
+              key={'focus'}
+              {...focusNode}
+              prev
+            />
+          )}
           <InfiniteScroll
             dataLength={afterSize}
             next={fetchAfter}
@@ -66,17 +81,9 @@ export default function Adventure(props) {
                 />
               )
             })}
-            <AdventureOptionCard 
-              showBackButton={false}
-              key={'add'}
-              new
-              parent={data.root.id}
-              createOption={createOption}
-              type={'action'}
-            />
+            <CreateCard/>
           </InfiniteScroll>
         </div>
-      )}
     </div>
   );
 }
