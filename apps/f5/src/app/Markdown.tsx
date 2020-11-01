@@ -2,6 +2,7 @@
 import MarkdownToJsx from 'markdown-to-jsx'; 
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
 import AceEditor from 'react-ace';
  
 import 'ace-builds/src-noconflict/mode-java';
@@ -54,6 +55,7 @@ export const Markdown = ({ children }) => {
         ImgUploader,
         Admin,
         ImgViewer,
+        ListItem,
       },
     }}>
       {children}

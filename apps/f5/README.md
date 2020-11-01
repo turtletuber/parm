@@ -43,6 +43,8 @@ Run a specific app for local development:
 nx run f5:serve:parm 
 ```
 
+For more dev info, see [DEV_README](./DEV_README.md).
+
 ## Deployment
 To deploy all f5 apps:
 ```sh
@@ -84,6 +86,13 @@ The newest features are at the top of this list.
 * markdown support
 * cookie to enforce users can't reply to self
 * random option selection re-selects on every render
+
+### Not on roadmap
+* replies
+* horizontal colored bars with length corresponding to reply nest level on each reply
+* control cards, ie filter, map, reduce, sort
+  * control cards will be a top level type card that can influence
+    presentation of the cards on the page
 
 ### Key
 This key is allows me to label roadmap items. Not everything will be assigned labels.

@@ -17,6 +17,8 @@ import { Fab, useTheme, Divider, Grid, Switch } from '@material-ui/core';
 import { storage } from './storage';
 import { useStyles } from './useStyles';
 import { useThemePrefs } from './hooks';
+import { useData } from './firebase';
+import { Markdown } from './Markdown';
 
 
 export default function SideBar() {
@@ -24,6 +26,14 @@ export default function SideBar() {
   const userId = storage.userId();
   const classes = useStyles();
   const [expanded, setExpanded] = useState(false);
+  const { state } = useData();
+
+  // you can create a custom nav item
+  // by creating a node with ListItems
+  // in it. It is stored in the database
+  // and retrieved on page load.
+  const customNavItemsId = 'PQPfl5ioaUFsRpSywO8M';
+  const customNavItems = state.nodes.find(n => n.id === customNavItemsId);
   const MyList = () => (
     <span role="presentation">
       <List className={classes.list}>
@@ -67,6 +77,14 @@ export default function SideBar() {
             <Grid item>Dark</Grid>
           </Grid>
         </ListItem>
+        {customNavItems && (
+          <>
+            <Divider/>
+            <Markdown>
+              {customNavItems.text || ''}
+            </Markdown>
+          </>
+        )}
       </List>
       <Fab onClick={() => setExpanded(false)} className={classes.menuButton}>
         {theme.direction === 'ltr' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
