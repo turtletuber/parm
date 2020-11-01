@@ -16,6 +16,8 @@ import { ImgUploader } from './ImageUploader';
 import { ImgViewer } from './ImageViewer';
 import { Admin } from './Admin';
 
+import { DateSubtracter } from '@parm/react/date-subtracter';
+
 export const Markdown = ({ children }) => {
   const { isDark } = useThemePrefs();
   const aceTheme = isDark ? 'twilight' : 'xcode';
@@ -56,6 +58,7 @@ export const Markdown = ({ children }) => {
         Admin,
         ImgViewer,
         ListItem,
+        DateSubtracter,
       },
     }}>
       {children}
