@@ -93,6 +93,8 @@ The newest features are at the top of this list.
 * control cards, ie filter, map, reduce, sort
   * control cards will be a top level type card that can influence
     presentation of the cards on the page
+* could allow configuration to reuse existing databases, for quick aliasing new domain names to re-use parm
+* could allow using ace editor for creating cards
 
 ### Key
 This key is allows me to label roadmap items. Not everything will be assigned labels.
