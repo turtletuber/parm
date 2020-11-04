@@ -10,6 +10,13 @@
     <meta name="og:description" content="{{metaDescription}}"/>
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
     <meta name="og:image" content="favicon.ico"/>
+    <!-- 
+      fix issue with global undefined for snoowrap inclusion
+      https://stackoverflow.com/questions/50356408/upgrading-to-angular-6-x-gives-uncaught-referenceerror-global-is-not-defined
+    -->
+    <script>
+      var global = global || window;
+    </script>
   </head>
   <body>
     <div id="root"></div>
