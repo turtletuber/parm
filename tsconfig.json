@@ -33,7 +33,12 @@
       ],
       "@parm/node-util": ["libs/node-util/src/index.ts"],
       "@parm/reddit": ["libs/reddit/src/index.ts"],
-      "@parm/react/date-subtracter": ["libs/react/date-subtracter/src/index.ts"]
+      "@parm/react/date-subtracter": [
+        "libs/react/date-subtracter/src/index.ts"
+      ],
+      "@parm/react/reddit-crossposter": [
+        "libs/react/reddit-crossposter/src/index.ts"
+      ]
     },
     "noImplicitReturns": true,
     "esModuleInterop": true

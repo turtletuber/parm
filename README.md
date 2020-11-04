@@ -98,7 +98,7 @@ my principle of one component per lib.
 Additionally, you will get storybooks for free. Just create a `.stories.tsx`.
 
 ```sh
-nx generate @nrwl/react:library --name=date-add --directory=react --no-interactive --dry-run-
+nx generate @nrwl/react:library --name=date-add --directory=react --no-interactive --dry-run
 nx generate @nrwl/react:component --name=DateSubtracter --project=react-date-subtracter --export --no-interactive --dry-run 
 ```
 
