@@ -17,6 +17,7 @@ import { ImgViewer } from './ImageViewer';
 import { Admin } from './Admin';
 
 import { DateSubtracter } from '@parm/react/date-subtracter';
+import { RedditCrossposter } from '@parm/react/reddit-crossposter';
 
 export const Markdown = ({ children }) => {
   const { isDark } = useThemePrefs();
@@ -59,6 +60,7 @@ export const Markdown = ({ children }) => {
         ImgViewer,
         ListItem,
         DateSubtracter,
+        RedditCrossposter,
       },
     }}>
       {children}
