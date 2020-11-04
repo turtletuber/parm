@@ -18,6 +18,7 @@ import { Admin } from './Admin';
 
 import { DateSubtracter } from '@parm/react/date-subtracter';
 import { RedditCrossposter } from '@parm/react/reddit-crossposter';
+import UserId from './UserId';
 
 export const Markdown = ({ children }) => {
   const { isDark } = useThemePrefs();
@@ -61,6 +62,7 @@ export const Markdown = ({ children }) => {
         ListItem,
         DateSubtracter,
         RedditCrossposter,
+        UserId,
       },
     }}>
       {children}
